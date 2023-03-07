@@ -1,52 +1,23 @@
-.login {
+.register {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background: url("https://res.cloudinary.com/dedeobaxo/image/upload/v1678178099/Job_Market_proj/int_b2nd5s.jpg") no-repeat left bottom fixed!important;
-  //background: url("https://res.cloudinary.com/dedeobaxo/image/upload/v1678131717/Job_Market_proj/rome_vrq3wd.jpg")!important;
-  background-size: 1920px 1080px;
-  object-fit: contain;
+  background-image: url("https://batollo.ru/wp-content/uploads/2017/05/true-detective.jpg")!important;
+  background-repeat: no-repeat;
+  background-size: cover;
   overflow: hidden;
   position: relative;
 
-  //.login-title {
-  //  display: flex;
-  //  flex-direction: column;
-  //  justify-content: center;
-  //  align-items: center;
-  //  margin-bottom: 40%;
-  //  gap: 20px;
-  //
-  //  //h1 {
-  //  //  color: #000000;
-  //  //}
-  //  //
-  //  //span{
-  //  //  font-size: larger;
-  //  //  font-weight: bolder;
-  //  //  color: #000000;
-  //  //
-  //  //}
-  //  //
-  //  //.test1 {
-  //  //  color: transparent;
-  //  //  -webkit-background-clip: text;
-  //  //  background-clip: text;
-  //  //  background-image: linear-gradient(146deg, rgba(47,226,244,1) 0%, rgba(56,178,209,1) 49%, rgba(56,178,209,1) 100%);
-  //  //}
-  //}
-
-  .login-modal {
+  .register-modal {
     width: 30%;
-    height: 75%;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    //border: 3px dotted black;
     border-radius: 20px;
     opacity: 0.6;
     gap: 30px;
@@ -57,20 +28,21 @@
     }
 
     img {
-      width: 220px;
+      width: 240px;
       height: 100px;
       transition: all 0.5s ease;
+
       &:hover{
         opacity: 0.2;
       }
     }
 
-    .login-enter {
+    .register-enter {
       font-size: 30px;
     }
 
     span {
-      color: #000000;
+      color: #ffffff;
       font-weight: bold;
       font-size: larger;
     }
@@ -83,9 +55,10 @@
       font-size: larger;
       text-align: center;
       transition: all 1s ease;
-      color: black;
+      color: #ffffff;
       outline: none;
-      background-color: lightblue;
+      background-color: #7d7b7b;
+      opacity: 0.7;
       &:hover{
         cursor: pointer;
         opacity: 1;
@@ -94,18 +67,18 @@
     }
 
     ::-webkit-input-placeholder {
-      color: black!important;
+      color: white!important;
       padding-left: 10%;
       font-weight: bold;
       text-align: left;
     }
 
     button {
-      width: 130px;
+      width: 230px;
       border: 1px dotted;
       border-radius: 10px;
       font-size: 20px;
-      color: #000000;
+      color: #ffffff;
       background-color: transparent;
       transition: all 1s ease;
       &:hover {
@@ -114,35 +87,48 @@
       }
     }
 
-    .login-block {
+    .register-block {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-
+      text-decoration: none;
       span {
         height: 30px;
       }
 
-      .login-forgot {
+      .register-login {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        .register-to-login{
+          color: white;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+
+      .register-forgot {
         transition: all 1s ease;
         &:hover{
           cursor: pointer;
           background: transparent;
-          //color: #38b2d1;
-          color: #b07474;
+          color: grey;
           font-weight: bold;
         }
       }
     }
 
-    .login-ic {
+    .register-ic {
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
 
-      .login-icons {
+      .register-icons {
         width: 50px;
         height: 40px;
         transition: all 1s ease;
@@ -157,14 +143,14 @@
   }
 
   @media only screen and (max-width: 600px) {
-    .login-modal {
+    .register-modal {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
 
-      .login-forgot {
+      .register-forgot {
         transition: all 1s ease;
         &:hover{
           cursor: pointer;
@@ -183,14 +169,14 @@
 
   @media only screen and (max-width: 1200px) {
 
-    .login-modal {
+    .register-modal {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
 
-      .login-block {
+      .register-block {
         width: 60%;
         margin-bottom: 50px;
 
@@ -213,18 +199,18 @@
 
   @media only screen and (max-width: 400px) {
 
-    .login-modal {
+    .register-modal {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
 
-      .login-enter {
+      .register-enter {
         font-size: 30px;
       }
 
-      .login-block {
+      .register-block {
         width: 60%;
         margin-bottom: 50px;
 

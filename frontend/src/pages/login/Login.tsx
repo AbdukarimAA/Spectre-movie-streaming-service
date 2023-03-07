@@ -1,20 +1,29 @@
 import React from 'react';
 import './Login.scss';
+import {Link} from "react-router-dom";
 
 const Login = () => {
+
     return (
         <div className='login'>
             <div className="login-title">
-                <span>Вход в аккаунт </span>
-                <span>Войдите для доступа к подписке</span>
+                {/*<span className='test1'>Войдите для доступа к подписке</span>*/}
             </div>
             <div className="login-modal">
-                <img src="https://www.vagasfloripa.com.br/wp-content/uploads/company_logos/2020/10/logo-specto-grande-black.png" alt=""/>
+                {/*<img src="https://www.vagasfloripa.com.br/wp-content/uploads/company_logos/2020/10/logo-specto-grande-black.png" alt=""/>*/}
+                <img src="https://res.cloudinary.com/dedeobaxo/image/upload/v1678183157/Job_Market_proj/2560px-Logo_spectre_int.svg_qfxgdb.png" alt=""/>
+                <span className='login-enter'>Вход в аккаунт </span>
                 <input type="email" placeholder='Email'/>
                 <input type="password" placeholder='Password'/>
-                <div className="test">
-                    <span className='login-forgot'>Забыли пароль?</span>
+                <button>Войти</button>
+                <div className="login-block">
+                    <div className="login-register">
+                        <Link to={'/register'}>
+                            <span className='login-forgot'>Нет аккаута? Зарегистрируйтесь!</span>
+                        </Link>
+                    </div>
                     <span></span>
+                    <span className='login-forgot'>Забыли пароль?</span>
                     <span className='net'>Войдите с помощью социальных сетей</span>
                 </div>
                 <div className="login-ic">
