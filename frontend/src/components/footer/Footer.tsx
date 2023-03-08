@@ -44,6 +44,7 @@ function Footer() {
                         <span className='footer-titles'>Spectre Pro</span>
                         <span className='footer-titles'>Spectre Marketing</span>
                         <span className='footer-titles'>Spectre Guides</span>
+                        <span className='footer-titles'>Support Service</span>
                     </div>
                 </div>
                 <hr />
@@ -51,6 +52,7 @@ function Footer() {
                     <div className="left">
                         <h2>Spectre</h2>
                         <span>© Spectre International Ltd. 2023</span>
+                        <span>We are always ready to help you. Our operators are online 24/7</span>
                     </div>
                     <div className="right">
                         <div className="social">
