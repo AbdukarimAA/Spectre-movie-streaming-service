@@ -49,13 +49,13 @@ function Navbar() {
                     <span className='navbar-links'>Purchase a subscription</span>
                     {/*{!currentUser?.isSeller && <span>Become a Member</span>}*/}
                     {currentUser ? (
-                        <div className="user" onMouseEnter={handleModal} onClick={()=>setOpen(!open)}>
+                        <div className="user active" onMouseEnter={handleModal} onClick={()=>setOpen(!open)}>
                             <img
-                                src="https://res.cloudinary.com/dedeobaxo/image/upload/v1678032108/Job_Market_proj/pfxhvpqaumrox8xxqcnq.jpg"
+                                    src="https://res.cloudinary.com/dedeobaxo/image/upload/v1678032108/Job_Market_proj/pfxhvpqaumrox8xxqcnq.jpg"
                                 alt=""
                             />
                             <span>{currentUser?.username}</span>
-                            {open && <div className="options" onMouseLeave={()=>setOpen(!open)}>
+                            {open && <div className="options active" onMouseLeave={()=>setOpen(!open)}>
                                 <div className="options-left">
                                     {/*{currentUser.isSeller && (*/}
                                     {/*    <>*/}
@@ -111,7 +111,7 @@ function Navbar() {
                                 </div>
 
                                 <div className="options-right">
-                                    <span className='navbar-profile'>Profile</span>
+                                    <span className='navbar-profile'>Account</span>
                                     <div className="opt-r-img">
                                         <div className="img-name">
                                             <img
