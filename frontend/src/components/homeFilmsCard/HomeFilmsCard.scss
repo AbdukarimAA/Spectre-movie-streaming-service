@@ -1,0 +1,82 @@
+.home-films-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 170px;
+  height: 50%;
+  //padding: 10px;
+  //margin: 10px;
+  margin-left: 20px;
+  //background-color: rgb(255, 255, 255);
+
+  .h-f-carousel-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 90%;
+    //background-color: #924c4c;
+
+    h2{
+      color: white;
+      margin-bottom: 25px;
+    }
+    .h-f-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      width: 100%;
+      text-align: center;
+      //background-color: #1dbf73;
+
+      .h-f-img {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 160px;
+        margin-bottom: 20px;
+
+        img {
+          margin-right: 20px;
+          border-radius: 10px;
+          text-align: center;
+          width: 140px;
+          height: 235px;
+          object-fit: cover;
+          margin-bottom: 0px;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        .h-f-texts {
+          display: flex;
+          flex-direction: column;
+          justify-content: start;
+          align-items: start;
+          width: 140px;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        .h-f-title {
+          color: white;
+          font-size: larger;
+          font-weight: bolder;
+        }
+
+        .h-f-price {
+          color: white;
+          font-weight: lighter;
+          font-size: medium;
+          letter-spacing: 0.7px;
+        }
+      }
+    }
+  }
+}

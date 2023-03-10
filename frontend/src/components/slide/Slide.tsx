@@ -9,11 +9,11 @@ interface ISlide {
     centerMode: boolean,
     autoplay: boolean,
     autoplaySpeed: number,
-    dots: boolean,
-    centerPadding: number
+    centerPadding: number,
+    initialSlide: boolean
 }
 
-const Slide = ({children, slidesToShow, arrowsScroll, centerMode, autoplay, autoplaySpeed, dots, centerPadding}: ISlide) => {
+const Slide = ({children, slidesToShow, arrowsScroll, centerMode, autoplay, autoplaySpeed, centerPadding, initialSlide}: ISlide) => {
     return (
         <div className='slide'>
             <div className="container">
@@ -23,8 +23,8 @@ const Slide = ({children, slidesToShow, arrowsScroll, centerMode, autoplay, auto
                     centerMode={centerMode}
                     autoplay={autoplay}
                     autoplaySpeed={autoplaySpeed}
-                    dots={dots}
                     centerPadding={centerPadding}
+                    initialSlide={initialSlide}
                 >
                     {children}
                 </Slider>

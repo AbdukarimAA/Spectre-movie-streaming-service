@@ -167,31 +167,25 @@ function Navbar() {
                     <hr />
                     <div className="menu">
                         <Link className="link menuLink" to="/">
-                            Graphics & Design
+                            Horror
                         </Link>
                         <Link className="link menuLink" to="/">
-                            Video & Animation
+                            Thriller
                         </Link>
                         <Link className="link menuLink" to="/">
-                            Writing & Translation
+                            Action
                         </Link>
                         <Link className="link menuLink" to="/">
-                            AI Services
+                            Comedy
                         </Link>
                         <Link className="link menuLink" to="/">
-                            Digital Marketing
+                            Drama
                         </Link>
                         <Link className="link menuLink" to="/">
-                            Music & Audio
+                            Documentary
                         </Link>
                         <Link className="link menuLink" to="/">
-                            Programming & Tech
-                        </Link>
-                        <Link className="link menuLink" to="/">
-                            Business
-                        </Link>
-                        <Link className="link menuLink" to="/">
-                            Lifestyle
+                            Fantastic
                         </Link>
                     </div>
                     <hr />

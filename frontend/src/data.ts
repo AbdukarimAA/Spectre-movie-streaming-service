@@ -1,4 +1,3 @@
-
 export const cards = [
   {
     id: 1,
@@ -32,3 +31,67 @@ export const cards = [
   },
 
 ];
+
+export const filmCar = [
+  {
+    id: 1,
+    mainImg: "https://res.cloudinary.com/dedeobaxo/image/upload/v1678032108/Job_Market_proj/pfxhvpqaumrox8xxqcnq.jpg",
+    mainTitle: "True Detective",
+    mainPrice: '10000'
+  },
+  {
+    id: 2,
+    mainImg: "https://res.cloudinary.com/dedeobaxo/image/upload/v1678032108/Job_Market_proj/pfxhvpqaumrox8xxqcnq.jpg",
+    mainTitle: "True Detective",
+    mainPrice: '10000'
+  },
+  {
+    id: 3,
+    mainImg: "https://res.cloudinary.com/dedeobaxo/image/upload/v1678032108/Job_Market_proj/pfxhvpqaumrox8xxqcnq.jpg",
+    mainTitle: "True Detective",
+    mainPrice: '10000'
+  },
+  {
+    id: 4,
+    mainImg: "https://res.cloudinary.com/dedeobaxo/image/upload/v1678032108/Job_Market_proj/pfxhvpqaumrox8xxqcnq.jpg",
+    mainTitle: "True Detective",
+    mainPrice: '10000'
+  },
+  {
+    id: 5,
+    mainImg: "https://res.cloudinary.com/dedeobaxo/image/upload/v1678032108/Job_Market_proj/pfxhvpqaumrox8xxqcnq.jpg",
+    mainTitle: "True Detective",
+    mainPrice: '10000'
+  },
+  {
+    id: 6,
+    mainImg: "https://res.cloudinary.com/dedeobaxo/image/upload/v1678032108/Job_Market_proj/pfxhvpqaumrox8xxqcnq.jpg",
+    mainTitle: "True Detective",
+    mainPrice: '10000'
+  },
+  {
+    id: 7,
+    mainImg: "https://res.cloudinary.com/dedeobaxo/image/upload/v1678032108/Job_Market_proj/pfxhvpqaumrox8xxqcnq.jpg",
+    mainTitle: "True Detective",
+    mainPrice: '10000'
+  },
+  {
+    id: 8,
+    mainImg: "https://res.cloudinary.com/dedeobaxo/image/upload/v1678032108/Job_Market_proj/pfxhvpqaumrox8xxqcnq.jpg",
+    mainTitle: "True Detective",
+    mainPrice: '10000'
+  },
+  {
+    id: 9,
+    mainImg: "https://res.cloudinary.com/dedeobaxo/image/upload/v1678032108/Job_Market_proj/pfxhvpqaumrox8xxqcnq.jpg",
+    mainTitle: "True Detective",
+    mainPrice: '10000'
+  },
+  {
+    id: 10,
+    mainImg: "https://res.cloudinary.com/dedeobaxo/image/upload/v1678032108/Job_Market_proj/pfxhvpqaumrox8xxqcnq.jpg",
+    mainTitle: "True Detective",
+    mainPrice: '10000'
+  },
+];
+
