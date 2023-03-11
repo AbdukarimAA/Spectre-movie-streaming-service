@@ -1,6 +1,17 @@
 .home {
   background-color: red;
 
+  .he {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    .heading {
+      width: 79%;
+      height: 35%;
+    }
+  }
+
+
   .home-subs-buttons {
     display: flex;
     flex-direction: row;

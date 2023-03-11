@@ -5,6 +5,7 @@ import HomeMainSlider from "../../components/HomeMainSlider/HomeMainSlider";
 import { cards, filmCar} from "../../data";
 import HomeFilmsCard from "../../components/homeFilmsCard/HomeFilmsCard";
 import HomeFilmsSlider from "../../components/homeFilmsSlider/HomeFilmsSlider";
+import HomeHeadings from "../../components/homeHeadings/HomeHeadings";
 
 const Home = () => {
     return (
@@ -32,35 +33,12 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="home-films-cat-titles">
-
+            <div className="he">
+                <div className="heading">
+                <HomeHeadings />
+                </div>
             </div>
 
-            <HomeFilmsSlider
-                slidesToShow={6}
-                arrowsScroll={3}
-                initialSlide={true}
-                arrowsBlock={false}
-            >
-                {
-                    filmCar.map(item => (
-                        <HomeFilmsCard key={item.id} film={item}/>
-                    ))
-                }
-            </HomeFilmsSlider>
-
-            <HomeFilmsSlider
-                slidesToShow={6}
-                arrowsScroll={3}
-                initialSlide={true}
-                arrowsBlock={false}
-            >
-                {
-                    filmCar.map(item => (
-                        <HomeFilmsCard key={item.id} film={item}/>
-                    ))
-                }
-            </HomeFilmsSlider>
 
             <HomeFilmsSlider
                 slidesToShow={6}

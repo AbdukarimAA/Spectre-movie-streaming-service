@@ -5,6 +5,7 @@
   align-items: center;
   width: 170px;
   height: 50%;
+  margin-top: 10px;
   //padding: 10px;
   //margin: 10px;
   margin-left: 20px;
@@ -17,7 +18,6 @@
     align-items: center;
     width: 80%;
     height: 90%;
-    //background-color: #924c4c;
 
     h2{
       color: white;
@@ -40,18 +40,127 @@
         width: 160px;
         margin-bottom: 20px;
 
-        img {
-          margin-right: 20px;
-          border-radius: 10px;
-          text-align: center;
-          width: 140px;
-          height: 235px;
-          object-fit: cover;
-          margin-bottom: 0px;
-          &:hover {
-            cursor: pointer;
+        &:hover {
+          .h-f-card-div{
+            //z-index: 105;
           }
         }
+
+        .h-f-card-div {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          position: relative;
+
+          &:hover {
+            img {
+              z-index: 1;
+              opacity: 0.8;
+            }
+            span {
+              z-index: 120;
+              opacity: 1;
+              color: white;
+            }
+          }
+
+          img {
+            margin-right: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 140px;
+            height: 235px;
+            object-fit: cover;
+            margin-bottom: 0;
+            transition: 0.2s all ease-in-out;
+            z-index: 100;
+            &:hover {
+              transform: scale(1.03);
+              //background-color: black;
+              //opacity: 0.7;
+              //transform: translate(-1.1rem, -1ex);
+              cursor: pointer;
+              //margin-bottom: 10px;
+              //z-index: 0;
+            }
+          }
+
+
+          .h-f-card-buttons{
+            width: 15%;
+            display: flex;
+            flex-direction: column;
+            //background-color: white;
+            position: absolute;
+            bottom: 55%;
+            left: 70%;
+            cursor: pointer;
+            //z-index: 0;
+
+            //&:hover {
+            //  z-index: 110;
+            //  background-color: black;
+            //}
+            span {
+              //z-index: 110;
+              margin-bottom: 5px;
+            }
+          }
+
+          .h-f-card-ov-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: start;
+            position: absolute;
+            //background-color: #1dbf73;
+            top: 50%;
+            //bottom: 10px;
+            left: 0;
+            cursor: pointer;
+
+            span {
+              padding: 5px;
+            }
+
+            .h-f-card-rating {
+              font-size: 30px;
+            }
+
+            .h-f-card-year-country {
+              display: flex;
+              flex-direction: row;
+
+              .h-f-card-year {
+                font-size: 16px;
+                padding-right: 5px;
+                padding-bottom: 10px;
+                color: #cbd1dc;
+              }
+              .h-f-card-country {
+                font-size: 16px;
+                padding-right: 5px;
+                padding-bottom: 10px;
+                color: #cbd1dc;
+              }
+            }
+
+            .h-f-card-duration{
+              font-size: 16px;
+              padding-right: 5px;
+              padding-bottom: 10px;
+              color: #cbd1dc;
+            }
+          }
+        }
+
+        //.h-f-img-active {
+        //    background-color: white;
+        //    overflow: hidden!important;
+        //}
+
 
         .h-f-texts {
           display: flex;
