@@ -6,10 +6,87 @@
   width: 170px;
   height: 50%;
   margin-top: 10px;
-  //padding: 10px;
-  //margin: 10px;
   margin-left: 20px;
-  //background-color: rgb(255, 255, 255);
+  position: relative;
+
+  .h-f-c-logo-1 {
+    position: absolute;
+    height: 8%;
+    background-color: #6c6590;
+    border: 1px solid #6f4747;
+    border-radius: 5px;
+    //right: 0;
+    //top: 0;
+    //left: 125px;
+    //bottom: 270px;
+    bottom: 92%;
+    left: 74%;
+    z-index: 150;
+
+    .h-f-c-logo-span {
+      font-size: 13px;
+      color: white;
+      white-space: nowrap;
+      padding: 5px 5px 5px 2px;
+    }
+  }
+
+  .h-f-c-logo-2 {
+    position: absolute;
+    height: 8%;
+    background-color: #6c6590;
+    border: 1px solid #6f4747;
+    border-radius: 5px;
+    //right: 0;
+    top: 30px;
+    left: 74%;
+    z-index: 150;
+
+    .h-f-c-logo-span {
+      font-size: 14px;
+      color: white;
+      white-space: nowrap;
+      padding: 5px;
+    }
+  }
+
+  .h-f-c-logo-3 {
+    position: absolute;
+    height: 8%;
+    background-color: #6c6590;
+    border: 1px solid #6f4747;
+    border-radius: 5px;
+    //right: 0;
+    top: 58px;
+    left: 74%;
+    z-index: 150;
+
+    .h-f-c-logo-span {
+      font-size: 14px;
+      color: white;
+      white-space: nowrap;
+      padding: 5px;
+    }
+  }
+
+  .h-f-c-logo-4 {
+    position: absolute;
+    height: 8%;
+    background-color: #6c6590;
+    border: 1px solid #6f4747;
+    border-radius: 5px;
+    //right: 0;
+    top: 87px;
+    left: 74%;
+    z-index: 250;
+
+    .h-f-c-logo-span {
+      font-size: 14px;
+      color: white;
+      white-space: nowrap;
+      padding: 5px;
+    }
+  }
 
   .h-f-carousel-container {
     display: flex;
@@ -30,7 +107,6 @@
       align-items: start;
       width: 100%;
       text-align: center;
-      //background-color: #1dbf73;
 
       .h-f-img {
         display: flex;
@@ -40,11 +116,6 @@
         width: 160px;
         margin-bottom: 20px;
 
-        &:hover {
-          .h-f-card-div{
-            //z-index: 105;
-          }
-        }
 
         .h-f-card-div {
           display: flex;
@@ -59,6 +130,12 @@
               z-index: 1;
               opacity: 0.8;
             }
+            .h-f-card-button-logos {
+              z-index: 120;
+              opacity: 1;
+              color: white;
+            }
+
             span {
               z-index: 120;
               opacity: 1;
@@ -78,33 +155,85 @@
             z-index: 100;
             &:hover {
               transform: scale(1.03);
-              //background-color: black;
-              //opacity: 0.7;
-              //transform: translate(-1.1rem, -1ex);
               cursor: pointer;
-              //margin-bottom: 10px;
-              //z-index: 0;
             }
           }
 
 
           .h-f-card-buttons{
-            width: 15%;
+            width: 14%;
             display: flex;
             flex-direction: column;
-            //background-color: white;
             position: absolute;
-            bottom: 55%;
-            left: 70%;
+            bottom: 38%;
+            left: 68%;
             cursor: pointer;
-            //z-index: 0;
 
-            //&:hover {
-            //  z-index: 110;
-            //  background-color: black;
-            //}
+            .h-f-card-buttons-container {
+              width: 100%;
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              align-items: flex-start;
+              z-index: 10;
+
+              .h-f-card-b-c-logo {
+                display: flex;
+                flex-direction: row;
+                justify-content: start;
+                width: 100%;
+                //height: 25px;
+                margin-bottom: 5px;
+                color: white;
+                //background-color: yellow;
+              }
+
+              //.h-f-card-button-logo {
+              //  width: 100%;
+              //  //height: 100px;
+              //  background-color: black;
+              //  color: white;
+              //  opacity: 1;
+              //  //margin-bottom: 8px;
+              //  z-index: 140;
+              //}
+              //
+              //&.active {
+              //  //width: 100%;
+              //  display: flex;
+              //  flex-direction: column;
+              //  background-color: blue;
+              //  position: relative;
+              //  .test3 {
+              //    position: absolute;
+              //    display: flex;
+              //    flex-direction: column;
+              //    justify-content: start;
+              //    align-items: normal;
+              //    text-align: start;
+              //    width: 250%;
+              //    height: 165%;
+              //    margin-bottom: 100px;
+              //    //word-break: normal;
+              //    color: white;
+              //    border: 1px solid black;
+              //    background-color: #bc5353;
+              //    //width: 300px;
+              //    //margin-left: 2px;
+              //
+              //  }
+              //}
+            }
+
+
+            .h-f-card-button-logos {
+              width: 100%;
+              color: white;
+              opacity: 1;
+              margin-bottom: 8px;
+            }
+
             span {
-              //z-index: 110;
               margin-bottom: 5px;
             }
           }
@@ -115,9 +244,7 @@
             justify-content: start;
             align-items: start;
             position: absolute;
-            //background-color: #1dbf73;
             top: 50%;
-            //bottom: 10px;
             left: 0;
             cursor: pointer;
 
@@ -155,12 +282,6 @@
             }
           }
         }
-
-        //.h-f-img-active {
-        //    background-color: white;
-        //    overflow: hidden!important;
-        //}
-
 
         .h-f-texts {
           display: flex;
