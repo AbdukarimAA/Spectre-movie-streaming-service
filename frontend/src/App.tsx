@@ -4,6 +4,7 @@ import Login from "./pages/login/Login";
 import Layout from "./components/layot/Layout";
 import Register from "./pages/register/Register";
 import './index.scss';
+import FilmPage from "./pages/filmPage/FilmPage";
 
 function App() {
 
@@ -24,10 +25,10 @@ function App() {
           path: '/',
           element: <Home />
         },
-        // {
-        //   path: '/login',
-        //   element: <Login />
-        // },
+        {
+          path: '/film',
+          element: <FilmPage />
+        },
         // {
         //   path: '/register',
         //   element: <Register />
