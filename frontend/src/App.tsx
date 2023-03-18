@@ -3,8 +3,8 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Layout from "./components/layot/Layout";
 import Register from "./pages/register/Register";
-import './index.scss';
 import FilmPage from "./pages/filmPage/FilmPage";
+import './index.scss';
 
 function App() {
 

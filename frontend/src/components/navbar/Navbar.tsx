@@ -33,7 +33,7 @@ function Navbar() {
     };
 
     return (
-        <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>
+        <div className={active || pathname !== "/" || !active && pathname !== '/' ? "navbar active" : "navbar"}>
             <div className="container">
                 <div className="logo">
                     <Link className="link" to="/">

@@ -1,3 +1,253 @@
 .film-page {
+  width: 100%;
+  height:100%;
 
+  .film-page-main-img {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: start;
+    text-align: center;
+    position: relative;
+    background-color: black;
+    width: 100%;
+    height: 665px;
+
+    .film-p-main-pic {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .film-p-linear {
+      position: absolute;
+      width: 60%;
+      height: 100%;
+      background-image: linear-gradient(270deg, rgba(43, 47, 51, 0) 0,#000 80%);
+      z-index: 99;
+    }
+
+    .film-p-pic-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: start;
+      width: 50%;
+      height: 70%;
+      margin: 10% 0 0 3%;
+      //background-image: linear-gradient(270deg, rgba(43, 47, 51, 0) 0,#000 80%);
+      //background-color: white;
+      position: absolute;
+      z-index: 100;
+
+      .film-p-main-pic-title {
+        //width: 100%;
+        height: 25%;
+        margin: 5px;
+        object-fit: contain;
+      }
+
+      .film-p-pic-exact-info {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        text-align: center;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: bolder;
+        width: 100%;
+        //text-align: center;
+        //background-color: red;
+
+        .film-p-pic-rating {
+          width: 5%;
+          height: 70%;
+          margin: 5px;
+          border-radius: 5px;
+          border: none;
+          font-size: 15px;
+          font-weight: bolder;
+          background-color: #1dbf73;
+          color: white;
+        }
+
+        .film-p-pic-year {
+          width: 5%;
+          height: 70%;
+          margin: 5px;
+          //background-color: blue;
+        }
+
+        .film-p-pic-type {
+          text-align: start;
+          width: 12%;
+          height: 70%;
+          margin: 5px;
+          //background-color: #6a526b;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+
+        .film-p-pic-duration {
+          width: 8%;
+          height: 70%;
+          //background-color: white;
+          margin: 5px;
+        }
+
+        .film-p-pic-lang {
+          width: 2%;
+          height: 70%;
+          text-align: start;
+          //background-color: white;
+          margin: 5px;
+        }
+
+        .film-p-pic-limit {
+          width: 5%;
+          height: 70%;
+          text-align: center;
+          //background-color: white;
+          margin: 5px;
+        }
+      }
+    }
+    .film-p-pic-desc {
+      display: flex;
+      justify-content: start;
+      align-items: start;
+      text-align: start;
+      color: white;
+      width: 75%;
+      max-height: 50%;
+      //background-color: #908237;
+      text-overflow: ellipsis;
+
+      span {
+        margin: 5px;
+      }
+    }
+
+    .film-p-pic-director {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      margin-top: 10px;
+      //background-color: #38b2d1;
+
+      .film-p-pic-d {
+        color: #4d4468;
+        margin: 5px;
+      }
+
+      .film-p-pic-d-name {
+        color: white;
+        margin: 5px;
+      }
+    }
+
+    .film-p-pic-actors-crew {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 10px;
+      //background-color: #38b2d1;
+
+      .film-p-pic-a {
+        color: #4d4468;
+        margin: 5px;
+      }
+
+      .film-p-pic-a-names {
+        color: #c0b3b3;
+        margin: 5px;
+        transition: 0.5s all ease-in-out;
+
+        &:hover {
+          cursor: pointer;
+          color: white;
+        }
+      }
+    }
+
+    .film-p-pic-advert {
+      width: 100%;
+      display: flex;
+      justify-content: start;
+      align-items: start;
+      text-align: start;
+      flex-direction: column;
+      //background-color: black;
+      //margin-bottom: 20px;
+
+      .film-p-pic-advert-main {
+        font-size: 24px;
+        margin: 5px;
+        color: greenyellow;
+      }
+      .film-p-pic-ad {
+        margin-left: 7px;
+        color: white;
+        //background-color: black;
+      }
+    }
+
+    .film-p-pic-buttons {
+      width: 100%;
+      height: 30%;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      text-align: start;
+      flex-direction: row;
+      //background-color: #150101;
+
+      .film-p-pic-button-purchase {
+        margin: 5px;
+        border-radius: 10px;
+        width: 30%;
+        height: 50%;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .film-p-pic-button-trailer {
+        margin: 5px;
+        border-radius: 10px;
+        width: 15%;
+        height: 40%;
+      }
+
+      .film-p-pic-button-icon {
+        margin: 5px;
+        //background-color: red;
+        width: 7%;
+        height: 30%;
+        border-radius: 10px;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .film-page-choose-sect {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+  }
+
+  .film-page-desc-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
