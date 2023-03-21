@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.scss';
-import Slide from "../../components/slide/Slide";
+import Slide from "../../components/mainSlider/Slide";
 import HomeMainSlider from "../../components/HomeMainSlider/HomeMainSlider";
 import { cards, filmCar} from "../../data";
 import HomeFilmsCard from "../../components/homeFilmsCard/HomeFilmsCard";

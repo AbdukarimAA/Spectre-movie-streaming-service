@@ -10,17 +10,17 @@ import HomeFilmsCard from "../../components/homeFilmsCard/HomeFilmsCard";
 import HomeFilmsSlider from "../../components/homeFilmsSlider/HomeFilmsSlider";
 import FilmPageHeadings from "../../components/filmPageHeadings/FilmPageHeadings";
 import ActorsSliderCard from "../../components/actorsSliderCard/ActorsSliderCard";
-import {filmCar} from "../../data";
+import ActorsSlider from "../../components/actorsSlider/ActorsSlider";
+import ReviewsCard from "../../components/reviewsCards/ReviewsCard";
+import ReviewsCardSlider from "../../components/reviewsCardSlider/ReviewsCardSlider";
+import {filmCar, reviewCard} from "../../data";
 import {actorCard} from "../../data";
 import './FilmPage.scss';
-import ActorsSlider from "../../components/actorsSlider/ActorsSlider";
-
-
 
 const FilmPage = () => {
     const [videoPlay, setVideoPlay] = useState<boolean>(false);
     const [isPlotActive, setIsPlotActive] = useState<boolean>(false);
-    const [value, setValue] = React.useState<number | null>(2);
+    const [value, setValue] = useState<number | null>(2);
 
     const handleDescOpen = () => {
       setIsPlotActive(true)
@@ -108,10 +108,7 @@ const FilmPage = () => {
                 <div className="film-p-linear-bottom-connect"></div>
             </div>
 
-            <div className="film-page-choose-sect">
-                <span className='film-page-choose-left'>Description</span>
-            </div>
-            <hr />
+            <FilmPageHeadings text='Description'/>
             <div className="film-page-desc-section">
                 <div className="film-p-desc-sect-left">
                     <div className="film-p-desc-sect-left-up">
@@ -170,6 +167,14 @@ const FilmPage = () => {
                 </div>
             </div>
 
+            <FilmPageHeadings text='Trailer'/>
+
+            <div className="film-page-trailer">
+                <video
+                    src='//cdp.playfamily.ru/data/sid/99999999-1679347712-APU8KEl_gEoCdtUsYY6o0g/storage38/trl/5fcf5ded-b330-4d70-acfd-a99141bb4b76.webm'  controls
+                />
+            </div>
+
             <FilmPageHeadings text='Similar'/>
 
             <HomeFilmsSlider
@@ -200,7 +205,7 @@ const FilmPage = () => {
                 }
             </HomeFilmsSlider>
 
-            <FilmPageHeadings text='Filming crew'/>
+            <FilmPageHeadings text='Movie crew'/>
 
             <ActorsSlider
                 slidesToShow={6}
@@ -214,6 +219,75 @@ const FilmPage = () => {
                     ))
                 }
             </ActorsSlider>
+
+            <FilmPageHeadings text='Reviews and feedbacks'/>
+
+            <ReviewsCardSlider
+                slidesToShow={2}
+                arrowsScroll={2}
+                initialSlide={true}
+                arrowsBlock={false}
+                centerPadding={70}
+                duration={300}
+                shift={0}
+            >
+                {
+                    reviewCard.map((review) => (
+                        <ReviewsCard review={review} key={review.id}/>
+                    ))
+                }
+            </ReviewsCardSlider>
+
+            <hr/>
+
+            <div className="film-page-foot-info">
+                <div className="film-page-foot-info-container">
+                    <div className="film-page-foot-info-div">
+                        <span className='f-p-foot-title'>Information</span>
+                        <br/>
+                        <span className='f-p-foot-span'>Country</span>
+                        <span>USA</span>
+                        <br/>
+                        <span className='f-p-foot-span'>Genre</span>
+                        <span>Action</span>
+                        <br/>
+                        <span className='f-p-foot-span'>Original title</span>
+                        <span>Lion King</span>
+                        <br/>
+                        <span className='f-p-foot-span'>Release date</span>
+                        <span>11 Jan 2023</span>
+                    </div>
+                    <div className="film-page-foot-crew-div">
+                        <span className='f-p-foot-title'>Crew</span>
+                        <br/>
+                        <span className='f-p-foot-span'>Director</span>
+                        <span>George Lucas</span>
+                        <br/>
+                        <span className='f-p-foot-span'>Actors</span>
+                        <span>Джерард Батлер, Майк Колтер, Тони Голдуин, Йосон Ань, Ивэн Дэйн Тейлор, Пол Бен-Виктор, Даниэлла Пинеда, Лилли Круг, Келли Гейл, Отис Уинстон, Энджел Фабиан Ривера, Модесто Ласен, Джои Злотник, Роуз Ишэй, Рики Роблз Крус, Джессика Нэм, Куинн Макферсон, Оливер Тревена, Тара Вествуд, Мишель Ли, Эмбер Ривера, Джон Дж. Шим, Кларо Де Лос Рейс, Реми Аделеке, Мэтт Кук, Джеймс Ли, Хезер Шайфферт, Хэли Хеккинг, Джереми Денцлингер, Джефф Франциско, Эриель Феликс, Ник Брэндон, Мишель Кортес, Джеффри Хольсман, Кейт Биссет, Кейт Рачески, Томас Каррен, Саиф Мосен</span>
+                        <br/>
+                        <span className='f-p-foot-span'>Producers</span>
+                        <span>Джерард Батлер, Лоренцо Ди Бонавентура, Ник Бауэр, Аластер Берлинэм, Марк Бутан, Дж.П. Дэвис, Виктория Ди, Мэтью Данн, Эдвард Фи, Кристиан Гьюдгэст, Дэниэл Каслоу, Тим Ли, Дипак Наяр, Осита О, Гари Раскин, Даниэль Робинсон, Мими Роуд, Луильо Руис, Алан Сигел, Марк Вахрадян</span>
+                        <br/>
+                        <span className='f-p-foot-span'>Screenwriters</span>
+                        <span>Gerard Butler</span>
+                        <br/>
+                        <span className='f-p-foot-span'>Operators</span>
+                        <span>Gerard Butler</span>
+                    </div>
+                    <div className="film-page-foot-sound">
+                        <span className='f-p-foot-title'>Sound and Subtitles</span>
+                        <br/>
+                        <span className='f-p-foot-span'>Audio Track</span>
+                        <span>Russian</span>
+                        <br/>
+                        <span className='f-p-foot-span'>Quality</span>
+                        <span>SD, HD, FHD</span>
+                    </div>
+                </div>
+            </div>
+
+            <hr/>
         </div>
     );
 };

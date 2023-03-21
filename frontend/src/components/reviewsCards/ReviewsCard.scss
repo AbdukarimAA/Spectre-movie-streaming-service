@@ -1,0 +1,88 @@
+.reviews-card {
+  display: flex;
+  flex-direction: row;
+  margin-left: 40px;
+  //background-color: #1dbf73;
+
+  .reviews-card-container {
+    display: flex;
+    flex-direction: row;
+    //background-color: #2a312e;
+
+    .reviews-card-div {
+      background-color: #271a43;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: start;
+      text-align: center;
+      width: 540px;
+      //height: 345px;
+      border-radius: 20px;
+      margin-left: 65px;
+
+      .reviews-name-date {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: start;
+        width: 100%;
+        margin-bottom: 35px;
+        margin-top: 40px;
+
+        .reviews-n-d {
+          display: flex;
+          justify-content: start;
+          align-items: start;
+          text-align: start;
+          flex-direction: column;
+          margin-right: 200px;
+
+          .review-name-span {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+          }
+
+          .review-date-span {
+            font-size: 16px;
+            color: #997a7a;
+          }
+        }
+
+        .reviews-rating {
+          background-color: #1dbf73;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          color: white;
+          font-size: 36px;
+          font-weight: 900;
+          border-radius: 10px;
+          width: 56px;
+          height: 56px;
+        }
+      }
+
+      .reviews-text-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        text-align: start;
+        margin: 0px 30px 20px 35px;
+
+        .reviews-text-span {
+          color: white;
+          font-size: 25px;
+        }
+
+        .reviews-desc-span {
+          color: white;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

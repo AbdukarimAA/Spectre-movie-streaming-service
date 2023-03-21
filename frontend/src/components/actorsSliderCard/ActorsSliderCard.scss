@@ -3,9 +3,6 @@
   flex-direction: row;
   margin-bottom: 10px;
 
-  //width: 100px;
-  //background-color: #2a312e;
-
   .actors-slider-div-container {
     //height: 150px;
     display: flex;
@@ -20,9 +17,10 @@
       justify-content: start;
       align-items: start;
       text-align: center;
-      //background-color: #1dbf73;
       width: 160px;
       margin: 5px 5px 15px 5px;
+      border: 2px groove white;
+      border-radius: 10px;
       transition: 0.3s all ease-in-out;
       &:hover {
         cursor: pointer;
@@ -41,32 +39,44 @@
         object-fit: cover;
       }
 
-      .actors-slider-div-actor-name {
-        font-weight: bold;
-        font-family: "Montserrat", sans-serif;
-        font-size: 18px;
-        color: white;
-        word-break: break-all;
-        margin: 5px 0 5px 7px;
-        //background-color: #000000;
+      .div-test {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        text-align: start;
+        width: 100%;
+        //border: 2px dotted lightgray;
+        border-radius: 10px;
+
+        .actors-slider-div-actor-name {
+          font-weight: bold;
+          font-family: "Montserrat", sans-serif;
+          font-size: 18px;
+          color: white;
+          word-break: break-all;
+          margin: 5px 0 5px 7px;
+          //background-color: #000000;
+        }
+
+        .actors-slider-div-actor-last {
+          font-weight: bold;
+          font-family: "Montserrat", sans-serif;
+          font-size: 18px;
+          color: white;
+          word-break: break-all;
+          //background-color: #000000;
+          margin: 0 0 0 7px;
+        }
+
+        .actors-slider-div-role {
+          font-size: 15px;
+          font-weight: bolder;
+          color: #666080;
+          //background-color: white;
+        }
       }
 
-      .actors-slider-div-actor-last {
-        font-weight: bold;
-        font-family: "Montserrat", sans-serif;
-        font-size: 18px;
-        color: white;
-        word-break: break-all;
-        //background-color: #000000;
-        margin: 0 0 0 7px;
-      }
-
-      .actors-slider-div-role {
-        font-size: 15px;
-        font-weight: bolder;
-        color: #666080;
-        //background-color: white;
-      }
     }
   }
 

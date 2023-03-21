@@ -1,0 +1,56 @@
+.reviews-slider {
+  display: flex;
+  width: 100%;
+  //background-color: white;
+
+  .carousel-prev:before, .carousel-next:before {
+    width: 40px;
+    height: 45px!important;
+  }
+
+  .carousel-prev:before {
+    //background-image: url("https://www.amediateka.ru/static/images/player/right.svg") !important;
+    background-image: url("https://www.amediateka.ru/static/images/player/left.svg") !important;
+  }
+
+  .carousel-next:before {
+    background-image: url("https://www.amediateka.ru/static/images/player/right.svg") !important;
+    //background-image: url("https://www.amediateka.ru/static/images/player/left.svg") !important;
+  }
+
+  .carousel-prev,
+  .carousel-next {
+    width: 30px;
+    //background-color: #1dbf73;
+    height: 107%;
+    //background-color: rgba(73, 83, 128, 0.75);
+    border-radius: 0;
+    position: absolute;
+    top: -10%;
+    bottom: 0;
+    margin: 15px;
+    z-index: 131!important;
+    &:focus{
+      transition: 0.9s all;
+      //background-color: rgba(156, 161, 193, 0.75);
+      opacity: 0.8;
+      scale: 1.2;
+    }
+  }
+
+  .carousel-next {
+    margin-right: 110px;
+  }
+
+  .carousel-prev {
+    margin-left: 100px;
+  }
+
+  .reviews-slider-container {
+    width: 100%;
+    //background-color: yellow;
+    position: relative;
+    overflow: hidden!important;
+    //padding: 20px!important;
+  }
+}

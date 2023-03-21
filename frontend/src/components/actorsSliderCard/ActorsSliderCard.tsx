@@ -8,15 +8,17 @@ const ActorsSliderCard = ({actor}) => {
             <div className="actors-slider-div-container">
                 <div className="actors-slider-div">
                     <img className='actors-slider-img' src={actor.actorImg} alt=""/>
-                    <span className='actors-slider-div-actor-name'>
-                        {actor.name}
-                    </span>
-                    <span className='actors-slider-div-actor-last'>
-                        {actor.lastName}
-                    </span>
-                    <span className='actors-slider-div-role'>
-                        {actor.role}
-                    </span>
+                    <div className="div-test">
+                        <span className='actors-slider-div-actor-name'>
+                            {actor.name}
+                        </span>
+                        <span className='actors-slider-div-actor-last'>
+                            {actor.lastName}
+                        </span>
+                        <span className='actors-slider-div-role'>
+                            {actor.role}
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
