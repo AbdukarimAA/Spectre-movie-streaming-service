@@ -3,8 +3,8 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import HideSourceIcon from '@mui/icons-material/HideSource';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-import './HomeFilmsCard.scss';
 import {hrHR} from "@mui/material/locale";
+import './HomeFilmsCard.scss';
 
 const HomeFilmsCard = ({film}) => {
     const [activeFirst, setActiveFirst] = useState<boolean>(false);

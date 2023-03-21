@@ -95,3 +95,76 @@ export const filmCar = [
   },
 ];
 
+export const actorCard = [
+  {
+    id: 1,
+    actorImg: "https://kadet39.ru/wp-content/uploads/c/6/9/c69850b2c9c89b905f23ddfb48efb323.jpeg",
+    name: 'Jason',
+    lastName: 'Stathem',
+    role: 'actor'
+  },
+  {
+    id: 2,
+    actorImg: "https://kadet39.ru/wp-content/uploads/c/6/9/c69850b2c9c89b905f23ddfb48efb323.jpeg",
+    name: 'Jason',
+    lastName: 'Stathem',
+    role: 'actor'
+  },
+  {
+    id: 3,
+    actorImg: "https://kadet39.ru/wp-content/uploads/c/6/9/c69850b2c9c89b905f23ddfb48efb323.jpeg",
+    name: 'Jason',
+    lastName: 'Stathem',
+    role: 'actor'
+  },
+  {
+    id: 4,
+    actorImg: "https://kadet39.ru/wp-content/uploads/c/6/9/c69850b2c9c89b905f23ddfb48efb323.jpeg",
+    name: 'Jason',
+    lastName: 'Stathem',
+    role: 'actor'
+  },
+  {
+    id: 5,
+    actorImg: "https://kadet39.ru/wp-content/uploads/c/6/9/c69850b2c9c89b905f23ddfb48efb323.jpeg",
+    name: 'Jason',
+    lastName: 'Stathem',
+    role: 'actor'
+  },
+  {
+    id: 6,
+    actorImg: "https://kadet39.ru/wp-content/uploads/c/6/9/c69850b2c9c89b905f23ddfb48efb323.jpeg",
+    name: 'Jason',
+    lastName: 'Stathem',
+    role: 'actor'
+  },
+  {
+    id: 7,
+    actorImg: "https://kadet39.ru/wp-content/uploads/c/6/9/c69850b2c9c89b905f23ddfb48efb323.jpeg",
+    name: 'Jason',
+    lastName: 'Stathem',
+    role: 'actor'
+  },
+  {
+    id: 8,
+    actorImg: "https://kadet39.ru/wp-content/uploads/c/6/9/c69850b2c9c89b905f23ddfb48efb323.jpeg",
+    name: 'Jason',
+    lastName: 'Stathem',
+    role: 'actor'
+  },
+  {
+    id: 9,
+    actorImg: "https://kadet39.ru/wp-content/uploads/c/6/9/c69850b2c9c89b905f23ddfb48efb323.jpeg",
+    name: 'Jason',
+    lastName: 'Stathem',
+    role: 'actor'
+  },
+  {
+    id: 10,
+    actorImg: "https://kadet39.ru/wp-content/uploads/c/6/9/c69850b2c9c89b905f23ddfb48efb323.jpeg",
+    name: 'Jason',
+    lastName: 'Stathem',
+    role: 'actor'
+  },
+];
+

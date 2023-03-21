@@ -5,8 +5,17 @@ import {SubmitButton} from "../../components/customButton/CustomButton";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import './FilmPage.scss';
 import {Avatar, Button, Rating, Typography} from "@mui/material";
+import HomeFilmsCard from "../../components/homeFilmsCard/HomeFilmsCard";
+import HomeFilmsSlider from "../../components/homeFilmsSlider/HomeFilmsSlider";
+import FilmPageHeadings from "../../components/filmPageHeadings/FilmPageHeadings";
+import ActorsSliderCard from "../../components/actorsSliderCard/ActorsSliderCard";
+import {filmCar} from "../../data";
+import {actorCard} from "../../data";
+import './FilmPage.scss';
+import ActorsSlider from "../../components/actorsSlider/ActorsSlider";
+
+
 
 const FilmPage = () => {
     const [videoPlay, setVideoPlay] = useState<boolean>(false);
@@ -160,6 +169,51 @@ const FilmPage = () => {
                     </div>
                 </div>
             </div>
+
+            <FilmPageHeadings text='Similar'/>
+
+            <HomeFilmsSlider
+                slidesToShow={6}
+                arrowsScroll={3}
+                initialSlide={true}
+                arrowsBlock={false}
+            >
+                {
+                    filmCar.map(item => (
+                        <HomeFilmsCard key={item.id} film={item}/>
+                    ))
+                }
+            </HomeFilmsSlider>
+
+            <FilmPageHeadings text='In collections'/>
+
+            <HomeFilmsSlider
+                slidesToShow={6}
+                arrowsScroll={3}
+                initialSlide={true}
+                arrowsBlock={false}
+            >
+                {
+                    filmCar.map(item => (
+                        <HomeFilmsCard key={item.id} film={item}/>
+                    ))
+                }
+            </HomeFilmsSlider>
+
+            <FilmPageHeadings text='Filming crew'/>
+
+            <ActorsSlider
+                slidesToShow={6}
+                arrowsScroll={3}
+                initialSlide={true}
+                arrowsBlock={false}
+            >
+                {
+                    actorCard.map((actor) => (
+                        <ActorsSliderCard actor={actor} key={actor.id}/>
+                    ))
+                }
+            </ActorsSlider>
         </div>
     );
 };

@@ -1,0 +1,73 @@
+.actors-slider {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+
+  //width: 100px;
+  //background-color: #2a312e;
+
+  .actors-slider-div-container {
+    //height: 150px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 43px;
+    margin-top: 10px;
+    //background-color: #a02323;
+
+    .actors-slider-div {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: start;
+      text-align: center;
+      //background-color: #1dbf73;
+      width: 160px;
+      margin: 5px 5px 15px 5px;
+      transition: 0.3s all ease-in-out;
+      &:hover {
+        cursor: pointer;
+        scale: 1.1;
+      }
+
+      span {
+        margin: 7px;
+      }
+
+      .actors-slider-img {
+        margin: 5px;
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+      }
+
+      .actors-slider-div-actor-name {
+        font-weight: bold;
+        font-family: "Montserrat", sans-serif;
+        font-size: 18px;
+        color: white;
+        word-break: break-all;
+        margin: 5px 0 5px 7px;
+        //background-color: #000000;
+      }
+
+      .actors-slider-div-actor-last {
+        font-weight: bold;
+        font-family: "Montserrat", sans-serif;
+        font-size: 18px;
+        color: white;
+        word-break: break-all;
+        //background-color: #000000;
+        margin: 0 0 0 7px;
+      }
+
+      .actors-slider-div-role {
+        font-size: 15px;
+        font-weight: bolder;
+        color: #666080;
+        //background-color: white;
+      }
+    }
+  }
+
+}

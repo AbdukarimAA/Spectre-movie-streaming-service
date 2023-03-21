@@ -35,7 +35,7 @@ const Home = () => {
 
             <div className="he">
                 <div className="heading">
-                <HomeHeadings />
+                    <HomeHeadings />
                 </div>
             </div>
 
