@@ -1,24 +1,25 @@
-import React, {useRef, useState} from 'react';
-import MicNoneIcon from '@mui/icons-material/MicNone';
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import {SubmitButton} from "../../components/customButton/CustomButton";
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import {Avatar, Button, Rating, Typography} from "@mui/material";
-import HomeFilmsCard from "../../components/homeFilmsCard/HomeFilmsCard";
-import HomeFilmsSlider from "../../components/homeFilmsSlider/HomeFilmsSlider";
+import React, {useEffect, useRef, useState} from 'react';
+import ReviewsCardSlider from "../../components/reviewsCardSlider/ReviewsCardSlider";
 import FilmPageHeadings from "../../components/filmPageHeadings/FilmPageHeadings";
 import ActorsSliderCard from "../../components/actorsSliderCard/ActorsSliderCard";
+import HomeFilmsSlider from "../../components/homeFilmsSlider/HomeFilmsSlider";
+import HomeFilmsCard from "../../components/homeFilmsCard/HomeFilmsCard";
+import {SubmitButton} from "../../components/customButton/CustomButton";
 import ActorsSlider from "../../components/actorsSlider/ActorsSlider";
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import ReviewsCard from "../../components/reviewsCards/ReviewsCard";
-import ReviewsCardSlider from "../../components/reviewsCardSlider/ReviewsCardSlider";
+import {Avatar, Button, Rating, Typography} from "@mui/material";
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import MicNoneIcon from '@mui/icons-material/MicNone';
+import TextField from '@mui/material/TextField';
 import {filmCar, reviewCard} from "../../data";
+import ReactPlayer from 'react-player';
 import {actorCard} from "../../data";
+import Box from '@mui/material/Box';
 import './FilmPage.scss';
 
 const FilmPage = () => {
-    const [videoPlay, setVideoPlay] = useState<boolean>(false);
+    const [videoPlay, setVideoPlay] = useState<boolean | any>(false);
     const [isPlotActive, setIsPlotActive] = useState<boolean>(false);
     const [value, setValue] = useState<number | null>(2);
 
@@ -28,18 +29,21 @@ const FilmPage = () => {
 
     const handleDescClose = () => {
         setIsPlotActive(false)
-        console.log(isPlotActive)
     };
 
     const handleVideoStart = () => {
         setVideoPlay(true);
-        // setTimeout(isTrue, 2000);
+
     };
 
     const handleVideoStop = () => {
         setVideoPlay(false);
         // setTimeout(isTrue, 2000);
     };
+
+    useEffect(() => {
+        setTimeout(handleVideoStart, 3000)
+    }, [])
 
     const videosURL = [
         "https://smr-cdp-r1.playfamily.ru/data/cid/99999999-1679260448-ixHMphhuPk_rkF04ePQKng/spb-cdp25/storage38/trl/5fcf5ded-b330-4d70-acfd-a99141bb4b76.webm#t=5,10",
@@ -53,20 +57,21 @@ const FilmPage = () => {
     return (
         <div className='film-page' >
             <div className="film-page-main-img"
-                 // onMouseEnter={() => setTimeout(handleVideoStart, 3000)}
+                 onMouseEnter={() => setTimeout(handleVideoStart, 3000)}
                  // onMouseLeave={() => setTimeout(handleVideoStop, 3000)}
             >
                 <div className="film-page-main-img-div"
-                     onMouseEnter={() => setTimeout(handleVideoStart, 3000)}
-                     onMouseLeave={() => setTimeout(handleVideoStop, 3000)}
+                     // onMouseEnter={() => setTimeout(handleVideoStart, 3000)}
+                     // onMouseLeave={() => setTimeout(handleVideoStop, 3000)}
+                     onEnded={handleVideoStop}
                 >
                     {
                         !videoPlay ? <img className='film-p-main-pic' src="https://mobimg.b-cdn.net/v3/fetch/0b/0b24baf00aa7825a934c50b5f9af8dbd.jpeg" alt=""/> :
-                            <video src="//cdp.playfamily.ru/data/sid/99999999-1679347712-APU8KEl_gEoCdtUsYY6o0g/storage38/trl/5fcf5ded-b330-4d70-acfd-a99141bb4b76.webm" autoPlay loop muted/>
+                            // <video src="//cdp.playfamily.ru/data/sid/99999999-1679347712-APU8KEl_gEoCdtUsYY6o0g/storage38/trl/5fcf5ded-b330-4d70-acfd-a99141bb4b76.webm" autoPlay muted/>
+                            <ReactPlayer url='//cdp.playfamily.ru/data/sid/99999999-1679347712-APU8KEl_gEoCdtUsYY6o0g/storage38/trl/5fcf5ded-b330-4d70-acfd-a99141bb4b76.webm' playing={true} muted={true} width='100%' height='100%'/>
                     }
                 </div>
                 <div className="film-p-linear"></div>
-                {/*<div className="film-p-linear"></div>*/}
                 <div className="film-p-pic-info">
                     <img className='film-p-main-pic-title' src="https://i.amediateka.tech/trim/640x320/_stor_/cms/content-contentasset/a/02/a91e480c231f516dd004f14cb6baca02-124060-f90c010572714976b72fbf098ecf8646.png" alt=""/>
                     <div className="film-p-pic-exact-info">
@@ -205,21 +210,6 @@ const FilmPage = () => {
                 }
             </HomeFilmsSlider>
 
-            <FilmPageHeadings text='Movie crew'/>
-
-            <ActorsSlider
-                slidesToShow={6}
-                arrowsScroll={3}
-                initialSlide={true}
-                arrowsBlock={false}
-            >
-                {
-                    actorCard.map((actor) => (
-                        <ActorsSliderCard actor={actor} key={actor.id}/>
-                    ))
-                }
-            </ActorsSlider>
-
             <FilmPageHeadings text='Reviews and feedbacks'/>
 
             <ReviewsCardSlider
@@ -237,6 +227,21 @@ const FilmPage = () => {
                     ))
                 }
             </ReviewsCardSlider>
+
+            <FilmPageHeadings text='Movie crew'/>
+
+            <ActorsSlider
+                slidesToShow={6}
+                arrowsScroll={3}
+                initialSlide={true}
+                arrowsBlock={false}
+            >
+                {
+                    actorCard.map((actor) => (
+                        <ActorsSliderCard actor={actor} key={actor.id}/>
+                    ))
+                }
+            </ActorsSlider>
 
             <hr/>
 

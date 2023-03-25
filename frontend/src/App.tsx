@@ -5,6 +5,7 @@ import Layout from "./components/layot/Layout";
 import Register from "./pages/register/Register";
 import FilmPage from "./pages/filmPage/FilmPage";
 import './index.scss';
+import ActorPage from "./pages/actorPage/ActorPage";
 
 function App() {
 
@@ -29,10 +30,10 @@ function App() {
           path: '/film',
           element: <FilmPage />
         },
-        // {
-        //   path: '/register',
-        //   element: <Register />
-        // },
+        {
+          path: '/actor',
+          element: <ActorPage />
+        },
       ]
     }
   ]);

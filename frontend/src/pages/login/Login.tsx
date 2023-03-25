@@ -6,11 +6,7 @@ const Login = () => {
 
     return (
         <div className='login'>
-            <div className="login-title">
-                {/*<span className='test1'>Войдите для доступа к подписке</span>*/}
-            </div>
             <div className="login-modal">
-                {/*<img src="https://www.vagasfloripa.com.br/wp-content/uploads/company_logos/2020/10/logo-specto-grande-black.png" alt=""/>*/}
                 <img src="https://res.cloudinary.com/dedeobaxo/image/upload/v1678183157/Job_Market_proj/2560px-Logo_spectre_int.svg_qfxgdb.png" alt=""/>
                 <span className='login-enter'>Вход в аккаунт </span>
                 <input type="email" placeholder='Email'/>
@@ -18,7 +14,7 @@ const Login = () => {
                 <button>Войти</button>
                 <div className="login-block">
                     <div className="login-register">
-                        <Link to={'/register'}>
+                        <Link className='Link' to={'/register'}>
                             <span className='login-forgot'>Нет аккаута? Зарегистрируйтесь!</span>
                         </Link>
                     </div>

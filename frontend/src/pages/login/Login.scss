@@ -9,39 +9,12 @@
   //background: url("https://res.cloudinary.com/dedeobaxo/image/upload/v1678131717/Job_Market_proj/rome_vrq3wd.jpg")!important;
   background-size: 1920px 1080px;
   object-fit: contain;
-  overflow: hidden;
+  overflow-y: hidden;
   position: relative;
-
-  //.login-title {
-  //  display: flex;
-  //  flex-direction: column;
-  //  justify-content: center;
-  //  align-items: center;
-  //  margin-bottom: 40%;
-  //  gap: 20px;
-  //
-  //  //h1 {
-  //  //  color: #000000;
-  //  //}
-  //  //
-  //  //span{
-  //  //  font-size: larger;
-  //  //  font-weight: bolder;
-  //  //  color: #000000;
-  //  //
-  //  //}
-  //  //
-  //  //.test1 {
-  //  //  color: transparent;
-  //  //  -webkit-background-clip: text;
-  //  //  background-clip: text;
-  //  //  background-image: linear-gradient(146deg, rgba(47,226,244,1) 0%, rgba(56,178,209,1) 49%, rgba(56,178,209,1) 100%);
-  //  //}
-  //}
 
   .login-modal {
     width: 30%;
-    height: 75%;
+    //height: 75%;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -77,7 +50,7 @@
 
     input {
       width: 80%;
-      height: 10%;
+      height: 60px;
       border: none;
       border-radius: 10px;
       font-size: larger;
@@ -102,15 +75,17 @@
 
     button {
       width: 130px;
-      border: 1px dotted;
+      border: none;
       border-radius: 10px;
-      font-size: 20px;
+      font-size: 24px;
       color: #000000;
+      font-weight: 700;
       background-color: transparent;
       transition: all 1s ease;
       &:hover {
         cursor: pointer;
         opacity: 0.5;
+        color: #284045;
       }
     }
 
@@ -124,13 +99,17 @@
         height: 30px;
       }
 
+      .Link {
+        text-decoration: none;
+      }
+
       .login-forgot {
         transition: all 1s ease;
         &:hover{
           cursor: pointer;
           background: transparent;
           //color: #38b2d1;
-          color: #b07474;
+          color: #382e2e;
           font-weight: bold;
         }
       }

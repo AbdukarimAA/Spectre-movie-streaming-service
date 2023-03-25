@@ -13,7 +13,7 @@ const Register = () => {
                 <button>Зарегистрироваться</button>
                 <div className="register-block">
                     <div className="register-login">
-                        <Link to={'/login'}>
+                        <Link className='Link' to={'/login'}>
                             <span className='register-forgot'>Есть аккаунт? Войдите!</span>
                         </Link>
                     </div>

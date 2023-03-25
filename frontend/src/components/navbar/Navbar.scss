@@ -3,46 +3,18 @@
   flex-direction: column;
   align-items: center;
   background-color: #3e3758;
-  //background-color: #100e19;
+  //background-color: #3e3758;
   color: white;
   position: sticky;
   top: 0;
   z-index: 999;
   transition: 0.5s all ease;
-  //border-bottom: 5px solid rgba(255,255,255,.16);
 
   &.active {
-    background-color: #4d476b;
+    background-color: #3e3758;
     color: black;
     transition: 0.1s all ease-in-out;
-    //animation-name: activeNav;
-    //animation-duration: 10s;
-    //animation-iteration-count: infinite;
-    //@keyframes activeNav {
-    //  0%   {background-color: #aea4ae;}
-    //  5%   {background-color: #9f8fa0;}
-    //  10%  {background-color: #836c84;}
-    //  15%  {background-color: #7a6280;}
-    //  20% {background-color: #755f79;}
-    //  25% {background-color: #5f4961;}
-    //  30% {background-color: #513d53;}
-    //  35% {background-color: #5e405f;}
-    //  40% {background-color: #4f384f;}
-    //  45% {background-color: #483148;}
-    //  50% {background-color: #312031;}
-    //  50% {background-color: #312031;}
-    //  55% {background-color: #312031;}
-    //  60% {background-color: #483148;}
-    //  65% {background-color: #4f384f;}
-    //  70% {background-color: #5e405f;}
-    //  75% {background-color: #553856;}
-    //  80% {background-color: #5f4961;}
-    //  85% {background-color: #755f79;}
-    //  90%  {background-color: #7a6280;}
-    //  95%  {background-color: #836c84;}
-    //  100%   {background-color: #9f8fa0;}
-    //  100%   {background-color: #aea4ae;}
-    //}
+
     button {
       background-color: white !important;
       color: #1dbf73 !important;

@@ -4,11 +4,10 @@ import {useState} from "react";
 
 const StyledButton = styled(Button)<{ left: number; top: number }>`
   position: relative;
-  //background: #5d0ef5;
   background: rgb(4, 4, 20);
   background: linear-gradient(90deg, rgb(0, 0, 0) 0%, rgb(83, 22, 113) 100%);
-  width: 30%;
-  height: 50%;
+  width: 200px;
+  height: 60px;
   padding: 0.5rem 1rem;
   font-size: 1.2rem;
   border: none;

@@ -1,0 +1,62 @@
+.actor-page {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+
+  .test {
+    z-index: 1;
+    .actor-page-linear-left {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      background-image: linear-gradient(270deg, rgba(43, 47, 51, 0) 0, #000000 80%);
+      z-index: 90;
+    }
+
+    .actor-page-linear-bottom {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 15%;
+      background-image: linear-gradient(180deg, rgba(43, 47, 51, 0) 0, #000000 80%);
+      z-index: 90;
+    }
+
+    .actor-page-linear-right {
+      position: absolute;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background-image: linear-gradient(90deg, rgba(43, 47, 51, 0) 0, #000000 80%);
+      z-index: 90;
+    }
+
+    .actor-page-test {
+      .actor-page-img {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          position: absolute;
+        }
+      }
+    }
+  }
+
+  .actor-page-info {
+    background-color: white;
+    color: white;
+    z-index: 199;
+
+    span {
+      color: white;
+      z-index: 122;
+    }
+  }
+}

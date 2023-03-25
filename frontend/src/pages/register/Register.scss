@@ -57,7 +57,8 @@
       transition: all 1s ease;
       color: #ffffff;
       outline: none;
-      background-color: #7d7b7b;
+      //background-color: #7d7b7b;
+      background-color: #000000;
       opacity: 0.7;
       &:hover{
         cursor: pointer;
@@ -75,7 +76,7 @@
 
     button {
       width: 230px;
-      border: 1px dotted;
+      border: none;
       border-radius: 10px;
       font-size: 20px;
       color: #ffffff;
@@ -109,6 +110,10 @@
             cursor: pointer;
           }
         }
+      }
+
+      .Link {
+        text-decoration: none;
       }
 
       .register-forgot {
