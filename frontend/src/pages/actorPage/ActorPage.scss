@@ -1,6 +1,7 @@
 .actor-page {
   width: 100%;
   height: 100%;
+  background-color: black;
   position: relative;
   z-index: 1;
 
@@ -50,13 +51,134 @@
   }
 
   .actor-page-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: start;
+    width: 100%;
     background-color: white;
     color: white;
-    z-index: 199;
+    position: relative;
+
+    .actor-page-info-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      text-align: center;
+      width: 40%;
+      background-color: #1dbf73;
+
+      .actor-page-first-span {
+        color: slategray;
+      }
+
+      .actor-page-main-span {
+        color: #ffffff;
+        letter-spacing: 2px;
+        margin-top: 10px;
+        font-size: 70px;
+        font-weight: 700;
+      }
+
+      .actor-page-open-span-open {
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        text-align: start;
+        color: white;
+      }
+
+      .actor-page-desc {
+        margin-top: 10px;
+
+        .actor-page-open-span-div {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: start;
+          text-align: start;
+          color: #ffffff;
+          cursor: pointer;
+
+          .actor-page-open-span {
+            color: white;
+            transition: 0.5s all ease-in-out;
+            &:hover {
+              color: #d7c5c5;
+            }
+          }
+
+        }
+
+        .actor-page-exact-info {
+          display: flex;
+          justify-content: center;
+          align-items: start;
+          text-align: start;
+          font-size: 16px;
+
+          span {
+            color: #ffffff;
+          }
+        }
+      }
+
+      .actor-page-close-span {
+        color: #ffffff;
+        margin-top: 5px;
+        cursor: pointer;
+        transition: 0.5s all ease-in-out;
+        &:hover {
+          color: #d7c5c5;
+        }
+      }
+
+      .actor-page-movies-count {
+        margin: 20px 0;
+        color: white;
+      }
+
+      .actor-page-slider-span {
+        font-size: 24px;
+        color: white;
+        font-weight: 500;
+        margin: 20px 0;
+      }
+
+      .actor-page-reviews {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        background-color: white;
+
+        .actor-page-reviews-container {
+          display: flex;
+          flex-direction: column;
+          justify-content: start;
+          align-items: start;
+          text-align: center;
+          width: 100%;
+
+          .actor-page-reviews-container-leaved {
+            display: flex;
+            flex-direction: column;
+            .actor-page-reviews-container-leaved-top {
+
+            }
+
+            .actor-page-reviews-container-leaved-bottom {
+
+            }
+          }
+        }
+      }
+
+    }
 
     span {
-      color: white;
-      z-index: 122;
+      color: #000000;
     }
   }
 }

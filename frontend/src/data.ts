@@ -251,3 +251,69 @@ export const reviewCard = [
   },
 ];
 
+export const actorPageCard = [
+  {
+    id: 1,
+    img: 'https://kadet39.ru/wp-content/uploads/c/6/9/c69850b2c9c89b905f23ddfb48efb323.jpeg',
+    actorSliderTitle: 'Операция Фортуна',
+    actorSliderDesc: 'Покупка',
+    filmImg: 'https://www.film.ru/sites/default/files/movies/posters/49628551-2323440.jpg',
+    year: '2023',
+    name: 'The last of us',
+    rating: '9,3'
+  },
+  {
+    id: 2,
+    img: 'https://kadet39.ru/wp-content/uploads/c/6/9/c69850b2c9c89b905f23ddfb48efb323.jpeg',
+    actorSliderTitle: 'Операция Фортуна',
+    actorSliderDesc: 'Покупка'
+  },
+  {
+    id: 3,
+    img: 'https://kadet39.ru/wp-content/uploads/c/6/9/c69850b2c9c89b905f23ddfb48efb323.jpeg',
+    actorSliderTitle: 'Операция Фортуна',
+    actorSliderDesc: 'Покупка'
+  },
+  {
+    id: 4,
+    img: 'https://kadet39.ru/wp-content/uploads/c/6/9/c69850b2c9c89b905f23ddfb48efb323.jpeg',
+    actorSliderTitle: 'Операция Фортуна',
+    actorSliderDesc: 'Покупка'
+  },
+  {
+    id: 5,
+    img: 'https://kadet39.ru/wp-content/uploads/c/6/9/c69850b2c9c89b905f23ddfb48efb323.jpeg',
+    actorSliderTitle: 'Операция Фортуна',
+    actorSliderDesc: 'Покупка'
+  },
+  {
+    id: 6,
+    img: 'https://kadet39.ru/wp-content/uploads/c/6/9/c69850b2c9c89b905f23ddfb48efb323.jpeg',
+    actorSliderTitle: 'Операция Фортуна',
+    actorSliderDesc: 'Покупка'
+  },
+  {
+    id: 7,
+    img: 'https://kadet39.ru/wp-content/uploads/c/6/9/c69850b2c9c89b905f23ddfb48efb323.jpeg',
+    actorSliderTitle: 'Операция Фортуна',
+    actorSliderDesc: 'Покупка'
+  },
+  {
+    id: 8,
+    img: 'https://kadet39.ru/wp-content/uploads/c/6/9/c69850b2c9c89b905f23ddfb48efb323.jpeg',
+    actorSliderTitle: 'Операция Фортуна',
+    actorSliderDesc: 'Покупка'
+  },
+  {
+    id: 9,
+    img: 'https://kadet39.ru/wp-content/uploads/c/6/9/c69850b2c9c89b905f23ddfb48efb323.jpeg',
+    actorSliderTitle: 'Операция Фортуна',
+    actorSliderDesc: 'Покупка'
+  },
+  {
+    id: 10,
+    img: 'https://kadet39.ru/wp-content/uploads/c/6/9/c69850b2c9c89b905f23ddfb48efb323.jpeg',
+    actorSliderTitle: 'Операция Фортуна',
+    actorSliderDesc: 'Покупка'
+  },
+];

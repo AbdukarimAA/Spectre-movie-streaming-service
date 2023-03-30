@@ -1,11 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react';
-import ReviewsCardSlider from "../../components/reviewsCardSlider/ReviewsCardSlider";
+import ReviewsCardSlider from "../../utils/sliders/reviewsCardSlider/ReviewsCardSlider";
 import FilmPageHeadings from "../../components/filmPageHeadings/FilmPageHeadings";
 import ActorsSliderCard from "../../components/actorsSliderCard/ActorsSliderCard";
-import HomeFilmsSlider from "../../components/homeFilmsSlider/HomeFilmsSlider";
+import HomeFilmsSlider from "../../utils/sliders/homeFilmsSlider/HomeFilmsSlider";
 import HomeFilmsCard from "../../components/homeFilmsCard/HomeFilmsCard";
-import {SubmitButton} from "../../components/customButton/CustomButton";
-import ActorsSlider from "../../components/actorsSlider/ActorsSlider";
+import {SubmitButton} from "../../utils/customButton/CustomButton";
+import ActorsSlider from "../../utils/sliders/actorsSlider/ActorsSlider";
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import ReviewsCard from "../../components/reviewsCards/ReviewsCard";
 import {Avatar, Button, Rating, Typography} from "@mui/material";

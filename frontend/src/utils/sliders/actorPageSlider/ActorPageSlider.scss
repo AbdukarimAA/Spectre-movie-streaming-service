@@ -1,0 +1,37 @@
+.actor-page-slider {
+  display: flex;
+  width: 100%;
+
+  .carousel-prev:before, .carousel-next:before {
+    width: 40px;
+    height: 45px!important;
+  }
+
+  .carousel-prev:before {
+    background-image: url("https://www.amediateka.ru/static/images/player/left.svg") !important;
+  }
+
+  .carousel-next:before {
+    background-image: url("https://www.amediateka.ru/static/images/player/right.svg") !important;
+  }
+
+  .carousel-prev,
+  .carousel-next {
+    width: 40px;
+    height: 107%;
+    border-radius: 0;
+    position: absolute;
+    z-index: 131!important;
+    &:focus{
+      transition: 0.9s all;
+      opacity: 0.8;
+      scale: 1.2;
+    }
+  }
+
+  .actor-page-slider-container {
+    width: 100%;
+    position: relative;
+    overflow: hidden!important;
+  }
+}

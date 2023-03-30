@@ -1,0 +1,64 @@
+.actor-page-slider-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+  text-align: start;
+  width: 100%;
+
+  .actor-page-slider-card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: start;
+    margin-left: 3px;
+    margin-bottom: 10px;
+
+    img {
+      margin-top: 10px;
+      width: 180px;
+      height: 180px;
+      border-radius: 15px;
+      object-fit: cover;
+      margin-bottom: 10px;
+      transition: 0.3s all ease-in-out;
+
+      &:hover {
+        scale: 1.1;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .actor-page-slider-card-container-button {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      button {
+        width: 50%;
+        white-space: nowrap;
+        border: none;
+        border-radius: 5px;
+        margin-right: 10px;
+        padding: 5px;
+        background-color: transparent;
+        transition: 0.5s all ease-in-out;
+
+        &:hover {
+          background-color: #5fc9e6;
+          cursor: pointer;
+        }
+      }
+
+      .actor-page-slider-card-container-button-add {
+        margin-right: 5px;
+      }
+    }
+  }
+}

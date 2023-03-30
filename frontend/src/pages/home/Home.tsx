@@ -1,10 +1,10 @@
 import React from 'react';
 import './Home.scss';
-import Slide from "../../components/mainSlider/Slide";
-import HomeMainSlider from "../../components/HomeMainSlider/HomeMainSlider";
+import Slide from "../../utils/sliders/mainSlider/Slide";
+import HomeMainSlider from "../../utils/sliders/HomeMainSlider/HomeMainSlider";
 import { cards, filmCar} from "../../data";
 import HomeFilmsCard from "../../components/homeFilmsCard/HomeFilmsCard";
-import HomeFilmsSlider from "../../components/homeFilmsSlider/HomeFilmsSlider";
+import HomeFilmsSlider from "../../utils/sliders/homeFilmsSlider/HomeFilmsSlider";
 import HomeHeadings from "../../components/homeHeadings/HomeHeadings";
 
 const Home = () => {
