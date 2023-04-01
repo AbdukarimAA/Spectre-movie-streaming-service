@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import './ActorPage.scss';
 import {actorCard, actorPageCard, filmCar} from "../../data";
 import HomeFilmsCard from "../../components/homeFilmsCard/HomeFilmsCard";
@@ -8,10 +8,28 @@ import ActorsSlider from "../../utils/sliders/actorsSlider/ActorsSlider";
 import ActorPageSlider from "../../utils/sliders/actorPageSlider/ActorPageSlider";
 import ActorPageSliderCard from "../../components/actorPageSliderCard/ActorPageSliderCard";
 import FullFilmography from "../../components/fullFilmography/FullFilmography";
+import ActorPageReviewCard from "../../components/actorPageReviewCard/ActorPageReviewCard";
+import TextField from "@mui/material/TextField";
 
 const ActorPage = () => {
     const [isDescActive, setIsDescActive] = useState<boolean>(false);
     const [isBioActive, setIsBioActive] = useState<boolean>(false);
+    const [isReviewButtonActive, setReviewButtonActive] = useState<boolean>(true);
+    const [inputReview, setInputReview] = useState<string>('')
+
+    const ref = useRef();
+
+    console.log(isReviewButtonActive)
+    console.log(inputReview.length)
+
+    useEffect(() => {
+        if (inputReview.length >= 10) {
+            setReviewButtonActive(false)
+        } else {
+            setReviewButtonActive(true)
+        }
+    }, [inputReview])
+
 
     const handleBioOpen = () => {
         setIsBioActive(true)
@@ -37,6 +55,7 @@ const ActorPage = () => {
                         <div className="actor-page-linear-left"></div>
                         <div className="actor-page-linear-bottom"></div>
                         <div className="actor-page-linear-right"></div>
+                        <div className="actor-page-linear-top"></div>
                         <img src="https://i.pinimg.com/originals/3b/9d/8e/3b9d8ed813114e6d9f02dbb2ba7abcca.jpg" alt=""/>
                     </div>
                 </div>
@@ -119,28 +138,27 @@ const ActorPage = () => {
                         }
                     </span>
                     {
-                        isDescActive ?
-                            <span className='actor-page-close-span' onClick={handleBioClose}>
+                        isBioActive ?
+                            <span className='actor-page-bio-close-span' onClick={handleBioClose}>
                                 Roll Biography up
-                            </span> : !isDescActive
+                            </span> : !isBioActive
                     }
 
                     <span className='actor-page-slider-span'>Reviews</span>
 
-                    <div className="actor-page-reviews">
-                        <div className="actor-page-reviews-container">
-                            <div className="actor-page-reviews-container-leaved">
-                                <div className="actor-page-reviews-container-leaved-top">
-                                    <span>User1</span>
-                                    <span>30.09.2022</span>
-                                </div>
-                                <div className="actor-page-reviews-container-leaved-bottom">
-                                    <span>This is an amazing actor</span>
-                                </div>
-                            </div>
+                    <div className="actor-page-review-input">
+                        <div className="actor-page-review-input-span">
+                            <span className='optional'>Optional *</span>
+                            <input ref={ref} onChange={e => setInputReview(e.target.value)} placeholder='Share your thoughts about the actor'/>
+                            <span>Required 10 symbols, you have entered: {inputReview.length}</span>
                         </div>
+                        <button disabled={isReviewButtonActive}>Send</button>
                     </div>
 
+                    <ActorPageReviewCard />
+                    <ActorPageReviewCard />
+                    <ActorPageReviewCard />
+                    <ActorPageReviewCard />
                 </div>
             </div>
         </div>

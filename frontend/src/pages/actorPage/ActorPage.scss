@@ -1,7 +1,7 @@
 .actor-page {
   width: 100%;
   height: 100%;
-  background-color: black;
+  background-color: #100e19;
   position: relative;
   z-index: 1;
 
@@ -11,17 +11,19 @@
       position: absolute;
       width: 50%;
       height: 100%;
-      background-image: linear-gradient(270deg, rgba(43, 47, 51, 0) 0, #000000 80%);
+      background-image: linear-gradient(270deg, rgba(43, 47, 51, 0) 0, #100e19 80%);
       z-index: 90;
     }
+
 
     .actor-page-linear-bottom {
       position: absolute;
       bottom: 0;
       width: 100%;
       height: 15%;
-      background-image: linear-gradient(180deg, rgba(43, 47, 51, 0) 0, #000000 80%);
-      z-index: 90;
+      margin-bottom: 170px;
+      background-image: linear-gradient(180deg, rgba(43, 47, 51, 0) 0, #100e19 80%);
+      z-index: 390;
     }
 
     .actor-page-linear-right {
@@ -29,7 +31,7 @@
       right: 0;
       width: 50%;
       height: 100%;
-      background-image: linear-gradient(90deg, rgba(43, 47, 51, 0) 0, #000000 80%);
+      background-image: linear-gradient(90deg, rgba(43, 47, 51, 0) 0, #100e19 80%);
       z-index: 90;
     }
 
@@ -41,10 +43,10 @@
         height: 100vh;
         position: relative;
         img {
-          width: 100%;
-          height: 100%;
+          width: 100% !important;
+          height: 100%!important;
           object-fit: cover;
-          position: absolute;
+          position: static;
         }
       }
     }
@@ -56,10 +58,12 @@
     justify-content: center;
     align-items: center;
     text-align: start;
+    bottom: 170px;
     width: 100%;
-    background-color: white;
+    background-color: #100e19;
     color: white;
     position: relative;
+    z-index: 250;
 
     .actor-page-info-container {
       display: flex;
@@ -68,7 +72,7 @@
       align-items: start;
       text-align: center;
       width: 40%;
-      background-color: #1dbf73;
+      //background-color: #1dbf73;
 
       .actor-page-first-span {
         color: slategray;
@@ -77,7 +81,7 @@
       .actor-page-main-span {
         color: #ffffff;
         letter-spacing: 2px;
-        margin-top: 10px;
+        //margin-top: 10px;
         font-size: 70px;
         font-weight: 700;
       }
@@ -135,6 +139,16 @@
         }
       }
 
+      .actor-page-bio-close-span {
+        color: #ffffff;
+        margin-top: 5px;
+        cursor: pointer;
+        transition: 0.5s all ease-in-out;
+        &:hover {
+          color: #d7c5c5;
+        }
+      }
+
       .actor-page-movies-count {
         margin: 20px 0;
         color: white;
@@ -147,34 +161,73 @@
         margin: 20px 0;
       }
 
-      .actor-page-reviews {
+      .actor-page-review-input {
         display: flex;
         flex-direction: row;
+        justify-content: start;
+        align-items: start;
+        text-align: start;
         width: 100%;
-        background-color: white;
+        margin-bottom: 25px;
 
-        .actor-page-reviews-container {
+        .actor-page-review-input-span {
           display: flex;
           flex-direction: column;
-          justify-content: start;
           align-items: start;
           text-align: center;
-          width: 100%;
+          width: 75%;
 
-          .actor-page-reviews-container-leaved {
-            display: flex;
-            flex-direction: column;
-            .actor-page-reviews-container-leaved-top {
+          input {
+            width: 85%;
+            min-height: 45px;
+            font-size: 18px;
+            border-radius: 5px;
+            white-space: normal;
+            box-sizing: border-box;
+            margin: 2px 15px 10px 0;
+          }
 
-            }
+          span {
+            font-size: 13px;
+            color: #e13939;
+          }
 
-            .actor-page-reviews-container-leaved-bottom {
+          .optional {
+            color: #38b2d1;
+          }
+        }
 
+        button {
+          border-radius: 10px;
+          width: 20%;
+          height: 45px;
+          margin-top: 17px;
+          color: white;
+          font-size: 14px;
+          font-weight: 400;
+          letter-spacing: 1px;
+          border: #2e2844;
+          transition: 0.2s all ease-in-out;
+
+          &:disabled {
+            background-color: #171423;
+          }
+
+          &:enabled {
+            background-color: #2e2844;
+            &:hover {
+              cursor: pointer;
+              background-color: #555171;
             }
           }
         }
       }
+    }
 
+    ::-webkit-input-placeholder {
+      color: red;
+      align-self: center;
+      text-align: start;
     }
 
     span {

@@ -29,6 +29,10 @@
       }
     }
 
+    span {
+      color: white;
+    }
+
     &:hover {
       cursor: pointer;
     }
@@ -49,9 +53,10 @@
         padding: 5px;
         background-color: transparent;
         transition: 0.5s all ease-in-out;
+        color: white;
 
         &:hover {
-          background-color: #5fc9e6;
+          background-color: #384a4f;
           cursor: pointer;
         }
       }

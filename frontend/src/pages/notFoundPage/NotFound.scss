@@ -1,0 +1,25 @@
+.notFoundPage {
+
+  width: 100%;
+  height: 100%;
+
+  .not-found-span {
+    margin-top: 200px;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    span {
+      white-space: nowrap;
+      font-size: 100px;
+    }
+  }
+  //background-color: white;
+}
+
+  .box {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #1ca2a7;
+  }
+

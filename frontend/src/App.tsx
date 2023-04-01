@@ -6,6 +6,7 @@ import Register from "./pages/register/Register";
 import FilmPage from "./pages/filmPage/FilmPage";
 import './index.scss';
 import ActorPage from "./pages/actorPage/ActorPage";
+import NotFoundTest from "./pages/notFoundPage/NotFound";
 
 function App() {
 
@@ -17,6 +18,10 @@ function App() {
     {
       path: '/register',
       element: <Register />
+    },
+    {
+      path: '/notFound',
+      element: <NotFoundTest />
     },
     {
       path: '/',
@@ -31,7 +36,7 @@ function App() {
           element: <FilmPage />
         },
         {
-          path: '/actor',
+          path: '/actor/:id',
           element: <ActorPage />
         },
       ]

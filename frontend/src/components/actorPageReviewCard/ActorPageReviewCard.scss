@@ -1,0 +1,57 @@
+.actor-page-reviews {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  .actor-page-reviews-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+
+
+    .actor-page-reviews-container-leaved {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      text-align: start;
+      width: 100%;
+      .actor-page-reviews-container-leaved-top {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 5px;
+        span {
+          color: #a5a1b2;
+          font-size: 16px;
+          line-height: 16px;
+          font-style: normal;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          margin-right: 10px;
+        }
+
+        .actor-page-reviews-container-leaved-top-username {
+          font-weight: 500;
+        }
+
+        .actor-page-reviews-container-leaved-top-date {
+          font-size: 14px;
+        }
+      }
+
+      .actor-page-reviews-container-leaved-bottom {
+        width: 100%;
+        margin-top: 5px;
+        span {
+          color: white;
+        }
+      }
+    }
+  }
+}
