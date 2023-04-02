@@ -1,7 +1,7 @@
 import React from 'react';
-import './FAQPage.scss';
+import './AdminPage.scss';
 
-const FaqPage = () => {
+const AdminPage = () => {
     return (
         <div>
 
@@ -9,4 +9,4 @@ const FaqPage = () => {
     );
 };
 
-export default FaqPage;
+export default AdminPage;
