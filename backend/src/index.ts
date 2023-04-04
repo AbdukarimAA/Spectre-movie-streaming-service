@@ -23,3 +23,8 @@ const connect = async () => {
         handleError(error);
     }
 }
+
+app.listen(process.env.PORT, () => {
+    connect();
+    console.log('server is running')
+})
