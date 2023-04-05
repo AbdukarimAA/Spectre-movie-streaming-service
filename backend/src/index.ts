@@ -3,6 +3,13 @@ import mongoose from "mongoose";
 import dotenv from 'dotenv';
 import path from "path";
 import {fileURLToPath} from "url";
+import cookieParser from 'cookie-parser';
+import authRoute from "./routes/auth.route.js";
+import userRoute from "./routes/user.route.js";
+import movieRoute from "./routes/movie.route.js";
+import movieReviewRoute from "./routes/movieReview.route.js";
+import actorRoute from "./routes/actor.route.js";
+import actorReviewRoute from "./routes/actorReview.route.js";
 
 const app = express();
 
@@ -22,7 +29,16 @@ const connect = async () => {
     } catch (error) {
         handleError(error);
     }
-}
+};
+app.use(express.json());
+app.use(cookieParser());
+
+app.use('/api/auth', authRoute);
+app.use('/api/user', userRoute);
+app.use('/api/movie', movieRoute);
+app.use('/api/movieReview', movieReviewRoute);
+app.use('/api/actor', actorRoute);
+app.use('/api/actorReview', actorReviewRoute);
 
 app.listen(process.env.PORT, () => {
     connect();
