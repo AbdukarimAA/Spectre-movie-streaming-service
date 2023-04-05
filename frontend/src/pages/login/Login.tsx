@@ -1,17 +1,43 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {Link, useNavigate} from "react-router-dom";
+import {axiosRequest} from "../../utils/Request/newAxiosRequest";
 import './Login.scss';
-import {Link} from "react-router-dom";
 
 const Login = () => {
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [error, setError] = useState<string | null>(null);
+
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e:  React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        try {
+            const res = await axiosRequest.post('/auth/login', {email, password});
+            localStorage.setItem('currentUser', JSON.stringify(res.data));
+            navigate('/')
+        } catch (e) {
+            setError(e.response.data);
+        }
+    };
 
     return (
         <div className='login'>
-            <div className="login-modal">
+            <form className="login-modal" onSubmit={handleSubmit}>
                 <img src="https://res.cloudinary.com/dedeobaxo/image/upload/v1678183157/Job_Market_proj/2560px-Logo_spectre_int.svg_qfxgdb.png" alt=""/>
                 <span className='login-enter'>Вход в аккаунт </span>
-                <input type="email" placeholder='Email'/>
-                <input type="password" placeholder='Password'/>
+                <input
+                    type="email"
+                    placeholder='Email'
+                    onChange={e => setEmail(e.target.value)}
+                />
+                <input
+                    type="password"
+                    placeholder='Password'
+                    onChange={e => setPassword(e.target.value)}
+                />
                 <button>Войти</button>
+                {error && error}
                 <div className="login-block">
                     <div className="login-register">
                         <Link className='Link' to={'/register'}>
@@ -28,7 +54,7 @@ const Login = () => {
                     <img className='login-icons' src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNjBweCIgaGVpZ2h0PSI2MHB4IiB2aWV3Qm94PSIwIDAgNjAgNjAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDUyLjUgKDY3NDY5KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT4tU3ltYm9scy9JY29ucy9Tb2NpYWwvVksvMTQ0MC9Ob3JtYWw8L3RpdGxlPgogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+CiAgICA8ZyBpZD0iQWN0aXZhdGUiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSJBY3RpdmF0ZS1UVi1VbmF1dGhvcml6ZWQtU2lnbi1Jbi1FbWFpbC0xOTIwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTAxNS4wMDAwMDAsIC03MzkuMDAwMDAwKSI+CiAgICAgICAgICAgIDxnIGlkPSJGb3JtIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3MjAuMDAwMDAwLCAzNjAuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICA8ZyBpZD0iU29jaWFsIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MC4wMDAwMDAsIDM0MS4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICA8ZyBpZD0iLVN5bWJvbHMvSWNvbnMvU29jaWFsLzE0NDAvT0svTm9ybWFsIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyNTUuMDAwMDAwLCAzOC4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICAgICAgPGNpcmNsZSBpZD0iT3ZhbCIgZmlsbD0iIzU2NUM2NyIgZmlsbC1ydWxlPSJub256ZXJvIiBvcGFjaXR5PSIwLjQwMDAwMDAwNiIgY3g9IjMwIiBjeT0iMzAiIHI9IjMwIj48L2NpcmNsZT4KICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTMwLDE3LjE0Mjg1NzEgQzMyLjI3NDAzNDQsMTcuMTQyODU3MSAzNC4xMjUsMTguODczNDM4MyAzNC4xMjUsMjEuMDAwODggQzM0LjEyNSwyMy4xMjU5NzUgMzIuMjc0MDM0NCwyNC44NTcxNDI5IDMwLDI0Ljg1NzE0MjkgQzI3LjcyNjU5MjgsMjQuODU3MTQyOSAyNS44NzUsMjMuMTI1OTc1IDI1Ljg3NSwyMS4wMDA4OCBDMjUuODc1LDE4Ljg3MzQzODMgMjcuNzI2NTkyOCwxNy4xNDI4NTcxIDMwLDE3LjE0Mjg1NzEgWiBNMzAuMDAwMzAzLDMwIEMyNC42OTI0MzQyLDMwIDIwLjM3NSwyNS45NjQxMTAzIDIwLjM3NSwyMS4wMDE5ODM0IEMyMC4zNzUsMTYuMDM3NTg5NyAyNC42OTI0MzQyLDEyIDMwLjAwMDMwMywxMiBDMzUuMzA4MTcxNywxMiAzOS42MjUsMTYuMDM3NTg5NyAzOS42MjUsMjEuMDAxOTgzNCBDMzkuNjI1LDI1Ljk2NDExMDMgMzUuMzA4MTcxNywzMCAzMC4wMDAzMDMsMzAgWiBNMzMuOTY1NTE3MywzOC4zODMwMzE5IEwzOS40NDUyNTQsNDMuNDU5MjYxMyBDNDAuNTY4NzI1LDQ0LjQ5NjgwMTUgNDAuNTY4NzI1LDQ2LjE4MTczMjQgMzkuNDQ1MjU0LDQ3LjIyMDk4NzQgQzM4LjMyNDI1MTUsNDguMjU5NjcwOSAzNi41MDYyMDk1LDQ4LjI1OTY3MDkgMzUuMzg2NzQ5OCw0Ny4yMjA5ODc0IEwyOS45OTkyNzI5LDQyLjIzMjUwNTkgTDI0LjYxNTgwNzMsNDcuMjIwOTg3NCBDMjQuMDU1MTUxOCw0Ny43Mzk3NTc1IDIzLjMyMDE1OTIsNDcuOTk5Mjg1NCAyMi41ODQyNDEsNDcuOTk5Mjg1NCBDMjEuODQ5ODY1Niw0Ny45OTkyODU0IDIxLjExNjQxNTgsNDcuNzM5NzU3NSAyMC41NTUxNDMyLDQ3LjIyMDk4NzQgQzE5LjQzMzIxNSw0Ni4xODE3MzI0IDE5LjQzMzIxNSw0NC40OTc5NDQ4IDIwLjU1MzkwODksNDMuNDU5MjYxMyBMMjYuMDMyNzE5OSwzOC4zODMwMzE5IEMyNC4wMzgxODA5LDM3Ljk2MjAxMzYgMjIuMTEzMzc2OCwzNy4yMjk3MzMyIDIwLjM0MjIzNiwzNi4xOTkwNTI4IEMxOS4wMDAzMDM4LDM1LjQxNjE4MTYgMTguNTk2NzA1OSwzMy43NzQ5ODE4IDE5LjQ0MTg1NDcsMzIuNTMxMzYyOCBDMjAuMjg1NzY5MywzMS4yODYzMTQ2IDIyLjA1NzUyNzIsMzAuOTExODg1NSAyMy40MDEzMTA4LDMxLjY5NDc1NjcgQzI3LjQxNDE0OCwzNC4wMzI1MDkgMzIuNTgzMTYzNiwzNC4wMzM2NTIzIDM2LjU5ODQ2OTIsMzEuNjk0NzU2NyBDMzcuOTQxMzI3MiwzMC45MTE4ODU1IDM5LjcxMzcwMjEsMzEuMjg2MzE0NiA0MC41NTgyMzM5LDMyLjUzMTM2MjggQzQxLjQwMzM4MjgsMzMuNzczODM4NSA0MC45OTk0NzYzLDM1LjQxNjE4MTYgMzkuNjU3NTQ0LDM2LjE5OTA1MjggQzM3Ljg4NjQwMzMsMzcuMjMwNTkwNyAzNS45NjA5ODIsMzcuOTYyMDEzNiAzMy45NjU1MTczLDM4LjM4MzAzMTkgWiIgaWQ9Im9rIiBmaWxsPSIjRkZGRkZGIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==" alt=""/>
                     <img className='login-icons' src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNjBweCIgaGVpZ2h0PSI2MHB4IiB2aWV3Qm94PSIwIDAgNjAgNjAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDUyLjUgKDY3NDY5KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT4tU3ltYm9scy9JY29ucy9Tb2NpYWwvVksvMTQ0MC9Ob3JtYWw8L3RpdGxlPgogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+CiAgICA8ZyBpZD0iQWN0aXZhdGUiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSJBY3RpdmF0ZS1UVi1VbmF1dGhvcml6ZWQtU2lnbi1Jbi1FbWFpbC0xOTIwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTEwMC4wMDAwMDAsIC03MzkuMDAwMDAwKSIgZmlsbC1ydWxlPSJub256ZXJvIj4KICAgICAgICAgICAgPGcgaWQ9IkZvcm0iIHRyYW5zZm9ybT0idHJhbnNsYXRlKDcyMC4wMDAwMDAsIDM2MC4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSJTb2NpYWwiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQwLjAwMDAwMCwgMzQxLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgIDxnIGlkPSItU3ltYm9scy9JY29ucy9Tb2NpYWwvMTQ0MC9ZYW5kZXgvTm9ybWFsIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNDAuMDAwMDAwLCAzOC4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICAgICAgPGNpcmNsZSBpZD0iT3ZhbCIgZmlsbD0iIzU2NUM2NyIgb3BhY2l0eT0iMC40MDAwMDAwMDYiIGN4PSIzMCIgY3k9IjMwIiByPSIzMCI+PC9jaXJjbGU+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0zOCwxNCBMMzEuNzQ4NTYxLDE0IEMyNi45Mzc1Njc1LDE0IDIyLjA4MzAzMjgsMTcuNDAxMzc1IDIyLjA4MzAzMjgsMjUuMDAwMzc1IEMyMi4wODMwMzI4LDI4LjkzNjUgMjMuODI1MzkzNCwzMi4wMDIwNjI1IDI3LjAxOTM2MiwzMy43NDU1IEwyMCw0NiBMMjYuNDIzMTEsNDYgTDMyLjMwNDE1MDIsMzQuODggTDMyLjcwNDE3OTYsMzQuODggTDMyLjcwNDE3OTYsNDYgTDM4LDQ2IEwzOCwxNCBaIE0zMi42OTQxMDk1LDMwLjMyMzE4NzUgTDMxLjk4ODQ0NCwzMC4zMjMxODc1IEMyOS4yNTIyNzY3LDMwLjMyMzE4NzUgMjcuNjE4ODAxNCwyOC4xODQ4MTI1IDI3LjYxODgwMTQsMjQuNjAzIEMyNy42MTg4MDE0LDIwLjE0OTMxMjUgMjkuNjgyMjY5MSwxOC41NjI1IDMxLjYxMzQ4MTcsMTguNTYyNSBMMzIuNjk0MTA5NSwxOC41NjI1IEwzMi42OTQxMDk1LDMwLjMyMzE4NzUgWiIgaWQ9IllhbmRleCIgZmlsbD0iI0ZGRkZGRiI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+" alt=""/>
                 </div>
-            </div>
+            </form>
         </div>
     );
 };

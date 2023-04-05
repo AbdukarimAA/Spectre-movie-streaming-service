@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import "./Navbar.scss";
+import {axiosRequest} from "../../utils/Request/newAxiosRequest";
 
 function Navbar() {
     const [active, setActive] = useState<boolean>(false);
     const [open, setOpen] = useState<boolean>(false);
 
     const { pathname } = useLocation();
+    const navigate = useNavigate();
 
     const isActive = () => {
         window.scrollY > 0 ? setActive(true) : setActive(false);
@@ -19,13 +21,17 @@ function Navbar() {
         };
     }, []);
 
-    // const currentUser = null
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-    const currentUser = {
-        id: 1,
-        username: "Abdukarim",
-        isSeller: true,
-    };
+    const handleLogOut = async () => {
+        try {
+            await axiosRequest.post('/auth/logout');
+            localStorage.setItem('currentUser', null);
+            navigate('/');
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
     const handleModal = () => {
         const isTrue: any = setOpen(true);
@@ -51,7 +57,8 @@ function Navbar() {
                     {currentUser ? (
                         <div className="user active" onMouseEnter={handleModal} onClick={()=>setOpen(!open)}>
                             <img
-                                    src="https://res.cloudinary.com/dedeobaxo/image/upload/v1678032108/Job_Market_proj/pfxhvpqaumrox8xxqcnq.jpg"
+                                // src="https://res.cloudinary.com/dedeobaxo/image/upload/v1678032108/Job_Market_proj/pfxhvpqaumrox8xxqcnq.jpg"
+                                src={currentUser.img || '/img/noavatar.jpg'}
                                 alt=""
                             />
                             <span>{currentUser?.username}</span>
@@ -115,7 +122,7 @@ function Navbar() {
                                     <div className="opt-r-img">
                                         <div className="img-name">
                                             <img
-                                                src="https://res.cloudinary.com/dedeobaxo/image/upload/v1678032108/Job_Market_proj/pfxhvpqaumrox8xxqcnq.jpg"
+                                                src={currentUser.img || '/img/noavatar.jpg'}
                                                 alt=""
                                                 className='img-r'
                                             />
@@ -145,8 +152,10 @@ function Navbar() {
                                         </Link>
                                     </div>
                                     <div className="opt-right-item">
-                                        <Link className="link" to="/">
-                                            <span className='navbar-profile-item'>LogOut</span>
+                                        <Link className="link" to='' onClick={handleLogOut}>
+                                            <span className='navbar-profile-item'>
+                                                LogOut
+                                            </span>
                                         </Link>
                                     </div>
                                 </div>
@@ -154,7 +163,9 @@ function Navbar() {
                         </div>
                     ) : (
                         <>
-                            <span>Sign in</span>
+                            <Link className="link" to="/login">
+                                <button>Sign in</button>
+                            </Link>
                             <Link className="link" to="/register">
                                 <button>Join</button>
                             </Link>
@@ -162,7 +173,7 @@ function Navbar() {
                     )}
                 </div>
             </div>
-            {(active && pathname === "/") && (
+            {(currentUser && active && pathname === "/") && (
                 <>
                     <hr />
                     <div className="menu">

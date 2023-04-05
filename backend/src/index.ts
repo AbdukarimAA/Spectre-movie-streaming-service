@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import path from "path";
 import {fileURLToPath} from "url";
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 import authRoute from "./routes/auth.route.js";
 import userRoute from "./routes/user.route.js";
 import movieRoute from "./routes/movie.route.js";
@@ -30,6 +31,8 @@ const connect = async () => {
         handleError(error);
     }
 };
+
+app.use(cors({origin: 'http://127.0.0.1:5173', credentials: true}));
 app.use(express.json());
 app.use(cookieParser());
 

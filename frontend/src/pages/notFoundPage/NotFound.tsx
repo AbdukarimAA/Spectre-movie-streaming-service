@@ -11,7 +11,7 @@ const NotFound = () => {
 
     return (
         <div className='notFoundPage'>
-            <Navbar />
+            {/*<Navbar />*/}
             <div className="not-found-span">
                 <span>Nothing is Found</span>
             </div>

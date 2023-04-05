@@ -74,6 +74,10 @@ function App() {
           path: '/admin',
           element: <AdminPage />
         },
+        {
+          path: '*',
+          element: <NotFoundTest />
+        },
       ]
     }
   ]);

@@ -31,7 +31,7 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
 
 export const login = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const user: IUser | null = await User.findOne({username: req.body.username});
+        const user: IUser | null = await User.findOne({email: req.body.email});
         if(!user) return next(createError(404, "User not found"));
 
 
@@ -58,6 +58,10 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 
 export const logout = async (req: Request, res: Response) => {
     try {
+        res.clearCookie('accessToken', {
+            sameSite: "none",
+            secure: true
+        }).status(200).send('User logged out');
 
     } catch (error: any) {
         res.status(500).send('Something went wrong');
