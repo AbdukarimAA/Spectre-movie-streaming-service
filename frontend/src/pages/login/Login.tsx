@@ -1,13 +1,17 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../store/redux-hook";
 import {authLogin} from "../../store/slices/authSlice/authSlice";
 import './Login.scss';
+import {isAuthSelector} from "../../store/slices/authSlice/selectors";
+import {getCurrentUser} from "../../utils/getCurrentUser/getToken";
 
 const Login = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [error, setError] = useState<string | null>(null);
+    const isAuth = useAppSelector(isAuthSelector);
+    // console.log(isAuth);
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -16,12 +20,25 @@ const Login = () => {
         try {
             // const res = await axiosRequest.post('/auth/login', {email, password});
             // localStorage.setItem('currentUser', JSON.stringify(res.data));
-            dispatch(authLogin({email, password}));
-            navigate('/')
+            await dispatch<any>(authLogin({email, password}));
+            navigate('/');
         } catch (e) {
             setError(e.response.data);
         }
     };
+
+    if (isAuth) {
+        navigate('/');
+    }
+
+    const currentUser = getCurrentUser();
+
+    useEffect(() => {
+        if(currentUser) {
+            alert('вы уже авторизованы')
+            navigate('/')
+        }
+    }, [currentUser])
 
     return (
         <div className='login'>

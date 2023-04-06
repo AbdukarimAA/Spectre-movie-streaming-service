@@ -1,9 +1,12 @@
-import React, {SyntheticEvent, useState} from 'react';
+import React, {SyntheticEvent, useEffect, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import upload from "../../utils/uploadCloud/uploadFiles";
-import {axiosRequest} from "../../utils/Request/newAxiosRequest";
+import {useAppDispatch, useAppSelector} from "../../store/redux-hook";
+import {authRegister} from "../../store/slices/authSlice/authSlice";
 import {IUserRegister} from "../../utils/types/userRegisterType";
+import {isAuthSelector} from "../../store/slices/authSlice/selectors";
 import './Register.scss';
+import {getCurrentUser} from "../../utils/getCurrentUser/getToken";
 
 const Register = () => {
     const [file, setFile] = useState<File | string | null>(null);
@@ -16,8 +19,10 @@ const Register = () => {
         phone: '',
         isAdmin: false
     });
+    const isAuth = useAppSelector(isAuthSelector);
 
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUser((prev: IUserRegister) => {
@@ -43,15 +48,29 @@ const Register = () => {
 
         const url = await upload(file);
         try {
-            await axiosRequest.post('auth/register', {
-                ...user,
-                img: url
-            });
+            // await axiosRequest.post('auth/register', {
+            //     ...user,
+            //     img: url
+            // });
+            await dispatch<any>(authRegister({...user, img: url}))
             navigate('/');
         } catch (e) {
             console.log(e)
         }
     };
+
+    if (isAuth) {
+        navigate('/');
+    }
+
+    const currentUser = getCurrentUser();
+
+    useEffect(() => {
+        if(currentUser) {
+            alert('вы уже авторизованы')
+            navigate('/')
+        }
+    }, [currentUser])
 
     return (
         <div className='register'>

@@ -30,7 +30,7 @@ const HomeFilmsCard = ({film}) => {
     //     handleActiveRemove();
     // }, [])
 
-    console.log(activeFirst)
+    // console.log(activeFirst)
     return (
         <div className='home-films-card'>
             <div className="h-f-carousel-container">

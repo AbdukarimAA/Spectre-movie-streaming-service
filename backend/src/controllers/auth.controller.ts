@@ -22,7 +22,18 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
         });
 
         await newUser.save();
-        res.status(201).send('User has been created successfully')
+        const {password, ...info} = newUser._doc;
+        const token = jwt.sign({
+            id: newUser._id,
+            isAdmin: newUser.isAdmin
+        }, process.env.JWT_KEY as string, {expiresIn: "24d"});
+
+        res.cookie('accessToken', token, {
+            maxAge: 30 * 24 * 60 * 60 * 1000,
+            httpOnly: true,
+            secure: true,
+            sameSite: "none"
+        }).status(200).send(info);
 
     } catch (error: any) {
         next(error);
@@ -33,7 +44,6 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
     try {
         const user: IUser | null = await User.findOne({email: req.body.email});
         if(!user) return next(createError(404, "User not found"));
-
 
         const isCorrect = bcrypt.compareSync(req.body.password, user.password);
         if(!isCorrect) return next(createError(404, "Wrong password or username"));
@@ -47,8 +57,8 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
         res.cookie('accessToken', token, {
             maxAge: 30 * 24 * 60 * 60 * 1000,
             httpOnly: true,
-            secure: true,
-            sameSite: "none"
+            // secure: true,
+            // sameSite: "none"
         }).status(200).send(info);
 
     } catch (error: any) {

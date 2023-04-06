@@ -9,7 +9,7 @@ export enum Status {
     Error = 'error',
 }
 
-type TUserLogin = Pick<IUserRegister, "email" | "password">;
+export type TUserLogin = Pick<IUserRegister, "email" | "password">;
 
 interface IAuthSlice {
     data: IUserRegister | null;
@@ -36,9 +36,10 @@ export const authLogin = createAsyncThunk(
 
 export const authRegister = createAsyncThunk(
     'auth/userRegister',
-    async (userInfo: IUserRegister) => {
-        const { data } = await axiosRequest.post('auth/register', userInfo);
+    async ({email, username, password, img, age, phone, isAdmin}: IUserRegister) => {
+        const { data } = await axiosRequest.post('auth/register', {email, username, password, img, age, phone, isAdmin});
 
+        console.log('Json', JSON.stringify(data))
         localStorage.setItem('currentUser', JSON.stringify(data));
 
         const { token, ...payload } = data;
@@ -49,12 +50,12 @@ export const authRegister = createAsyncThunk(
 
 export const authLogout = createAsyncThunk(
     'auth/userLogout',
-    async () => {
+    async (_) => {
         const { data } = await axiosRequest.post('/auth/logout');
 
-        localStorage.setItem('currentUser', null);
+        // localStorage.setItem('currentUser', null);
 
-        return data;
+        return data
     }
 )
 
@@ -81,18 +82,18 @@ const authSlice = createSlice({
                 state.status = Status.Error;
                 state.data = null;
             })
-            // .addCase(authLogout.pending, (state: IAuthSlice) => {
-            //     state.loading = true;
-            //     state.error = null;
-            // })
-            // .addCase(authLogout.fulfilled, (state: IAuthSlice) => {
-            //     state.loading = false;
-            //     state.error = null;
-            // })
-            // .addCase(authLogout.rejected, (state: IAuthSlice, action) => {
-            //     state.loading = false;
-            //     state.error = action.payload;
-            // })
+            .addCase(authLogout.pending, (state: IAuthSlice) => {
+                state.status = Status.Loading;
+                state.data = null;
+            })
+            .addCase(authLogout.fulfilled, (state: IAuthSlice, action) => {
+                state.data = null;
+                state.status = Status.Success;
+            })
+            .addCase(authLogout.rejected, (state: IAuthSlice, action) => {
+                state.status = Status.Error;
+                state.data = null;
+            })
             .addCase(authLogin.pending, (state: IAuthSlice, action) => {
                 state.status = Status.Loading;
                 state.data = null;

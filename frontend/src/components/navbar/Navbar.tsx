@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import {Link, useLocation, useNavigate} from "react-router-dom";
-import "./Navbar.scss";
 import {axiosRequest} from "../../utils/Request/newAxiosRequest";
 import {getCurrentUser} from "../../utils/getCurrentUser/getToken";
+import {useAppDispatch, useAppSelector} from "../../store/redux-hook";
+import {authLogout} from "../../store/slices/authSlice/authSlice";
+import "./Navbar.scss";
 
 function Navbar() {
     const [active, setActive] = useState<boolean>(false);
@@ -10,6 +12,7 @@ function Navbar() {
 
     const { pathname } = useLocation();
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const isActive = () => {
         window.scrollY > 0 ? setActive(true) : setActive(false);
@@ -26,7 +29,8 @@ function Navbar() {
 
     const handleLogOut = async () => {
         try {
-            await axiosRequest.post('/auth/logout');
+            // await axiosRequest.post('/auth/logout');
+            await dispatch<any>(authLogout);
             localStorage.setItem('currentUser', null);
             navigate('/');
         } catch (e) {
