@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import "./Navbar.scss";
 import {axiosRequest} from "../../utils/Request/newAxiosRequest";
-//1 23 25
+import {getCurrentUser} from "../../utils/getCurrentUser/getToken";
+
 function Navbar() {
     const [active, setActive] = useState<boolean>(false);
     const [open, setOpen] = useState<boolean>(false);
@@ -21,7 +22,7 @@ function Navbar() {
         };
     }, []);
 
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const currentUser = getCurrentUser();
 
     const handleLogOut = async () => {
         try {
@@ -57,7 +58,6 @@ function Navbar() {
                     {currentUser ? (
                         <div className="user active" onMouseEnter={handleModal} onClick={()=>setOpen(!open)}>
                             <img
-                                // src="https://res.cloudinary.com/dedeobaxo/image/upload/v1678032108/Job_Market_proj/pfxhvpqaumrox8xxqcnq.jpg"
                                 src={currentUser.img || '/img/noavatar.jpg'}
                                 alt=""
                             />

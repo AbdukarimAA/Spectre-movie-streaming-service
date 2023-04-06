@@ -1,11 +1,16 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
+import {authReducer} from "./slices/authSlice/authSlice";
+import thunkMiddleware from 'redux-thunk';
 
-const rootReducer = combineReducers({
-
-});
+// const rootReducer = combineReducers({
+//     auth: authReducer
+// });
 
 const store = configureStore({
-    reducer: rootReducer
+    reducer: {
+        auth: authReducer
+    },
+    middleware: [thunkMiddleware]
 });
 
 export type RootState = ReturnType<typeof store.getState>;
