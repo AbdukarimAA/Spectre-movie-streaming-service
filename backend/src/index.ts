@@ -11,6 +11,7 @@ import movieRoute from "./routes/movie.route.js";
 import movieReviewRoute from "./routes/movieReview.route.js";
 import actorRoute from "./routes/actor.route.js";
 import actorReviewRoute from "./routes/actorReview.route.js";
+import listRoute from "./routes/list.route.js";
 
 const app = express();
 
@@ -39,6 +40,7 @@ app.use(cookieParser());
 app.use('/api/auth', authRoute);
 app.use('/api/user', userRoute);
 app.use('/api/movie', movieRoute);
+app.use('/api/list', listRoute);
 app.use('/api/movieReview', movieReviewRoute);
 app.use('/api/actor', actorRoute);
 app.use('/api/actorReview', actorReviewRoute);

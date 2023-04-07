@@ -4,14 +4,16 @@ const movieSchema = new Schema<IMovie>({
     title: {type: String},
     shortDesc: {type: String},
     fullDesc: {type: String},
-    audioLyrics: [String],
+    audioLyrics: String,
     posterImg: {type: String},
     titleImg: {type: String},
     rating: {type: String},
+    totalStars: {type: Number, default: 0,},
+    starNumber: {type: Number, default: 0,},
     year: {type: String},
     country: {type: String},
     duration: {type: String},
-    typeOfMovie: {type: String},
+    typeOfMovie: {type: String}, //its family or any else
     ageLimit: {type: String},
     language: {type: String},
     trailer: {type: String},
@@ -26,6 +28,7 @@ const movieSchema = new Schema<IMovie>({
     screenWriters: [String],
     operators: [String],
     quality: [String],
+    isCartoon: {type: Boolean, default: false}
 }, {timestamps: true});
 
 export interface IMovie extends mongoose.Document{
@@ -37,6 +40,8 @@ export interface IMovie extends mongoose.Document{
     posterImg: string,
     titleImg: string,
     rating: string,
+    totalStars: number,
+    starNumber: number,
     year: string,
     country: string,
     duration: string,
@@ -55,7 +60,9 @@ export interface IMovie extends mongoose.Document{
     screenWriters: Types.Array<string>,
     operators: Types.Array<string>,
     quality: Types.Array<string>,
+    isCartoon: boolean,
     _doc?: any
+    reverse?: any
 }
 
 export default mongoose.model('Movie', movieSchema);
