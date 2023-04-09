@@ -1,4 +1,5 @@
 import mongoose, {Schema, model, connect, Types} from 'mongoose';
+import {actorReviewSchema} from "./actorReview.model.js";
 
 const actorSchema = new Schema<IActor>({
     nameRus: {type: String, required: true},
@@ -8,8 +9,9 @@ const actorSchema = new Schema<IActor>({
     shortBio: {type: String, required: true},
     bio: {type: String, required: true},
     fullBio: {type: String, required: true},
-    reviews: [String],
-    movies: [String],
+    reviews: [actorReviewSchema],
+    // reviews: [String],
+    movies: {type: [{}], ref: 'Movie'},
 }, {timestamps: true});
 
 export interface IActor extends mongoose.Document{
@@ -21,8 +23,8 @@ export interface IActor extends mongoose.Document{
     shortBio: string,
     bio: string,
     fullBio: string,
-    reviews?: Types.Array<string>,
-    movies?: Types.Array<string>,
+    reviews?: any,
+    movies?: Types.Array<Object>,
     _doc?: any
 }
 

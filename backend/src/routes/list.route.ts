@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.post('/createList', verifyToken, createList);
 router.delete('/deleteList/:id', verifyToken, deleteList);
-router.get('/getList', verifyToken, getList);
+router.get('/getList', getList);
 
 export default router;

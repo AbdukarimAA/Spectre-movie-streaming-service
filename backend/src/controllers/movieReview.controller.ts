@@ -1,11 +1,18 @@
 import {NextFunction, Request, Response} from "express";
 import MovieReview, {IMovieReview} from "../models/movieReview.model.js";
 import {createError} from "../utils/handleError.js";
-import Movie from "../models/movie.model.js";
+import Movie, {IMovie} from "../models/movie.model.js";
 
 export const createMovieReview = async (req: Request, res: Response, next: NextFunction) => {
     try {
         if (req.isAdmin) return next(createError(403, 'Admins can\'t create a review'));
+        const movie: IMovie | null = await Movie.findById(req.params.movieId);
+
+        const movieReview = await MovieReview.findOne({
+            movieId: req.params.movieId,
+            userId: req.userId
+        });
+        if(movieReview) return next(createError(403, 'You have already created a review for this movie'));
 
         const newMovieReview = new MovieReview({
             movieId: req.body.movieId,
@@ -15,15 +22,13 @@ export const createMovieReview = async (req: Request, res: Response, next: NextF
             stars: req.body.stars
         });
 
-        const movieReview = await MovieReview.findOne({
-            movieId: req.body.movieId,
-            userId: req.userId
-        });
-        if(movieReview) return next(createError(403, 'You have already created a review for this movie'));
+        movie!.reviews.push(newMovieReview);
+        // movie!.rating = movie!.reviews.reduce((prev: any, item: any) => item.rating + prev, 0) / movie!.reviews.length;
 
         const savedMovieReview = await newMovieReview.save();
-        await Movie.findByIdAndUpdate(req.body.movieId, {$inc: {totalStars: req.body.stars, startNumber: 1}});
-        res.status(201).send(savedMovieReview);
+        const savedMovie = await movie!.save();
+        await Movie.findByIdAndUpdate(req.params.movieId, {$inc: {totalStars: req.body.stars, startNumber: 1}});
+        res.status(201).send({message: 'review added', savedMovieReview, savedMovie});
 
     } catch (error: any) {
         next(error);

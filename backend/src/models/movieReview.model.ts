@@ -1,17 +1,18 @@
 import mongoose, { Schema, model, connect } from 'mongoose';
 
-const movieReviewSchema = new Schema<IMovieReview>({
-    movieId: {type: String, required: true},
-    userId: {type: String, required: true},
+export const movieReviewSchema = new Schema<IMovieReview>({
+    movieId: {type: String, required: false},
+    userId: [{type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true}],
+    // userId: {type: String, required: true},
     title: {type: String, required: true},
     desc: {type: String, required: true},
     stars: {type: Number, required: true, enum: [1, 2, 3, 4, 5]},
 }, {timestamps: true});
 
 export interface IMovieReview extends mongoose.Document{
-    id: string,
+    _id: string,
     movieId: string,
-    userId: string,
+    userId: any,
     title: string,
     desc: string,
     stars: number,

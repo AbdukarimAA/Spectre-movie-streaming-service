@@ -70,11 +70,57 @@ export const getUser = async (req: Request, res: Response, next: NextFunction) =
     } catch (error: any) {
         next(error);
     }
+};
+
+export const addLikedUserMovies = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const user: IUser | null = await User.findById(req.userId);
+
+        if(user?.likedMovies.includes(req.body.movieId)) return next(createError(403, 'Movie is already Liked'));
+        if(!user) return next(createError(404, 'User not found'));
+
+        user.likedMovies.push(req.body.movieId);
+        await user.save();
+
+        res.status(200).send(user.likedMovies);
+    } catch (error: any) {
+        next(error);
+    }
+};
+
+export const deleteLikedUserMovies = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const user: IUser | null = await User.findById(req.userId); //test
+
+        if(!user) return next(createError(404, 'User not found'));
+
+        user.likedMovies = [];
+        await user.save();
+
+        res.status(200).send('All saved Movies deleted');
+    } catch (error: any) {
+        next(error);
+    }
+}
+
+export const getLikedUserMovies = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const user: IUser | null = await User.findById(req.userId).populate('likedMovies');
+        if(!user) return next(createError(404, 'User not found'));
+
+        res.status(200).send(user!.likedMovies);
+    } catch (error: any) {
+        next(error);
+    }
 }
 
 export const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const user: IUser | null = await User.findById(req.params.id);
+
+        if(req.isAdmin) {
+            return next(createError(403, 'Admins cannot delete own accounts'));
+        }
 
         if(req.userId !== user!._id.toString()) {
             return next(createError(403, "You can delete your account only"));

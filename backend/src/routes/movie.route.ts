@@ -5,7 +5,7 @@ import {
     deleteMovie,
     getAllMovies,
     getMovie,
-    getRandomMovie,
+    getRandomMovie, getTopRatedMovie,
     updateMovie
 } from "../controllers/movie.controller.js";
 const router = express.Router();
@@ -16,4 +16,5 @@ router.delete('/deleteMovie/:id', verifyToken, deleteMovie);
 router.get('/getMovie/:id', getMovie);
 router.get('/getAllMovies', getAllMovies);
 router.get('/getRandomMovie', getRandomMovie);
+router.get('/getMoviesTopRated', getTopRatedMovie);
 export default router;

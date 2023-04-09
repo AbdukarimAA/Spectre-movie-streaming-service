@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import {createError} from "../utils/handleError.js";
 import {validationResult} from 'express-validator';
+import exp from "constants";
 
 export const register = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -14,6 +15,9 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
                 errors: errors.array()
             });
         }
+
+        const userExists = await User.findOne({email: req.body.email});
+        if(userExists) return next(createError(400, 'User already exists'))
 
         const hash = bcrypt.hashSync(req.body.password, 8);
         const newUser: IUser = new User({
@@ -38,7 +42,7 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
     } catch (error: any) {
         next(error);
     }
-}
+};
 
 export const login = async (req: Request, res: Response, next: NextFunction) => {
     try {
