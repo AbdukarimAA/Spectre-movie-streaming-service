@@ -1,0 +1,44 @@
+.player {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  overflow: hidden;
+  background-color: black;
+
+  .back {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    color: white;
+    cursor: pointer;
+    //background-color: #1dbf73;
+    z-index: 2;
+  }
+
+  .player-video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    //margin-right: 150px;
+    z-index: 1;
+
+    .react-player {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  //.video {
+  //  //width: 100%;
+  //  //height: 100%;
+  //  //object-fit: cover;
+  //  //overflow: hidden;
+  //}
+}

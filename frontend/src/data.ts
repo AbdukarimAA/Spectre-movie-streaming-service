@@ -1,8 +1,8 @@
-export const cards = [
+export let cards = [
   {
     id: 1,
     mainImg: "https://res.cloudinary.com/dedeobaxo/image/upload/v1678032108/Job_Market_proj/pfxhvpqaumrox8xxqcnq.jpg",
-    logoImg: "https://thumbs.dfs.ivi.ru/storage3/contents/c/8/2e2e79a8473ed7924496f48014f081.png/x200/",
+    logoImg: "http://mg.mytorrents.biz/img/2019-10/11/almv3n1eab9o0xfb1a1lcwdlm.png",
     slideText: "True Detective Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid atque debitis dolorem iusto! Amet cumque delectus iste omnis quo voluptatibus? Autem consequatur incidunt ipsa ipsam, labore neque officia quia recusandae."
   },
   {

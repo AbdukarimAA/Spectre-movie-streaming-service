@@ -1,27 +1,63 @@
-import React from 'react';
-import './Home.scss';
-import Slide from "../../utils/sliders/mainSlider/Slide";
 import HomeMainSlider from "../../utils/sliders/HomeMainSlider/HomeMainSlider";
-import { cards, filmCar} from "../../data";
-import HomeFilmsCard from "../../components/homeFilmsCard/HomeFilmsCard";
-import HomeFilmsSlider from "../../utils/sliders/homeFilmsSlider/HomeFilmsSlider";
 import HomeHeadings from "../../components/homeHeadings/HomeHeadings";
+import React, {useEffect, useLayoutEffect, useState} from 'react';
+import {axiosRequest} from "../../utils/Request/newAxiosRequest";
+import Slide from "../../utils/sliders/mainSlider/Slide";
+import { cards, filmCar} from "../../data";
+import './Home.scss';
+import CircularProgress from '@mui/material/CircularProgress';
+import LinearProgress from '@mui/material/LinearProgress';
 
-const Home = () => {
+const Home = ({type}) => {
+    const [lists, setLists] = useState([]);
+    const [genre, setGenre] = useState<any>(null);
+    const [movies, setMovies] = useState([]);
+    const [spinner, setSpinner] = useState(false);
+
+    useEffect(() => {
+        const test = async () => {
+            try {
+                const {data} = await axiosRequest.get(`list/getList${type ? '?type=' + type : ''}${genre ? '&genre=' + genre : ''}`);
+                setLists(data);
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        test();
+    }, [type, genre]);
+
+    useEffect(() => {
+        const fetching = async () => {
+            setSpinner(true)
+            const {data} = await axiosRequest.get('movie/getRandomMovie')
+                .then(res => setMovies(res.data))
+                .finally(() => setSpinner(false))
+        }
+        fetching();
+    }, [])
+
+    if (spinner) return <LinearProgress />;
+
     return (
         <div className='home'>
-            <Slide
+            {<Slide
                 slidesToShow={1}
-                arrowsScroll={1}
+                infinite={true}
+                autoplay={true}
+                autoplaySpeed={5000}
                 centerMode={true}
-                autoplay={false}
-                autoplaySpeed={10000}
-                centerPadding={70}
-                initialSlide={false}>
-                {cards.map(card => (
+                centerPadding={'80px'}
+                initialSlide={1}
+                pauseOnHover={true}
+                pauseOnFocus={true}
+                arrows={false}
+                fade={false}
+                speed={900}
+            >
+                {movies?.map(card => (
                     <HomeMainSlider key={card.id} item={card}/>
                 ))}
-            </Slide>
+            </Slide>}
             <div className="home-subs-buttons">
                 <div className="test">
                     <div className="h-subs-container">
@@ -33,25 +69,10 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="he">
-                <div className="heading">
-                    <HomeHeadings />
-                </div>
-            </div>
+            {lists.map(list => (
+                <HomeHeadings key={list.id} list={list}/>
+            ))}
 
-
-            <HomeFilmsSlider
-                slidesToShow={6}
-                arrowsScroll={3}
-                initialSlide={true}
-                arrowsBlock={false}
-            >
-                {
-                    filmCar.map(item => (
-                        <HomeFilmsCard key={item.id} film={item}/>
-                    ))
-                }
-            </HomeFilmsSlider>
         </div>
     );
 };

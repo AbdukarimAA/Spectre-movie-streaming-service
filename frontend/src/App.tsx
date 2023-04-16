@@ -13,6 +13,7 @@ import FAQPage from "./pages/faqPage/FAQPage";
 import AdminPage from "./pages/adminPage/AdminPage";
 import Subscription from "./pages/subscriptionPage/Subscription";
 import './index.scss';
+import Video from "./pages/videoPage/Video";
 
 function App() {
 
@@ -30,12 +31,25 @@ function App() {
       element: <NotFoundTest />
     },
     {
+      path: '/video',
+      element: <Video />
+    },
+
+    {
       path: '/',
       element: <Layout />,
       children: [
         {
           path: '/',
           element: <Home />
+        },
+        {
+          path: '/movies',
+          element: <Home type='movie' />
+        },
+        {
+          path: '/movies',
+          element: <Home type="cartoons" />
         },
         {
           path: '/film/:id',

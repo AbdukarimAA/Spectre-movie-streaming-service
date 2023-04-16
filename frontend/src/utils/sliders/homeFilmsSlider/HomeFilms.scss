@@ -3,51 +3,38 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  //background-color: #ffffff;
-
-  .carousel-prev:before, .carousel-next:before {
-    width: 40px;
-    height: 45px!important;
-  }
-
-  .carousel-prev:before {
-    //background-image: url("https://www.amediateka.ru/static/images/player/right.svg") !important;
-    background-image: url("https://www.amediateka.ru/static/images/player/left.svg") !important;
-  }
-
-  .carousel-next:before {
-    background-image: url("https://www.amediateka.ru/static/images/player/right.svg") !important;
-    //background-image: url("https://www.amediateka.ru/static/images/player/left.svg") !important;
-  }
-
-  .carousel-prev,
-  .carousel-next {
-    width: 40px;
-    height: 107%;
-    //background-color: rgba(73, 83, 128, 0.75);
-    border-radius: 0;
-    position: absolute;
-    top: -10%;
-    bottom: 0;
-    margin: auto;
-    z-index: 131!important;
-    &:focus{
-      transition: 0.9s all;
-      //background-color: rgba(156, 161, 193, 0.75);
-      opacity: 0.8;
-      scale: 1.2;
-    }
-  }
 
   .home-films-slider-container {
     width: 85%;
-    //background-color: yellow;
     position: relative;
     overflow: hidden!important;
-    //padding: 20px!important;
   }
-}
+  .main-slider-arrow-div-left{
+    text-align: center;
+    width: 100px;
+    height: 75px;
 
-.carousel-prev {
-  //left: -7%;
+    img {
+      width: 50%;
+      transition: 0.4s all ease-in-out;
+      &:hover{
+        scale: 1.2;
+        cursor: pointer;
+      }
+    }
+  }
+  .main-slider-arrow-div-right{
+    width: 100px;
+    height: 75px;
+    text-align: center;
+
+    img {
+      width: 50%;
+      transition: 0.4s all ease-in-out;
+      &:hover{
+        scale: 1.2;
+        cursor: pointer;
+      }
+    }
+  }
 }

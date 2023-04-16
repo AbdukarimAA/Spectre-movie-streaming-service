@@ -1,67 +1,57 @@
-.carousel-initialized {
-  //position: relative!important;
-  overflow: visible!important;
-}
-
 .slide {
   display: flex;
   justify-content: center;
-
-  padding: 0 -200px;
-
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  position: relative;
   .container {
     width: 1400px;
     position: relative;
-  }
+    z-index: 100;
 
-  //.carousel-initialized {
-  //  position: static;
+  //.slick-arrow.slick-prev {
+  //  background-image: url("https://www.amediateka.ru/static/images/player/left.svg") !important;
   //}
-
-  //.carousel-initialized {
-  //  //position: relative!important;
-  //  overflow: hidden!important;
+  //
+  //.slick-arrow.slick-next {
+  //  background-image: url("https://www.amediateka.ru/static/images/player/right.svg") !important;
   //}
+  //  .slick-slider.slick-initialized {
+  //    background-color: black;
+  //  }
 
-  .carousel-prev:before, .carousel-next:before {
-    width: 30px;
-    height: 35px!important;
-  }
-
-  .carousel-prev:before {
-    //background-image: url("https://www.amediateka.ru/static/images/player/right.svg") !important;
-    background-image: url("https://www.amediateka.ru/static/images/player/left.svg") !important;
-  }
-
-  .carousel-next:before {
-    background-image: url("https://www.amediateka.ru/static/images/player/right.svg") !important;
-    //background-image: url("https://www.amediateka.ru/static/images/player/left.svg") !important;
-  }
-
-  .carousel-prev,
-  .carousel-next {
-    width: 50px;
-    height: 50px;
-    //background-color: rgba(73, 83, 128, 0.75);
-    border-radius: 50%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-
-    &:focus{
-      transition: 0.9s all;
-      //background-color: rgba(194, 195, 208, 0.75);
-      opacity: 0.8;
-      scale: 1.5;
+    .slick-next:before, .slick-prev:before{
+      width: 35px;
+      height: 50px;
     }
   }
 
-  .carousel-prev {
-    left: 7%;
-  }
+  .main-slider-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    width: 83.5%;
+    margin-left: 10px;
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 150;
+    .main-slider-arrow-div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      width: 50px;
+      height: 50px;
 
-  .carousel-next {
-    right: 4%;
+      img {
+        transition: 0.3s all ease-in-out;
+        &:hover {
+          cursor: pointer;
+          scale: 1.2;
+        }
+      }
+    }
   }
 }

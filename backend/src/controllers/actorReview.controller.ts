@@ -38,10 +38,17 @@ export const deleteActorReview = async (req: Request, res: Response, next: NextF
     try {
         const actor: IActor | null = await ActorModel.findById(req.params.actorId);
         const actorReview: IActorReview | null = await ActorReview.findById(req.params.id);
-        if(actorReview!.userId !== req.userId) {
+
+        if(actorReview!.userId.toString() !== req!.userId) {
             return next(createError(403, 'You can delete your own review only'))
         }
-        actor?.reviews.findByIdAndDelete(req.params.actorId);
+
+        for (let i = 0, len = actor!.reviews.length; i < len; i++) {
+            if (actor!.reviews[i]._id.toString() === req.params.id) {
+                actor!.reviews.splice(i, 1);
+                break;
+            }
+        }
 
         await actor!.save();
         await ActorReview.findByIdAndDelete(req.params.id)

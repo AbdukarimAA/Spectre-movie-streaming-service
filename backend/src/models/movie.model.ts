@@ -26,10 +26,7 @@ const movieSchema = new Schema<IMovie>({
     originalTitle: {type: String},
     releaseDate: {type: String},
     director: {type: String},
-    actors: [{
-        nameRus: {type: String, required: true},
-        img: {type: String, required: true},
-    }],
+    actors: [String],
     // actors: {type: [{}], ref: 'Actor'},
     producers: [String],
     screenWriters: [String],

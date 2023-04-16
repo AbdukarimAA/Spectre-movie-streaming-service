@@ -1,6 +1,6 @@
 .home-headings {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: start;
   //width: 80%;
   height: 30%;
@@ -15,6 +15,7 @@
       font-weight: 700;
       font-style: normal;
       color: white;
+      margin-left: 150px;
     }
   }
 }

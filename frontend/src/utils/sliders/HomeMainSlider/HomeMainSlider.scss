@@ -1,13 +1,10 @@
-
-
 .home-main-slider {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1300px;
+  width: 1250px;
   height: 525px;
   z-index: 999;
-  //background-color: blue;
 
   .h-m-s-container {
     display: flex;
@@ -15,7 +12,7 @@
     width: 1215px;
     height: 520px;
     -webkit-border-radius: 23px;
-    background-color: black;
+    //background-color: black;
     position: relative;
     &:hover {
       transition: 0.3s all ease-in-out;
@@ -60,9 +57,8 @@
 
       .h-m-s-span {
         width: 489px;
-        height: 100px;
         color: white;
-        margin-bottom: 13px;
+        margin-bottom: 15%;
 
       }
     }

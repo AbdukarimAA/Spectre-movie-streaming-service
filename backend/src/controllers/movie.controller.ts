@@ -106,7 +106,7 @@ export const getRandomMovie = async (req: Request, res: Response, next: NextFunc
                 },
                 {
                     $sample: {
-                        size: 3
+                        size: 10
                     },
                 }
             ])
@@ -119,7 +119,7 @@ export const getRandomMovie = async (req: Request, res: Response, next: NextFunc
                 },
                 {
                     $sample: {
-                        size: 3
+                        size: 10
                     },
                 }
             ])
