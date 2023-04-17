@@ -51,9 +51,13 @@ function Navbar() {
                         <span className="text">Spectre</span>
                     </Link>
                     <span className='navbar-links'>What's new</span>
-                    <span className='navbar-links'>Movies</span>
-                    <span className='navbar-links'>Serials</span>
-                    <span className='navbar-links'>Cartoons</span>
+                    <Link className='link' to={'/movies'}>
+                        <span className='navbar-links'>Movies</span>
+                    </Link>
+                    {/*<span className='navbar-links'>Serials</span>*/}
+                    <Link className='link' to={'/cartoons'}>
+                        <span className='navbar-links'>Cartoons</span>
+                    </Link>
                     <span className='navbar-links'>TV+</span>
                 </div>
                 <div className="links">
@@ -177,7 +181,7 @@ function Navbar() {
                     )}
                 </div>
             </div>
-            {(currentUser && active && pathname === "/") && (
+            {(currentUser && active && (pathname === "/" || pathname === '/movies' || pathname === 'cartoons')) && (
                 <>
                     <hr />
                     <div className="menu">

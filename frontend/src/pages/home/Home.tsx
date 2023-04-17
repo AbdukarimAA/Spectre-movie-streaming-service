@@ -1,40 +1,37 @@
 import HomeMainSlider from "../../utils/sliders/HomeMainSlider/HomeMainSlider";
 import HomeHeadings from "../../components/homeHeadings/HomeHeadings";
-import React, {useEffect, useLayoutEffect, useState} from 'react';
+import React, {memo, useEffect, useLayoutEffect, useState} from 'react';
 import {axiosRequest} from "../../utils/Request/newAxiosRequest";
 import Slide from "../../utils/sliders/mainSlider/Slide";
-import { cards, filmCar} from "../../data";
-import './Home.scss';
-import CircularProgress from '@mui/material/CircularProgress';
+import { Suspense } from 'react';
 import LinearProgress from '@mui/material/LinearProgress';
+import './Home.scss';
+import {useAppDispatch, useAppSelector} from "../../hooks";
+import {getListMovies, getRandomMovies} from "../../store/slices/movieSlice/movieSlice";
+import {getMoviesSelector, getMoviesSelectorLoading} from "../../store/slices/movieSlice/movieSelectors";
 
 const Home = ({type}) => {
-    const [lists, setLists] = useState([]);
     const [genre, setGenre] = useState<any>(null);
-    const [movies, setMovies] = useState([]);
     const [spinner, setSpinner] = useState(false);
+    const {movie, lists} = useAppSelector(getMoviesSelector);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
-        const test = async () => {
-            try {
-                const {data} = await axiosRequest.get(`list/getList${type ? '?type=' + type : ''}${genre ? '&genre=' + genre : ''}`);
-                setLists(data);
-            } catch (e) {
-                console.log(e)
-            }
+        const getMovieListByTypeOrGenre: any = async () => {
+            setSpinner(true);
+            dispatch<any>(getListMovies({type, genre})).finally(() => setSpinner(false))
         }
-        test();
+        getMovieListByTypeOrGenre();
     }, [type, genre]);
 
     useEffect(() => {
-        const fetching = async () => {
+        const randomMovieFetch: any = () => {
             setSpinner(true)
-            const {data} = await axiosRequest.get('movie/getRandomMovie')
-                .then(res => setMovies(res.data))
-                .finally(() => setSpinner(false))
+            dispatch<any>(getRandomMovies()).finally(() => setSpinner(false))
         }
-        fetching();
-    }, [])
+        randomMovieFetch()
+    }, []);
+
 
     if (spinner) return <LinearProgress />;
 
@@ -54,8 +51,8 @@ const Home = ({type}) => {
                 fade={false}
                 speed={900}
             >
-                {movies?.map(card => (
-                    <HomeMainSlider key={card.id} item={card}/>
+                {movie.data && movie?.data.map(card => (
+                    <HomeMainSlider key={card._id} item={card}/>
                 ))}
             </Slide>}
             <div className="home-subs-buttons">
@@ -69,7 +66,7 @@ const Home = ({type}) => {
                 </div>
             </div>
 
-            {lists.map(list => (
+            {lists.list && lists.list.map(list => (
                 <HomeHeadings key={list.id} list={list}/>
             ))}
 

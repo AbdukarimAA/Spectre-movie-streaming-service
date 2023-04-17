@@ -26,20 +26,21 @@
         flex-direction: row;
         justify-content: space-around;
         align-items: start;
+        text-align: start;
         width: 100%;
         margin-bottom: 35px;
         margin-top: 40px;
 
         .reviews-n-d {
           display: flex;
-          justify-content: start;
+          justify-content: center;
           align-items: start;
           text-align: start;
           flex-direction: column;
-          margin-right: 200px;
 
           .review-name-span {
             font-size: 24px;
+            //background-color: #1dbf73;
             font-weight: 700;
             color: white;
           }
@@ -68,12 +69,15 @@
       .reviews-text-div {
         display: flex;
         flex-direction: column;
-        justify-content: start;
+        justify-content: center;
         align-items: start;
-        text-align: start;
+        text-align: center;
         margin: 0px 30px 20px 35px;
 
         .reviews-text-span {
+          align-items: center;
+          text-align: center;
+          margin-left: 10px;
           color: white;
           font-size: 25px;
         }

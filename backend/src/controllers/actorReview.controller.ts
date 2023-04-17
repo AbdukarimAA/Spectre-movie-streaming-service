@@ -37,21 +37,21 @@ export const deleteActorReview = async (req: Request, res: Response, next: NextF
     // if (!req.isAdmin) return next(createError(403, 'You are not allowed to delete a movieReview'));
     try {
         const actor: IActor | null = await ActorModel.findById(req.params.actorId);
-        const actorReview: IActorReview | null = await ActorReview.findById(req.params.id);
+        const actorReview: IActorReview | null = await ActorReview.findById(req.params.actorReviewId);
 
         if(actorReview!.userId.toString() !== req!.userId) {
             return next(createError(403, 'You can delete your own review only'))
         }
 
         for (let i = 0, len = actor!.reviews.length; i < len; i++) {
-            if (actor!.reviews[i]._id.toString() === req.params.id) {
+            if (actor!.reviews[i]._id.toString() === req.params.actorReviewId) {
                 actor!.reviews.splice(i, 1);
                 break;
             }
         }
 
         await actor!.save();
-        await ActorReview.findByIdAndDelete(req.params.id)
+        await ActorReview.findByIdAndDelete(req.params.actorReviewId)
         res.status(200).send('The actor Review has been deleted successfully');
     } catch (error: any) {
         next(error);

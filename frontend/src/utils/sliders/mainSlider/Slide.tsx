@@ -22,6 +22,10 @@ const Slide = ({children, slidesToShow, infinite, autoplay, autoplaySpeed, cente
     const slider = useRef<any>(null);
     return (
         <div className='slide'>
+            <div className='main-slider-arrow-div-left' onClick={() => slider?.current?.slickPrev()}>
+                <img src="https://www.amediateka.ru/static/images/player/left.svg" alt="arrowLeft"/>
+            </div>
+
             <div className="container">
                 <Slider
                     ref={slider}
@@ -41,14 +45,11 @@ const Slide = ({children, slidesToShow, infinite, autoplay, autoplaySpeed, cente
                     {children}
                 </Slider>
             </div>
-                <div className="main-slider-div">
-                    <div className='main-slider-arrow-div' onClick={() => slider?.current?.slickPrev()}>
-                        <img src="https://www.amediateka.ru/static/images/player/left.svg" alt="arrowLeft"/>
-                    </div>
-                    <div className='main-slider-arrow-div' onClick={() => slider?.current?.slickNext()}>
-                        <img src="https://www.amediateka.ru/static/images/player/right.svg" alt="arrowRight"/>
-                    </div>
-                </div>
+
+            <div className='main-slider-arrow-div-right' onClick={() => slider?.current?.slickNext()}>
+                <img src="https://www.amediateka.ru/static/images/player/right.svg" alt="arrowRight"/>
+            </div>
+
         </div>
     );
 };

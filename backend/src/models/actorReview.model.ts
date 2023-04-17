@@ -2,7 +2,7 @@ import mongoose, { Schema, model, connect } from 'mongoose';
 
 export const actorReviewSchema = new Schema<IActorReview>({
     actorId: {type: String, required: false},
-    userId: [{type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true}],
+    userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
     review: {type: String, required: true},
 }, {timestamps: true});
 

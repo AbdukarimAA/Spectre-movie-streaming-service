@@ -1,50 +1,9 @@
 .reviews-slider {
   display: flex;
+  align-items: center;
   width: 100%;
+  position: relative;
   //background-color: white;
-
-  .carousel-prev:before, .carousel-next:before {
-    width: 40px;
-    height: 45px!important;
-  }
-
-  .carousel-prev:before {
-    //background-image: url("https://www.amediateka.ru/static/images/player/right.svg") !important;
-    background-image: url("https://www.amediateka.ru/static/images/player/left.svg") !important;
-  }
-
-  .carousel-next:before {
-    background-image: url("https://www.amediateka.ru/static/images/player/right.svg") !important;
-    //background-image: url("https://www.amediateka.ru/static/images/player/left.svg") !important;
-  }
-
-  .carousel-prev,
-  .carousel-next {
-    width: 30px;
-    //background-color: #1dbf73;
-    height: 107%;
-    //background-color: rgba(73, 83, 128, 0.75);
-    border-radius: 0;
-    position: absolute;
-    top: -10%;
-    bottom: 0;
-    margin: 15px;
-    z-index: 131!important;
-    &:focus{
-      transition: 0.9s all;
-      //background-color: rgba(156, 161, 193, 0.75);
-      opacity: 0.8;
-      scale: 1.2;
-    }
-  }
-
-  .carousel-next {
-    margin-right: 110px;
-  }
-
-  .carousel-prev {
-    margin-left: 100px;
-  }
 
   .reviews-slider-container {
     width: 100%;
@@ -52,5 +11,45 @@
     position: relative;
     overflow: hidden!important;
     //padding: 20px!important;
+  }
+
+  .main-slider-arrow-div-left{
+    align-items: center;
+    text-align: center;
+    width: 30px;
+    height: 50px;
+    left: 90px;
+    //background-color: #1dbf73;
+    position: absolute;
+    z-index: 200;
+    img {
+      width: 100%;
+      height: 100%;
+      transition: 0.4s all ease-in-out;
+      &:hover{
+        scale: 1.2;
+        cursor: pointer;
+      }
+    }
+  }
+  .main-slider-arrow-div-right{
+    align-items: start;
+    width: 30px;
+    height: 50px;
+    text-align: start;
+    right: 100px;
+    //background-color: #1dbf73;
+    position: absolute;
+    z-index: 200;
+
+    img {
+      width: 100%;
+      height: 100%;
+      transition: 0.4s all ease-in-out;
+      &:hover{
+        scale: 1.2;
+        cursor: pointer;
+      }
+    }
   }
 }

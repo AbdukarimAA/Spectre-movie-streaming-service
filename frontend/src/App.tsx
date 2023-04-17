@@ -48,7 +48,7 @@ function App() {
           element: <Home type='movie' />
         },
         {
-          path: '/movies',
+          path: '/cartoons',
           element: <Home type="cartoons" />
         },
         {

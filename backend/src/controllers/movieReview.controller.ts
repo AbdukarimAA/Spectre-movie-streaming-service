@@ -25,10 +25,11 @@ export const createMovieReview = async (req: Request, res: Response, next: NextF
         movie!.reviews.push(newMovieReview);
         // movie!.rating = movie!.reviews.reduce((prev: any, item: any) => item.rating + prev, 0) / movie!.reviews.length;
 
-        const savedMovieReview = await newMovieReview.save();
-        const savedMovie = await movie!.save();
+        await newMovieReview.save();
+        await movie!.save();
+        await Movie.findByIdAndUpdate(movie);
         await Movie.findByIdAndUpdate(req.params.movieId, {$inc: {totalStars: req.body.stars, startNumber: 1}});
-        res.status(201).send({message: 'review added', savedMovieReview, savedMovie});
+        res.status(201).send({message: 'review added', newMovieReview, movie});
 
     } catch (error: any) {
         next(error);
@@ -39,20 +40,20 @@ export const deleteMovieReview = async (req: Request, res: Response, next: NextF
     // if (!req.isAdmin) return next(createError(403, 'You are not allowed to delete a movieReview'));
     try {
         const movie: IMovie | null = await Movie.findById(req.params.movieId);
-        const movieReview: IMovieReview | null = await MovieReview.findById(req.params.id);
+        const movieReview: IMovieReview | null = await MovieReview.findById(req.params.movieReviewId);
         if(movieReview!.userId.toString() !== req.userId) {
             return next(createError(403, 'You can delete your own review only'))
         }
 
         for (let i = 0, len = movie!.reviews.length; i < len; i++) {
-            if (movie!.reviews[i]._id.toString() === req.params.id) {
+            if (movie!.reviews[i]._id.toString() === req.params.movieReviewId) {
                 movie!.reviews.splice(i, 1);
                 break;
             }
         }
 
         await movie!.save();
-        await MovieReview.findByIdAndDelete(req.params.id);
+        await MovieReview.findByIdAndDelete(req.params.movieReviewId);
         res.status(200).send('The movie Review has been deleted successfully');
     } catch (error: any) {
         next(error);

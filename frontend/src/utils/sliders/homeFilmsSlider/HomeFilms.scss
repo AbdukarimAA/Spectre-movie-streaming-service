@@ -3,6 +3,8 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  position: relative;
+  z-index: 100;
 
   .home-films-slider-container {
     width: 85%;
@@ -10,12 +12,15 @@
     overflow: hidden!important;
   }
   .main-slider-arrow-div-left{
-    text-align: center;
-    width: 100px;
+    text-align: start;
+    width: 50px;
     height: 75px;
-
+    left: 85px;
+    position: absolute;
+    z-index: 200;
     img {
-      width: 50%;
+      width: 100%;
+      height: 100%;
       transition: 0.4s all ease-in-out;
       &:hover{
         scale: 1.2;
@@ -24,12 +29,15 @@
     }
   }
   .main-slider-arrow-div-right{
-    width: 100px;
+    width: 50px;
     height: 75px;
     text-align: center;
-
+    right: 107px;
+    position: absolute;
+    z-index: 200;
     img {
-      width: 50%;
+      width: 100%;
+      height: 100%;
       transition: 0.4s all ease-in-out;
       &:hover{
         scale: 1.2;

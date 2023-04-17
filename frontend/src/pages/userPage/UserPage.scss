@@ -1,0 +1,264 @@
+.user-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  margin-left: 160px;
+  width: 80%;
+  height: 100%;
+  background-color: #1ca2a7;
+  position: relative;
+
+  .user-page-edit {
+    display: flex;
+    justify-content: space-between;
+
+    .user-page-edit-left {
+      display: flex;
+      flex-direction: column;
+      color: white;
+
+      .user-page-edit-left-top {
+        display: flex;
+        flex-direction: column;
+
+        .user-page-edit-left-top-span {
+          color: white;
+          font-size: 38px;
+          font-weight: 600;
+        }
+        .user-page-edit-left-top-bottom-span {
+          color: gray;
+        }
+      }
+
+      .user-page-edit-left-bottom {
+        display: flex;
+        flex-direction: row;
+        padding-top: 20px;
+
+        .user-page-edit-left-bottom-email {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          padding: 5px 15px 15px 0;
+
+          .user-page-edit-left-bottom-top-span {
+
+          }
+        }
+
+        .user-page-edit-left-bottom-phone {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          padding: 5px 15px 15px 0;
+
+          .user-page-edit-left-bottom-span {
+
+          }
+        }
+      }
+    }
+
+    .user-page-edit-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      width: 350px;
+      height: 70px;
+      right: 0;
+      //bottom: 25%;
+      border-radius: 15px;
+      background-color: #043b56;
+      transition: 0.7s all ease-in-out;
+      color: white;
+      position: absolute;
+
+      &:hover {
+        background-color: #2e2844;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .user-page-profile-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+    color: white;
+    margin-bottom: 35px;
+
+    .user-page-profile-block-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: start;
+      text-align: center;
+      height: 80px;
+      width: 33%;
+      background-color: #3a3558;
+      border-radius: 10px;
+      transition: 0.3s all ease-in-out;
+      span {
+        padding: 10px;
+      }
+
+      &:hover {
+        background-color: #2e2844;
+        cursor: pointer;
+      }
+    }
+    .user-page-profile-block-middle {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: start;
+      text-align: center;
+      height: 80px;
+      width: 33%;
+      background-color: #3a3558;
+      border-radius: 10px;
+      transition: 0.3s all ease-in-out;
+
+      span {
+        padding: 10px;
+      }
+
+      &:hover {
+        background-color: #2e2844;
+        cursor: pointer;
+      }
+    }
+    .user-page-profile-block-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: start;
+      text-align: center;
+      height: 80px;
+      width: 33%;
+      background-color: #3a3558;
+      border-radius: 10px;
+      transition: 0.3s all ease-in-out;
+
+      span {
+        padding: 10px;
+      }
+
+      &:hover {
+        background-color: #2e2844;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .user-page-config-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+    .user-page-config-block-watch-later {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: #3a3558;
+      width: 15%;
+      margin: 15px 0;
+      padding: 20px;
+      border-radius: 5px;
+      color: white;
+      transition: 0.4s all ease-in-out;
+      &:hover {
+        background-color: #2e2844;
+        cursor: pointer;
+      }
+    }
+
+    .user-page-config-block-purchases {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: #3a3558;
+      width: 15%;
+      margin: 15px 0;
+      padding: 20px;
+      border-radius: 5px;
+      color: white;
+      transition: 0.4s all ease-in-out;
+      &:hover {
+        background-color: #2e2844;
+        cursor: pointer;
+      }
+    }
+
+    .user-page-config-block-payment-method {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: #3a3558;
+      width: 15%;
+      margin: 15px 0;
+      padding: 20px;
+      border-radius: 5px;
+      color: white;
+      transition: 0.4s all ease-in-out;
+      &:hover {
+        background-color: #2e2844;
+        cursor: pointer;
+      }
+    }
+
+    .user-page-config-block-settings {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: #3a3558;
+      width: 15%;
+      margin: 15px 0;
+      padding: 20px;
+      border-radius: 5px;
+      color: white;
+      transition: 0.4s all ease-in-out;
+      &:hover {
+        background-color: #2e2844;
+        cursor: pointer;
+      }
+    }
+
+    .user-page-config-block-call-center {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: #3a3558;
+      width: 15%;
+      margin: 15px 0;
+      padding: 20px;
+      border-radius: 5px;
+      color: white;
+      transition: 0.4s all ease-in-out;
+      &:hover {
+        background-color: #2e2844;
+        cursor: pointer;
+      }
+    }
+  }
+}

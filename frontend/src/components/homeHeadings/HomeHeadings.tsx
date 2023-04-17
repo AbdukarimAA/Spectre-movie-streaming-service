@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './HomeHeadings.scss';
 import {filmCar} from "../../data";
 import HomeFilmsCard from "../homeFilmsCard/HomeFilmsCard";
 import HomeFilmsSlider from "../../utils/sliders/homeFilmsSlider/HomeFilmsSlider";
+import LinearProgress from "@mui/material/LinearProgress";
 
 const HomeHeadings = ({list}) => {
+
     return (
         <div className='home-headings'>
             <div className="h-headings-span">

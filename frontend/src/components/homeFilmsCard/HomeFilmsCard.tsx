@@ -5,45 +5,11 @@ import HideSourceIcon from '@mui/icons-material/HideSource';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import './HomeFilmsCard.scss';
 import {axiosRequest} from "../../utils/Request/newAxiosRequest";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import LinearProgress from "@mui/material/LinearProgress";
+import {IMovie} from "../../utils/types/movieDataType";
 
-export interface IMovie {
-    _id?: string,
-    userId?: any
-    title: string,
-    shortDesc: string,
-    fullDesc: string,
-    audioLyrics: string,
-    posterImg: string,
-    titleImg: string,
-    rating: any,
-    totalStars: number,
-    starNumber: number,
-    year: string,
-    country: string,
-    duration: string,
-    typeOfMovie: string,
-    ageLimit: string,
-    language: string,
-    trailer: string,
-    video: string,
-    reviews?: any,
-    genre: string,
-    originalTitle: string,
-    releaseDate: string,
-    director: string,
-    actors: [string],
-    producers: [string],
-    screenWriters: [string],
-    operators: [string],
-    quality: [string],
-    isCartoon: boolean,
-    _doc?: any
-    reverse?: any
-}
-
-const HomeFilmsCard = ({film}) => {
+const HomeFilmsCard = ({film}: string) => {
     const [activeFirst, setActiveFirst] = useState<boolean>(false);
     const [activeSecond, setActiveSecond] = useState<boolean>(false);
     const [activeThird, setActiveThird] = useState<boolean>(false);
@@ -57,7 +23,6 @@ const HomeFilmsCard = ({film}) => {
             const res = await axiosRequest.get("/movie/getMovie/" + film)
                 .then(res => setMovie(res.data))
                 .finally(() => setSpinner(false))
-            // setMovie(res.data)
         };
         getMovie();
     }, [film])
@@ -67,7 +32,7 @@ const HomeFilmsCard = ({film}) => {
     return (
         <div className='home-films-card'>
             <div className="h-f-carousel-container">
-                {movie && <Link to={`/film/${movie._id}`}>
+                {movie && <Link className='Link' to={`/film/${movie._id}`}>
                     <div className="h-f-container">
                         {<div className="h-f-img">
                             <div className="h-f-card-div">

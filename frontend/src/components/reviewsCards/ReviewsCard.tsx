@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './ReviewsCard.scss';
 import {Box, Button, Modal, Typography} from "@mui/material";
-
+import {IMovieReview} from "../../pages/filmPage/FilmPage";
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -16,8 +16,7 @@ const style = {
     color: 'white'
 };
 
-
-const ReviewsCard = ({review}: any) => {
+const ReviewsCard = ({review}) => {
     const [open, setOpen] = useState<boolean>(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -26,21 +25,20 @@ const ReviewsCard = ({review}: any) => {
         <div className='reviews-card'>
             <div className="reviews-card-container">
                 <div className="reviews-card-div">
-
                     <div className="reviews-name-date">
                         <div className="reviews-n-d">
-                            <span className='review-name-span'>{review.userName}</span>
-                            <span className='review-date-span'>{review.date}</span>
+                            <span className='review-name-span'>{review.userId}</span>
+                            <span className='review-date-span'>{review.createdAt}</span>
                         </div>
                         <div className="reviews-rating">
-                            <span>{review.rating}</span>
+                            <span>{review.stars}</span>
                         </div>
                     </div>
 
                     <div className="reviews-text-div">
                         <span className='reviews-text-span'>
                             <b>
-                                {review.reviewTitle}
+                                {review.title}
                             </b>
                         </span>
                         <br/>
@@ -53,17 +51,17 @@ const ReviewsCard = ({review}: any) => {
                         >
                             <Box sx={style}>
                                 <Typography sx={{fontSize: 24}}>
-                                    {review.userName}
-                                    <Button sx={{fontSize: 18, backgroundColor: '#008B8B', ml: 3, color: 'white'}}>{review.rating}</Button>
+                                    {review.userId}
+                                    <Button sx={{fontSize: 18, backgroundColor: '#008B8B', ml: 3, color: 'white'}}>{review.stars}</Button>
                                 </Typography>
                                 <Typography sx={{mb: 3, color: '#008B8B'}}>
-                                    {review.date}
+                                    {review.createdAt}
                                 </Typography>
                                 <Typography id="modal-modal-title" variant="h6" component="h2" sx={{mb: 3}}>
-                                    {review.reviewTitle}
+                                    {review.title}
                                 </Typography>
                                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                    {review.review}
+                                    {review.desc}
                                 </Typography>
                             </Box>
                         </Modal>

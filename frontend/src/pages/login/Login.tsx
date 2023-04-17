@@ -11,7 +11,6 @@ const Login = () => {
     const [password, setPassword] = useState<string>('');
     const [error, setError] = useState<string | null>(null);
     const isAuth = useAppSelector(isAuthSelector);
-    // console.log(isAuth);
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();

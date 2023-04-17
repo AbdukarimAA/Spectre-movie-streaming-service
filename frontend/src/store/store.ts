@@ -1,15 +1,15 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
-import {authReducer} from "./slices/authSlice/authSlice";
 import thunkMiddleware from 'redux-thunk';
+import {authReducer} from "./slices/authSlice/authSlice";
+import {movieReducer} from "./slices/movieSlice/movieSlice";
 
-// const rootReducer = combineReducers({
-//     auth: authReducer
-// });
+const rootReducer = combineReducers({
+    auth: authReducer,
+    movie: movieReducer
+});
 
 const store = configureStore({
-    reducer: {
-        auth: authReducer
-    },
+    reducer: rootReducer,
     middleware: [thunkMiddleware]
 });
 

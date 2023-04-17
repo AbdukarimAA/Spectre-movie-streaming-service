@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.post('/createActorReview/:actorId', verifyToken, createActorReview);
 router.get('/getActorReviews/:actorId', getActorReviews);
-router.delete('/deleteActorReview/:actorId/:id', verifyToken, deleteActorReview);
+router.delete('/deleteActorReview/:actorId/:actorReviewId', verifyToken, deleteActorReview);
 
 export default router;
