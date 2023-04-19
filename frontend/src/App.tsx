@@ -10,10 +10,15 @@ import SubsPage from "./pages/subscriptionsPage/SubsPage";
 import Payment from "./pages/paymentPage/Payment";
 import UserPage from "./pages/userPage/UserPage";
 import FAQPage from "./pages/faqPage/FAQPage";
-import AdminPage from "./pages/adminPage/AdminPage";
+import AdminPage from "./admin/adminPages/adminPage/AdminPage";
 import Subscription from "./pages/subscriptionPage/Subscription";
 import './index.scss';
 import Video from "./pages/videoPage/Video";
+import UserEditPage from "./pages/userEdit/UserEditPage";
+import {AdminLayout} from "./admin/AdminLayout";
+import AdminUserPage from "./admin/adminPages/adminUserPage/AdminUserPage";
+import {AdminUserEdit} from "./admin/adminPages/adminUserEditPage/AdminUserEdit";
+import {AdminMoviePage} from "./admin/adminPages/adminMoviePage/AdminMoviePage";
 
 function App() {
 
@@ -73,10 +78,13 @@ function App() {
           path: '/payment',
           element: <Payment />
         },
-        // todo finish it later
         {
           path: '/user',
           element: <UserPage />
+        },
+        {
+          path: '/user/edit',
+          element: <UserEditPage />
         },
         // todo finish it later
         {
@@ -84,10 +92,24 @@ function App() {
           element: <FAQPage />
         },
         // todo finish it later
+
         {
           path: '/admin',
           element: <AdminPage />
         },
+        {
+          path: '/admin/users',
+          element: <AdminUserPage />
+        },
+        {
+          path: '/admin/movies',
+          element: <AdminMoviePage />
+        },
+        {
+          path: '/admin/user/:id',
+          element: <AdminUserEdit />
+        },
+
         {
           path: '*',
           element: <NotFoundTest />

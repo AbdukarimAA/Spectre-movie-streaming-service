@@ -55,19 +55,19 @@ const UserPage = () => {
                     <WatchLaterIcon />
                     <span>Watch Later</span>
                 </div>
-                <div className="user-page-config-block-purchases">
+                <div className="user-page-config-block-watch-later">
                     <AccountBalanceWalletIcon />
                     <span>Purchases</span>
                 </div>
-                <div className="user-page-config-block-payment-method">
+                <div className="user-page-config-block-watch-later">
                     <AddCardIcon />
                     <span>Payment method</span>
                 </div>
-                <div className="user-page-config-block-settings">
+                <div className="user-page-config-block-watch-later">
                     <SettingsIcon />
                     <span>Settings</span>
                 </div>
-                <div className="user-page-config-block-call-center">
+                <div className="user-page-config-block-watch-later">
                     <QuizIcon />
                     <span>Call center</span>
                 </div>

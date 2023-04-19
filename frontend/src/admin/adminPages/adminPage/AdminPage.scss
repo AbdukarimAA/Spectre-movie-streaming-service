@@ -1,0 +1,14 @@
+.admin-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #64ccc0;
+  width: 100%;
+
+  .homeWidgets{
+    width: 77.5%;
+    display: flex;
+    margin: 20px;
+  }
+}

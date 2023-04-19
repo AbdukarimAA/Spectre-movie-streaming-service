@@ -6,7 +6,7 @@
   margin-left: 160px;
   width: 80%;
   height: 100%;
-  background-color: #1ca2a7;
+  //background-color: #1ca2a7;
   position: relative;
 
   .user-page-edit {
@@ -72,14 +72,15 @@
       height: 70px;
       right: 0;
       //bottom: 25%;
+      margin-top: 20px;
       border-radius: 15px;
-      background-color: #043b56;
+      background-color: #2e2844;
       transition: 0.7s all ease-in-out;
       color: white;
       position: absolute;
 
       &:hover {
-        background-color: #2e2844;
+        background-color: #19698b;
         cursor: pointer;
       }
     }
@@ -104,7 +105,7 @@
       text-align: center;
       height: 80px;
       width: 33%;
-      background-color: #3a3558;
+      background-color: #2e2844;
       border-radius: 10px;
       transition: 0.3s all ease-in-out;
       span {
@@ -112,7 +113,7 @@
       }
 
       &:hover {
-        background-color: #2e2844;
+        background-color: #19698b;
         cursor: pointer;
       }
     }
@@ -124,7 +125,7 @@
       text-align: center;
       height: 80px;
       width: 33%;
-      background-color: #3a3558;
+      background-color: #2e2844;
       border-radius: 10px;
       transition: 0.3s all ease-in-out;
 
@@ -133,7 +134,7 @@
       }
 
       &:hover {
-        background-color: #2e2844;
+        background-color: #19698b;
         cursor: pointer;
       }
     }
@@ -145,7 +146,7 @@
       text-align: center;
       height: 80px;
       width: 33%;
-      background-color: #3a3558;
+      background-color: #2e2844;
       border-radius: 10px;
       transition: 0.3s all ease-in-out;
 
@@ -154,7 +155,7 @@
       }
 
       &:hover {
-        background-color: #2e2844;
+        background-color: #19698b;
         cursor: pointer;
       }
     }
@@ -172,7 +173,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      background-color: #3a3558;
+      background-color: #2e2844;
       width: 15%;
       margin: 15px 0;
       padding: 20px;
@@ -180,83 +181,7 @@
       color: white;
       transition: 0.4s all ease-in-out;
       &:hover {
-        background-color: #2e2844;
-        cursor: pointer;
-      }
-    }
-
-    .user-page-config-block-purchases {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background-color: #3a3558;
-      width: 15%;
-      margin: 15px 0;
-      padding: 20px;
-      border-radius: 5px;
-      color: white;
-      transition: 0.4s all ease-in-out;
-      &:hover {
-        background-color: #2e2844;
-        cursor: pointer;
-      }
-    }
-
-    .user-page-config-block-payment-method {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background-color: #3a3558;
-      width: 15%;
-      margin: 15px 0;
-      padding: 20px;
-      border-radius: 5px;
-      color: white;
-      transition: 0.4s all ease-in-out;
-      &:hover {
-        background-color: #2e2844;
-        cursor: pointer;
-      }
-    }
-
-    .user-page-config-block-settings {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background-color: #3a3558;
-      width: 15%;
-      margin: 15px 0;
-      padding: 20px;
-      border-radius: 5px;
-      color: white;
-      transition: 0.4s all ease-in-out;
-      &:hover {
-        background-color: #2e2844;
-        cursor: pointer;
-      }
-    }
-
-    .user-page-config-block-call-center {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background-color: #3a3558;
-      width: 15%;
-      margin: 15px 0;
-      padding: 20px;
-      border-radius: 5px;
-      color: white;
-      transition: 0.4s all ease-in-out;
-      &:hover {
-        background-color: #2e2844;
+        background-color: #19698b;
         cursor: pointer;
       }
     }
