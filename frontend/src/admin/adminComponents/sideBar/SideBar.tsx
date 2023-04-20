@@ -34,7 +34,7 @@ const SideBar = () => {
                                     Users
                                 </li>
                             </Link>
-                            <Link to="/products" className="link">
+                            <Link to="/admin/movies" className="link">
                                 <li className="sidebarListItem">
                                     <OndemandVideoIcon className="sidebarIcon" />
                                     Movies

@@ -145,7 +145,7 @@ function Navbar() {
                                     </div>
 
                                     <div className="opt-right-item">
-                                        <Link className="link" to="/">
+                                        <Link className="link" to={'/user/edit/' + currentUser?._id}>
                                             <span className='navbar-profile-item'>Personal account</span>
                                         </Link>
                                     </div>

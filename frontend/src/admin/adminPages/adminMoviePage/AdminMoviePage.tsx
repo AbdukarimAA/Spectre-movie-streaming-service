@@ -14,11 +14,11 @@ export const AdminMoviePage = () => {
     };
 
     const columns = [
-        { field: "id", headerName: "ID", width: 90 },
+        { field: "id", headerName: "ID", width: 150 },
         {
             field: "product",
             headerName: "Product",
-            width: 200,
+            width: 250,
             renderCell: (params) => {
                 return (
                     <div className="productListItem">
@@ -32,21 +32,21 @@ export const AdminMoviePage = () => {
         {
             field: "status",
             headerName: "Status",
-            width: 120,
+            width: 160,
         },
         {
             field: "price",
             headerName: "Price",
-            width: 160,
+            width: 200,
         },
         {
             field: "action",
             headerName: "Action",
-            width: 150,
+            width: 200,
             renderCell: (params) => {
                 return (
                     <>
-                        <Link to={"/product/" + params.row.id}>
+                        <Link to={"/admin/movie/" + params.row.id}>
                             <button className="productListEdit">Edit</button>
                         </Link>
                         <DeleteOutline

@@ -1,0 +1,174 @@
+.movie-edit-admin{
+  display: flex;
+  flex-direction: row;
+  flex: 4;
+  //padding: 20px;
+}
+
+.movieTitleContainer {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.movieAddButton {
+  width: 80px;
+  border: none;
+  padding: 5px;
+  background-color: teal;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.movieContainer {
+  display: flex;
+  margin-top: 20px;
+  width: 85%;
+}
+
+.movieShow {
+  //height: 60%;
+  flex: 1;
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  background-color: white;
+}
+
+.movieUpdate {
+  //height: 60%;
+
+  flex: 2;
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  margin-left: 20px;
+  background-color: white;
+}
+
+.movieShowTop {
+  display: flex;
+  align-items: center;
+}
+
+.movieShowImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.movieShowTopTitle {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.movieShowmoviename {
+  font-weight: 600;
+}
+
+.movieShowmovieTitle {
+  font-weight: 300;
+}
+
+.movieShowBottom{
+  margin-top: 20px;
+}
+
+.movieShowTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(175, 170, 170);
+}
+
+.movieShowInfo{
+  display: flex;
+  align-items: center;
+  margin: 20px 0px;
+  color: #444;
+}
+
+.movieShowIcon{
+  font-size: 16px !important;
+}
+
+.movieShowInfoTitle{
+  margin-left: 10px;
+}
+
+.movieUpdateTitle{
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.movieUpdateForm{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-top: 20px;
+
+  .movieUpdateLeft{
+    display: flex;
+    flex-direction: row;
+
+    .admin-movie-left {
+      //margin-right: 100px;
+    }
+  }
+}
+
+.movieUpdateItem{
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.movieUpdateItem>label{
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.movieUpdateInput{
+  border: none;
+  width: 250px;
+  height: 30px;
+  border-bottom: 1px solid gray;
+}
+
+.movieUpdateRight{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.movieUpdateUpload{
+  display: flex;
+  align-items: center;
+}
+
+.movieUpdateImg{
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.movieUpdateIcon{
+  cursor: pointer;
+}
+
+.movieUpdateButton{
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  background-color: darkblue;
+  color: white;
+  font-weight: 600;
+}

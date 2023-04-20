@@ -19,6 +19,7 @@ import {AdminLayout} from "./admin/AdminLayout";
 import AdminUserPage from "./admin/adminPages/adminUserPage/AdminUserPage";
 import {AdminUserEdit} from "./admin/adminPages/adminUserEditPage/AdminUserEdit";
 import {AdminMoviePage} from "./admin/adminPages/adminMoviePage/AdminMoviePage";
+import {AdminMovieEdit} from "./admin/adminPages/adminMovieEditPage/AdminMovieEdit";
 
 function App() {
 
@@ -83,7 +84,7 @@ function App() {
           element: <UserPage />
         },
         {
-          path: '/user/edit',
+          path: '/user/edit/:id',
           element: <UserEditPage />
         },
         // todo finish it later
@@ -109,7 +110,10 @@ function App() {
           path: '/admin/user/:id',
           element: <AdminUserEdit />
         },
-
+        {
+          path: '/admin/movie/:id',
+          element: <AdminMovieEdit />
+        },
         {
           path: '*',
           element: <NotFoundTest />
