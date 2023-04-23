@@ -43,8 +43,9 @@
         height: 100vh;
         position: relative;
         img {
-          width: 100% !important;
-          height: 100%!important;
+          align-items: center;
+          width: 90% !important;
+          height: 90%!important;
           object-fit: cover;
           position: static;
         }

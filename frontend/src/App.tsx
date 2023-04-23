@@ -1,27 +1,40 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/home/Home";
-import Login from "./pages/login/Login";
-import Layout from "./components/layot/Layout";
+import {AdminUserEdit} from "./admin/adminPages/AdminUser/adminUserEditPage/AdminUserEdit";
+import {AdminNewUser} from "./admin/adminPages/AdminUser/adminNewUserPage/AdminNewUser";
+import AdminUserPage from "./admin/adminPages/AdminUser/adminUserPage/AdminUserPage";
+import {AdminMovieEdit} from "./admin/adminPages/adminMovieEditPage/AdminMovieEdit";
+import AdminActorEdit from "./admin/adminPages/adminActorEditPage/AdminActorEdit";
+import {AdminMoviePage} from "./admin/adminPages/adminMoviePage/AdminMoviePage";
+import AdminListPage from "./admin/adminPages/adminListPage/AdminListPage";
+import {AdminActor} from "./admin/adminPages/adminActorPage/AdminActor";
+import Subscription from "./pages/subscriptionPage/Subscription";
+import {getCurrentUser} from "./utils/getCurrentUser/getToken";
+import AdminPage from "./admin/adminPages/adminPage/AdminPage";
+import SubsPage from "./pages/subscriptionsPage/SubsPage";
+import NotFoundTest from "./pages/notFoundPage/NotFound";
+import UserEditPage from "./pages/userEdit/UserEditPage";
+// import ActorPage from "./pages/actorPage/ActorPage";
+import Payment from "./pages/paymentPage/Payment";
 import Register from "./pages/register/Register";
 import FilmPage from "./pages/filmPage/FilmPage";
-import ActorPage from "./pages/actorPage/ActorPage";
-import NotFoundTest from "./pages/notFoundPage/NotFound";
-import SubsPage from "./pages/subscriptionsPage/SubsPage";
-import Payment from "./pages/paymentPage/Payment";
 import UserPage from "./pages/userPage/UserPage";
+import Layout from "./components/layot/Layout";
 import FAQPage from "./pages/faqPage/FAQPage";
-import AdminPage from "./admin/adminPages/adminPage/AdminPage";
-import Subscription from "./pages/subscriptionPage/Subscription";
-import './index.scss';
 import Video from "./pages/videoPage/Video";
-import UserEditPage from "./pages/userEdit/UserEditPage";
-import {AdminLayout} from "./admin/AdminLayout";
-import AdminUserPage from "./admin/adminPages/adminUserPage/AdminUserPage";
-import {AdminUserEdit} from "./admin/adminPages/adminUserEditPage/AdminUserEdit";
-import {AdminMoviePage} from "./admin/adminPages/adminMoviePage/AdminMoviePage";
-import {AdminMovieEdit} from "./admin/adminPages/adminMovieEditPage/AdminMovieEdit";
+import Login from "./pages/login/Login";
+import Home from "./pages/home/Home";
+import './index.scss';
+import {ProtectedRoute} from "./admin/ProtectedRoute";
+// import ActorsPage from "./pages/actorsPage/ActorsPage";
+import {lazy, Suspense} from "react";
+import Loader from "./components/Loader/Loader";
+
+const ActorPage = lazy(() => import('./pages/actorPage/ActorPage'));
+const ActorsPage = lazy(() => import('./pages/actorsPage/ActorsPage'));
 
 function App() {
+
+  const currentUser = getCurrentUser();
 
   const router = createBrowserRouter([
     {
@@ -58,12 +71,16 @@ function App() {
           element: <Home type="cartoons" />
         },
         {
+          path: '/actors',
+          element: <Suspense fallback={<Loader />}> <ActorsPage /> </Suspense>
+        },
+        {
           path: '/film/:id',
           element: <FilmPage />
         },
         {
           path: '/actor/:id',
-          element: <ActorPage />
+          element: <Suspense fallback={<Loader />}> <ActorPage /> </Suspense>
         },
         {
           path: '/subscriptions',
@@ -93,26 +110,50 @@ function App() {
           element: <FAQPage />
         },
         // todo finish it later
-
         {
           path: '/admin',
-          element: <AdminPage />
+          element: <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminPage />}/>
+          // element: <AdminPage />
         },
         {
           path: '/admin/users',
-          element: <AdminUserPage />
+          element: <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminUserPage />}/>
+          // element: <AdminUserPage />
         },
         {
           path: '/admin/movies',
-          element: <AdminMoviePage />
+          element: <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminMoviePage />}/>
+          // element: <AdminMoviePage />
+        },
+        {
+          path: '/admin/actors',
+          element: <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminActor />}/>
+          // element: <AdminActor />
+        },
+        {
+          path: '/admin/lists',
+          element: <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminListPage />}/>
+          // element: <AdminListPage />
         },
         {
           path: '/admin/user/:id',
-          element: <AdminUserEdit />
+          element: <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminUserEdit />}/>
+          // element: <AdminUserEdit />
         },
         {
           path: '/admin/movie/:id',
-          element: <AdminMovieEdit />
+          element: <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminMovieEdit />}/>
+          // element: <AdminMovieEdit />
+        },
+        {
+          path: '/admin/actor/:id',
+          element: <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminActorEdit />}/>
+          // element: <AdminActorEdit />
+        },
+        {
+          path: '/admin/user/newUser',
+          element: <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminNewUser />}/>
+          // element: <AdminNewUser />
         },
         {
           path: '*',

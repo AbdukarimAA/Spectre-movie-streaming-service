@@ -47,7 +47,7 @@ export const getList = async (req: Request, res: Response, next: NextFunction) =
                 ])
             }
         } else {
-            list = await List.aggregate([{$sample: {size: 10}}])
+            list = await List.aggregate([{$sample: {size: 10}}]).sort({createdAt: -1})
         }
 
         res.status(201).send(list);

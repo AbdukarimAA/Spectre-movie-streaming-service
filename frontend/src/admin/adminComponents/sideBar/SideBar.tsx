@@ -40,14 +40,18 @@ const SideBar = () => {
                                     Movies
                                 </li>
                             </Link>
-                            <li className="sidebarListItem">
-                                <ReorderIcon className="sidebarIcon" />
-                                Lists
-                            </li>
-                            <li className="sidebarListItem">
-                                <GroupAddIcon className="sidebarIcon" />
-                                Actors
-                            </li>
+                            <Link to='/admin/lists' className='link'>
+                                <li className="sidebarListItem">
+                                    <ReorderIcon className="sidebarIcon" />
+                                    Lists
+                                </li>
+                            </Link>
+                            <Link to='/admin/actors' className="link">
+                                <li className="sidebarListItem">
+                                    <GroupAddIcon className="sidebarIcon" />
+                                    Actors
+                                </li>
+                            </Link>
                             <li className="sidebarListItem">
                                 <ReviewsIcon className="sidebarIcon" />
                                 Movie Reviews

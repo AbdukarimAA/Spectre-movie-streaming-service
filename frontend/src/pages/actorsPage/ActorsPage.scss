@@ -1,0 +1,27 @@
+.actors-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  //height: 100%;
+
+  .actors-page-input {
+    width: 300px;
+    margin-bottom: 40px;
+
+    .actors-page-mui-input {
+      align-items: center;
+      margin-top: 40px;
+      color: white;
+    }
+  }
+
+  .actors-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+  }
+}

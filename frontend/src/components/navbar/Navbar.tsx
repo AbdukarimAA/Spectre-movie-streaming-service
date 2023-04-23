@@ -58,11 +58,18 @@ function Navbar() {
                     <Link className='link' to={'/cartoons'}>
                         <span className='navbar-links'>Cartoons</span>
                     </Link>
-                    <span className='navbar-links'>TV+</span>
+                    {/*<span className='navbar-links'>TV+</span>*/}
+                    <Link to='/actors' className='link'>
+                        <span className='navbar-links'>Actors</span>
+                    </Link>
                 </div>
                 <div className="links">
                     <span className='navbar-links'>Purchase a subscription</span>
-                    {/*{!currentUser?.isSeller && <span>Become a Member</span>}*/}
+                    {currentUser?.isAdmin &&
+                        <Link to='/admin' className='link'>
+                            <span>Admin</span>
+                        </Link>
+                    }
                     {currentUser ? (
                         <div className="user active" onMouseEnter={handleModal} onClick={()=>setOpen(!open)}>
                             <img
@@ -72,13 +79,13 @@ function Navbar() {
                             <span>{currentUser?.username}</span>
                             {open && <div className="options active" onMouseLeave={()=>setOpen(!open)}>
                                 <div className="options-left">
-                                    {/*{currentUser.isSeller && (*/}
+                                    {/*{currentUser.isAdmin && (*/}
                                     {/*    <>*/}
-                                    {/*        <div className="opt-left-item">*/}
-                                    {/*            <Link className="link" to="/">*/}
-                                    {/*                Films*/}
-                                    {/*            </Link>*/}
-                                    {/*        </div>*/}
+                                    {/*        <Link className="link" to="/admin">*/}
+                                    {/*            <div className="opt-left-item">*/}
+                                    {/*                Admin*/}
+                                    {/*            </div>*/}
+                                    {/*        </Link>*/}
                                     {/*        <div className="opt-left-item">*/}
                                     {/*            <Link className="link" to="/">*/}
                                     {/*                Add New Film*/}

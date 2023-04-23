@@ -1,6 +1,9 @@
 import React, {ReactNode, useRef, useState} from 'react';
 import Slider from "react-slick";
 import './Slide.scss';
+import {useAppSelector} from "../../../hooks";
+import {getMoviesSelector} from "../../../store/slices/movieSlice/movieSelectors";
+import {shallowEqual} from "react-redux";
 
 interface ISlide {
     children: ReactNode,
@@ -20,11 +23,15 @@ interface ISlide {
 
 const Slide = ({children, slidesToShow, infinite, autoplay, autoplaySpeed, centerMode, centerPadding, initialSlide, pauseOnHover, pauseOnFocus, arrows, fade, speed}: ISlide) => {
     const slider = useRef<any>(null);
+    const {movie} = useAppSelector(getMoviesSelector, shallowEqual);
     return (
         <div className='slide'>
-            <div className='main-slider-arrow-div-left' onClick={() => slider?.current?.slickPrev()}>
-                <img src="https://www.amediateka.ru/static/images/player/left.svg" alt="arrowLeft"/>
-            </div>
+            {
+                movie.status === 'success' ?
+                    <div className='main-slider-arrow-div-left' onClick={() => slider?.current?.slickPrev()}>
+                        <img src="https://www.amediateka.ru/static/images/player/left.svg" alt="arrowLeft"/>
+                    </div> : ''
+            }
 
             <div className="container">
                 <Slider
@@ -46,10 +53,12 @@ const Slide = ({children, slidesToShow, infinite, autoplay, autoplaySpeed, cente
                 </Slider>
             </div>
 
-            <div className='main-slider-arrow-div-right' onClick={() => slider?.current?.slickNext()}>
-                <img src="https://www.amediateka.ru/static/images/player/right.svg" alt="arrowRight"/>
-            </div>
-
+            {
+                movie.status === 'success' ?
+                    <div className='main-slider-arrow-div-right' onClick={() => slider?.current?.slickNext()}>
+                        <img src="https://www.amediateka.ru/static/images/player/right.svg" alt="arrowRight"/>
+                    </div> : ''
+            }
         </div>
     );
 };

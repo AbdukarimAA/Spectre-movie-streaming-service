@@ -4,6 +4,7 @@ import {axiosRequest} from "../../../utils/Request/newAxiosRequest";
 
 export enum Status {
     FirstLoading = 'firstLoading',
+    UpdateLoading = 'updateLoading',
     Loading = 'loading',
     Success = 'success',
     Error = 'error',

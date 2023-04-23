@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {CalendarToday, LocationSearching, MailOutline, PermIdentity, PhoneAndroid, Publish} from "@mui/icons-material";
 import "./AdminUserEdit.scss";
-import SideBar from "../../adminComponents/sideBar/SideBar";
+import SideBar from "../../../adminComponents/sideBar/SideBar";
 
 export const AdminUserEdit = () => {
     return (
@@ -50,7 +50,7 @@ export const AdminUserEdit = () => {
                     </div>
                 </div>
                 <div className="userUpdate">
-                    <Link to="/newUser">
+                    <Link to="/admin/user/newUser">
                         <button className="userAddButton">Create</button>
                     </Link>
                     <br/>

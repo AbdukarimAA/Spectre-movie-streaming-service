@@ -41,3 +41,13 @@ export interface IList{
     content?: [string],
     _doc?: any
 }
+
+export interface IMovieReview {
+    id?: string,
+    userId: string
+    movieId: string,
+    title: string,
+    desc: string,
+    stars: number,
+    _doc?: any
+}

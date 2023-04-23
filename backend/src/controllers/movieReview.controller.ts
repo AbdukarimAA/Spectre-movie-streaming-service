@@ -12,7 +12,7 @@ export const createMovieReview = async (req: Request, res: Response, next: NextF
             movieId: req.params.movieId,
             userId: req.userId
         });
-        if(movieReview) return next(createError(403, 'You have already created a review for this movie'));
+        // if(movieReview) return next(createError(403, 'You have already created a review for this movie'));
 
         const newMovieReview = new MovieReview({
             movieId: req.body.movieId,
@@ -32,7 +32,7 @@ export const createMovieReview = async (req: Request, res: Response, next: NextF
         res.status(201).send({message: 'review added', newMovieReview, movie});
 
     } catch (error: any) {
-        next(error);
+        return res.status(500).send(error)
     }
 };
 

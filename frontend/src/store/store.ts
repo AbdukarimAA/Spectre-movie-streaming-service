@@ -2,10 +2,14 @@ import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import thunkMiddleware from 'redux-thunk';
 import {authReducer} from "./slices/authSlice/authSlice";
 import {movieReducer} from "./slices/movieSlice/movieSlice";
+import {movieReviewReducer} from "./slices/movieReviewSlice/movieReviewSlice";
+import {actorReducer} from "./slices/actorSlice/actorSlice";
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    movie: movieReducer
+    movie: movieReducer,
+    actor: actorReducer,
+    movieReview: movieReviewReducer
 });
 
 const store = configureStore({

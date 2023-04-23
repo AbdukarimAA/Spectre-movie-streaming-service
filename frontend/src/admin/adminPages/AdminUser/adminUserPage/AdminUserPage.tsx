@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import {DataGrid, GridColDef, GridRowsProp} from '@mui/x-data-grid';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {Link} from "react-router-dom";
-import {Interface, userRows} from "../../dummyData";
+import {Interface, userRows} from "../../../dummyData";
 import './AdminUserPage.scss';
-import SideBar from "../../adminComponents/sideBar/SideBar";
+import SideBar from "../../../adminComponents/sideBar/SideBar";
 
 export const AdminUserPage = () => {
     const [data, setData]: any = useState(userRows);

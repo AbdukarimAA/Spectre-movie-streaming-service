@@ -53,8 +53,15 @@ export const getActor = async (req: Request, res: Response, next: NextFunction) 
 export const getActors = async (req: Request, res: Response, next: NextFunction) => {
     // if (!req.isAdmin) return next(createError(403, 'You are not allowed to delete an actor'));
     try {
+        const {search} = req.query;
+        let query = {
+            ...(search && {nameEng: {$regex: search, $options: 'i'}}),
+            // ...(search && {nameRus: {$regex: search, $options: 'i'}})
+        };
+
+        const queryActors = await Actor.find(query).sort({createdAt: -1});
         const actors = await Actor.find().sort({_id: -1})
-        res.status(200).send(actors);
+        res.status(200).send(queryActors);
     } catch (error: any) {
         next(error);
     }

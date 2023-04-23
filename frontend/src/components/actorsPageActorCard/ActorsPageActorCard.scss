@@ -1,0 +1,53 @@
+.actors-page-actor-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+
+  .link {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    .actors-page-actor-card-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+      width: 70%;
+      gap: 30px;
+      background-color: #2d566f;
+      border-radius: 35px;
+      margin-bottom: 40px;
+      padding: 15px;
+
+      .actors-page-actor-card-container-name {
+        display: flex;
+        flex-direction: column;
+
+        .actors-page-actor-card-container-main-span {
+          color: #1dbf73;
+          font-size: 18px;
+          font-weight: 500;
+        }
+
+        span {
+          margin-bottom: 20px;
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+      img {
+        width: 300px;
+        border-radius: 20px;
+      }
+      span {
+        color: white;
+      }
+    }
+  }
+}

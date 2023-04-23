@@ -339,7 +339,7 @@
       .film-p-desc-sect-left-up {
         font-size: 20px;
         line-height: 30px;
-        color: #5b6b99;
+        color: #ffffff;
         white-space: normal;
         word-wrap: break-word;
       }
@@ -368,7 +368,7 @@
           color: white;
           font-size: 24px;
           font-weight: bolder;
-          margin: 20px 0 10px 0;
+          margin: 60px 0 10px 0;
         }
 
         .film-p-desc-sect-left-down-open {
@@ -400,7 +400,7 @@
               .film-p-desc-sect-left-down-open-exact-info-span {
                 font-size: 18px;
                 line-height: 30px;
-                color: #5b6b99;
+                color: #ffffff;
               }
             }
           }
@@ -448,10 +448,19 @@
 
           .av-test {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+
+            .av-test-div {
+              display: flex;
+              flex-direction: column;
+
+              .av-review-input {
+                width: 400px;
+              }
+            }
 
             .box-test-button {
               margin: 10px;

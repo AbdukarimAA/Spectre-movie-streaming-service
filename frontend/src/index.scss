@@ -11,5 +11,14 @@
   .link {
     text-decoration: none;
     color: inherit;
+
+    span {
+      transition: 0.3s all ease-in-out;
+
+      &:hover {
+        cursor: pointer;
+        color: #38b2d1;
+      }
+    }
   }
 }

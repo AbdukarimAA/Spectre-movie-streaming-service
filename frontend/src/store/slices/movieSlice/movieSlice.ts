@@ -16,10 +16,6 @@ interface IMovieSlice {
         movie: any;
         status: Status;
     };
-    movieReviews: {
-        reviews: [];
-        status: Status;
-    }
 }
 
 const initialState: IMovieSlice = {
@@ -35,10 +31,6 @@ const initialState: IMovieSlice = {
         movie: null,
         status: Status.FirstLoading
     },
-    movieReviews: {
-        reviews: [],
-        status: Status.FirstLoading
-    }
 }
 
 export const getRandomMovies = createAsyncThunk(
@@ -67,14 +59,6 @@ export const getOneMovie = createAsyncThunk(
     }
 )
 
-export const getMovieReviews = createAsyncThunk(
-    'movie/movieReviews',
-    async ({id}) => {
-        const { data } = await axiosRequest.get(`movieReview/getMovieReviews/` + id);
-        return data;
-    }
-)
-
 const movieSlice = createSlice({
     name: 'movieSlice',
     initialState,
@@ -82,18 +66,6 @@ const movieSlice = createSlice({
         createMovie: (state: any, action: PayloadAction) => state.data = action.payload
     },
     extraReducers: (builder) => {
-        builder.addCase(getMovieReviews.pending, (state: IMovieSlice) => {
-            state.movieReviews.status = Status.Loading;
-            state.movieReviews.reviews = null;
-        })
-        builder.addCase(getMovieReviews.rejected, (state: IMovieSlice) => {
-            state.movieReviews.status = Status.Error;
-            state.movieReviews.reviews = null;
-        })
-        builder.addCase(getMovieReviews.fulfilled, (state: IMovieSlice, action) => {
-            state.movieReviews.status = Status.Success;
-            state.movieReviews.reviews = action.payload;
-        })
         builder.addCase(getRandomMovies.pending, (state: IMovieSlice) => {
             state.movie.status = Status.Loading;
             state.movie.data = null;
@@ -108,7 +80,7 @@ const movieSlice = createSlice({
         })
         builder.addCase(getListMovies.pending, (state: IMovieSlice) => {
             state.lists.status = Status.Loading;
-            state.lists.list = null;
+            // state.lists.list = null;
         })
         builder.addCase(getListMovies.rejected, (state: IMovieSlice) => {
             state.lists.status = Status.Error;
@@ -131,6 +103,6 @@ const movieSlice = createSlice({
             state.oneMovie.movie = action.payload;
         })
     }
-})
+});
 
 export const movieReducer = movieSlice.reducer;
