@@ -67,9 +67,9 @@ const AdminListPage = () => {
                 <DataGrid
                     rows={data}
                     autoHeight={true}
-                    disableSelectionOnClick
+                    disableRowSelectionOnClick
                     columns={columns}
-                    pageSize={8}
+                    // pageSize={8}
                     checkboxSelection
                 />
             </div>

@@ -13,7 +13,7 @@ const HomeFilmsSlider = ({children, slidesToShow, infinite, arrows, speed, slide
         <div className='home-films-slider '>
             {
                 movie.status === 'success' ?
-                    <div className='main-slider-arrow-div-left' onClick={() => slider?.current?.slickPrev()}>
+                    <div className='home-films-slider-arrow-div-left' onClick={() => slider?.current?.slickPrev()}>
                         <img className='slider-img' src="https://www.amediateka.ru/static/images/player/left.svg" alt="arrowLeft"/>
                     </div> : ''
             }
@@ -32,7 +32,7 @@ const HomeFilmsSlider = ({children, slidesToShow, infinite, arrows, speed, slide
             </div>
             {
                 movie.status === 'success' ?
-                    <div className='main-slider-arrow-div-right' onClick={() => slider?.current?.slickNext()}>
+                    <div className='home-films-slider-arrow-div-right' onClick={() => slider?.current?.slickNext()}>
                         <img className='slider-img' src="https://www.amediateka.ru/static/images/player/right.svg" alt="arrowRight"/>
                     </div>  : ''
             }

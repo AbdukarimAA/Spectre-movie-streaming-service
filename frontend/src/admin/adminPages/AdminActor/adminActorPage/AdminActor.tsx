@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import "./AdminMoviePage.scss";
-import {DeleteOutline} from "@mui/icons-material";
+import './AdminActor.scss';
+import {productRows} from "../../../dummyData";
 import {Link} from "react-router-dom";
+import {DeleteOutline} from "@mui/icons-material";
+import SideBar from "../../../adminComponents/sideBar/SideBar";
 import {DataGrid} from "@mui/x-data-grid";
-import {productRows} from "../../dummyData";
-import SideBar from "../../adminComponents/sideBar/SideBar";
 
-export const AdminMoviePage = () => {
+export const AdminActor = () => {
     const [data, setData] = useState<any>(productRows);
 
     const handleDelete = (id) => {
@@ -16,13 +16,13 @@ export const AdminMoviePage = () => {
     const columns = [
         { field: "id", headerName: "ID", width: 150 },
         {
-            field: "product",
-            headerName: "Product",
+            field: "actor",
+            headerName: "Actor",
             width: 250,
             renderCell: (params) => {
                 return (
-                    <div className="productListItem">
-                        <img className="productListImg" src={params.row.img} alt="" />
+                    <div className="actorListItem">
+                        <img className="actorListImg" src={params.row.img} alt="" />
                         {params.row.name}
                     </div>
                 );
@@ -46,11 +46,11 @@ export const AdminMoviePage = () => {
             renderCell: (params) => {
                 return (
                     <>
-                        <Link to={"/admin/movie/" + params.row.id}>
-                            <button className="productListEdit">Edit</button>
+                        <Link to={"/admin/actor/" + params.row.id}>
+                            <button className="actorListEdit">Edit</button>
                         </Link>
                         <DeleteOutline
-                            className="productListDelete"
+                            className="actorListDelete"
                             onClick={() => handleDelete(params.row.id)}
                         />
                     </>
@@ -60,18 +60,18 @@ export const AdminMoviePage = () => {
     ];
 
     return (
-        <div className="productList">
+        <div className="actorList">
 
             <SideBar />
             <div className="datagrid">
-            <DataGrid
-                rows={data}
-                autoHeight={true}
-                disableSelectionOnClick
-                columns={columns}
-                pageSize={8}
-                checkboxSelection
-            />
+                <DataGrid
+                    rows={data}
+                    autoHeight={true}
+                    disableRowSelectionOnClick
+                    columns={columns}
+                    // pageSize={8}
+                    checkboxSelection
+                />
             </div>
         </div>
     );

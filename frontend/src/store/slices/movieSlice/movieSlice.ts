@@ -13,7 +13,7 @@ interface IMovieSlice {
         status: Status;
     };
     oneMovie: {
-        movie: any;
+        movie: IMovie[];
         status: Status;
     };
 }
@@ -28,7 +28,7 @@ const initialState: IMovieSlice = {
         status: Status.FirstLoading
     },
     oneMovie: {
-        movie: null,
+        movie: [],
         status: Status.FirstLoading
     },
 }
@@ -43,7 +43,7 @@ export const getRandomMovies = createAsyncThunk(
 
 export const getListMovies = createAsyncThunk(
     'movie/listMovie',
-    async ({type, genre}) => {
+    async ({type, genre}: any) => {
         const { data } = await axiosRequest.get(`list/getList${type ? '?type=' + type : ''}${genre ? '&genre=' + genre : ''}`);
 
         return data;
@@ -52,7 +52,7 @@ export const getListMovies = createAsyncThunk(
 
 export const getOneMovie = createAsyncThunk(
     'movie/oneMovie',
-    async ({id}) => {
+    async ({id}: any) => {
         const { data } = await axiosRequest.get("/movie/getMovie/" + id);
 
         return data;
@@ -92,7 +92,6 @@ const movieSlice = createSlice({
         })
         builder.addCase(getOneMovie.pending, (state: IMovieSlice) => {
             state.oneMovie.status = Status.Loading;
-            state.oneMovie.movie = null;
         })
         builder.addCase(getOneMovie.rejected, (state: IMovieSlice) => {
             state.oneMovie.status = Status.Error;
@@ -100,7 +99,7 @@ const movieSlice = createSlice({
         })
         builder.addCase(getOneMovie.fulfilled, (state: IMovieSlice, action) => {
             state.oneMovie.status = Status.Success;
-            state.oneMovie.movie = action.payload;
+            state.oneMovie.movie = action.payload
         })
     }
 });

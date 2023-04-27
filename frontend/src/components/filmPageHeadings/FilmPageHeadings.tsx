@@ -1,7 +1,7 @@
 import React from 'react';
 import './FilmPageHeadings.scss';
 
-const HomeHeadings = ({text}: string) => {
+const HomeHeadings = ({text}: any) => {
     return (
         <div className='film-page-headings'>
             <div className="f-page-h-span">

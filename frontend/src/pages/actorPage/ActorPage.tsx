@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {FormEvent, useEffect, useRef, useState} from 'react';
 import './ActorPage.scss';
 import {actorCard, actorPageCard, filmCar} from "../../data";
 import HomeFilmsCard from "../../components/homeFilmsCard/HomeFilmsCard";
@@ -16,28 +16,38 @@ import {useAppDispatch} from "../../store/redux-hook";
 import {getOneActor} from "../../store/slices/actorSlice/actorSlice";
 import {useParams} from "react-router-dom";
 import {IActorDataType} from "../../utils/types/actorDataType";
+import Loader from "../../components/Loader/Loader";
+import {createMovieReview} from "../../store/slices/movieReviewSlice/movieReviewSlice";
+import {createActorReview, getActorReviews} from "../../store/slices/actorReviewSlice/actorReviewSlice";
+import {getCurrentUser} from "../../utils/getCurrentUser/getToken";
+import {getActorReviewsSelector} from "../../store/slices/actorReviewSlice/actorReviewSelector";
 
 const ActorPage = () => {
     const [isDescActive, setIsDescActive] = useState<boolean>(false);
     const [isBioActive, setIsBioActive] = useState<boolean>(false);
     const [isReviewButtonActive, setReviewButtonActive] = useState<boolean>(true);
     const [inputReview, setInputReview] = useState<string>('')
+    const [spinner, setSpinner] = useState(false);
     const {actor} = useAppSelector(getOneActorsSelector);
-
+    const {actorReview} = useAppSelector(getActorReviewsSelector)
+    const currentUser = getCurrentUser();
     const dispatch = useAppDispatch();
     const {id} = useParams();
 
     const ref = useRef();
 
+    // console.log(currentUser._id)
     useEffect(() => {
         const getOneActorFunc: any = async () => {
-            await dispatch<any>(getOneActor({id}))
+            window.scrollTo(0, 0)
+            setSpinner(true);
+            await dispatch<any>(getOneActor({id})).finally(() => setSpinner(false))
+            await dispatch<any>(getActorReviews({id})).finally(() => setSpinner(false))
         }
 
         getOneActorFunc()
     }, [])
 
-    // console.log(oneActor)
 
     useEffect(() => {
         if (inputReview.length >= 10) {
@@ -47,6 +57,10 @@ const ActorPage = () => {
         }
     }, [inputReview])
 
+    const handleActorReviewInputChange = (e:  FormEvent<HTMLFormElement>) => {
+        // e.preventDefault();
+        dispatch<any>(createActorReview({id: id, actorId: id, userId: currentUser._id, review: inputReview}));
+    };
 
     const handleBioOpen = () => {
         setIsBioActive(true)
@@ -64,6 +78,8 @@ const ActorPage = () => {
     const handleDescClose = () => {
         setIsDescActive(false)
     };
+
+    if (spinner) return <Loader />;
 
     return (
         <div className='actor-page'>
@@ -87,7 +103,7 @@ const ActorPage = () => {
                             !isDescActive ?
                                 <div className='actor-page-open-span-div'>
                                     <span className='actor-page-open-span'>
-                                        Biography
+                                        Прочитайте информацию об актере
                                     </span>
                                 </div> :
                                 <div className='actor-page-exact-info'>
@@ -103,27 +119,31 @@ const ActorPage = () => {
                                 Roll description up
                             </span> : !isDescActive
                     }
-                    <span className='actor-page-movies-count'>{actor.totalMovies}</span>
-                    <span className='actor-page-slider-span'>Главные фильмы</span>
+                    <span className='actor-page-movies-count'>Всего фильмов: {actor.totalMovies}</span>
+                    {
+                        actor.movies && actor.movies.length !== 0 ? <span className='actor-page-slider-span'>Главные фильмы</span> :
+                            ''
+                    }
 
-                    <ActorPageSlider
+                    {actor.movies && actor.movies.length !== 0 ? <ActorPageSlider
                         slidesToShow={3}
-                        arrowsScroll={3}
-                        initialSlide={true}
-                        arrowsBlock={false}
+                        slidesToScroll={2}
+                        infinite={true}
+                        arrows={true}
+                        speed={900}
                     >
                         {
-                            actorPageCard.map(item => (
+                            actor.movies && actor.movies.map(item => (
                                 <ActorPageSliderCard key={item.id} info={item}/>
                             ))
                         }
-                    </ActorPageSlider>
+                    </ActorPageSlider> : ''}
 
-                    <span className='actor-page-slider-span'>Главные фильмы</span>
+                    {actor.movies && actor.movies.length !== 0 ? <span className='actor-page-slider-span'>Главные фильмы</span> : ''}
 
                     {
-                        actorPageCard.map(film => (
-                            <FullFilmography key={film.id} film={film}/>
+                        actor.movies && actor.movies.map(film => (
+                            <FullFilmography key={film._id} id={film}/>
                         ))
                     }
 
@@ -157,20 +177,22 @@ const ActorPage = () => {
 
                     <span className='actor-page-slider-span'>Reviews</span>
 
-                    <div className="actor-page-review-input">
+                    <form className="actor-page-review-input" onSubmit={handleActorReviewInputChange}>
                         <div className="actor-page-review-input-span">
                             <span className='optional'>Optional *</span>
                             <input ref={ref} onChange={e => setInputReview(e.target.value)}
                                    placeholder='Share your thoughts about the actor'/>
                             <span>Required 10 symbols, you have entered: {inputReview.length}</span>
+                            <span>You can leave only 1 review</span>
                         </div>
                         <button disabled={isReviewButtonActive}>Send</button>
-                    </div>
+                    </form>
 
-                    <ActorPageReviewCard/>
-                    <ActorPageReviewCard/>
-                    <ActorPageReviewCard/>
-                    <ActorPageReviewCard/>
+                    {
+                        actorReview.review && actorReview.review.map(item => (
+                            <ActorPageReviewCard key={item._id} review={item}/>
+                        ))
+                    }
                 </div>
             </div>}
         </div>

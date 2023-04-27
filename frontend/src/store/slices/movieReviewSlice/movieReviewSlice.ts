@@ -27,7 +27,7 @@ export const createMovieReview = createAsyncThunk(
 
 export const getMovieReviews = createAsyncThunk(
     'movie/getMovieReviews',
-    async ({id}) => {
+    async ({id}: any) => {
         const { data } = await axiosRequest.get(`movieReview/getMovieReviews/` + id);
         return data;
     }

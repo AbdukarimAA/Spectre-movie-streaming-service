@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './ReviewsCard.scss';
 import {Box, Button, Modal, Typography} from "@mui/material";
-import {IMovieReview} from "../../pages/filmPage/FilmPage";
+import {IMovieReview} from "../../utils/types/movieDataType";
 
 const style = {
     position: 'absolute' as 'absolute',

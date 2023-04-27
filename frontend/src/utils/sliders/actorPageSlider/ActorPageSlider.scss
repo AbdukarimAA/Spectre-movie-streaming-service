@@ -2,36 +2,47 @@
   display: flex;
   width: 100%;
 
-  .carousel-prev:before, .carousel-next:before {
-    width: 40px;
-    height: 45px!important;
-  }
-
-  .carousel-prev:before {
-    background-image: url("https://www.amediateka.ru/static/images/player/left.svg") !important;
-  }
-
-  .carousel-next:before {
-    background-image: url("https://www.amediateka.ru/static/images/player/right.svg") !important;
-  }
-
-  .carousel-prev,
-  .carousel-next {
-    width: 40px;
-    height: 107%;
-    border-radius: 0;
-    position: absolute;
-    z-index: 131!important;
-    &:focus{
-      transition: 0.9s all;
-      opacity: 0.8;
-      scale: 1.2;
-    }
-  }
-
   .actor-page-slider-container {
+    align-items: center;
     width: 100%;
     position: relative;
     overflow: hidden!important;
+  }
+
+  .actor-page-slider-arrow-div-left{
+    text-align: start;
+    width: 50px;
+    height: 75px;
+    top: 9%;
+    left: 417px;
+    position: absolute;
+    z-index: 200;
+    img {
+      width: 100%;
+      height: 100%;
+      transition: 0.4s all ease-in-out;
+      &:hover{
+        scale: 1.2;
+        cursor: pointer;
+      }
+    }
+  }
+  .actor-page-slider-arrow-div-right{
+    width: 50px;
+    height: 75px;
+    text-align: center;
+    top: 9%;
+    right: 417px;
+    position: absolute;
+    z-index: 200;
+    img {
+      width: 100%;
+      height: 100%;
+      transition: 0.4s all ease-in-out;
+      &:hover{
+        scale: 1.2;
+        cursor: pointer;
+      }
+    }
   }
 }

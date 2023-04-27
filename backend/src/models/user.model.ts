@@ -12,7 +12,7 @@ const userSchema = new Schema<IUser>({
 }, {timestamps: true});
 
 export interface IUser extends mongoose.Document{
-    id: string,
+    id?: string,
     username: string,
     email: string,
     password: string,

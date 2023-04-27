@@ -5,6 +5,7 @@ import {getCurrentUser} from "../../utils/getCurrentUser/getToken";
 import {useAppDispatch, useAppSelector} from "../../store/redux-hook";
 import {authLogout} from "../../store/slices/authSlice/authSlice";
 import "./Navbar.scss";
+import {SearchOutlined} from "@mui/icons-material";
 
 function Navbar() {
     const [active, setActive] = useState<boolean>(false);
@@ -64,6 +65,9 @@ function Navbar() {
                     </Link>
                 </div>
                 <div className="links">
+                    <Link to='/search' className='link'>
+                        <span className='navbar-links'><SearchOutlined /></span>
+                    </Link>
                     <span className='navbar-links'>Purchase a subscription</span>
                     {currentUser?.isAdmin &&
                         <Link to='/admin' className='link'>
@@ -98,11 +102,11 @@ function Navbar() {
                                             Purchases
                                         </Link>
                                     </div>
-                                    <div className="opt-left-item">
-                                        <Link className="link" to="/">
+                                    <Link className="link" to={`/likedMovies/${currentUser._id}`}>
+                                        <div className="opt-left-item">
                                             Watch later
-                                        </Link>
-                                    </div>
+                                        </div>
+                                    </Link>
                                     <div className="opt-left-item">
                                         <Link className="link" to="/">
                                             Browsing history
@@ -157,7 +161,7 @@ function Navbar() {
                                         </Link>
                                     </div>
                                     <div className="opt-right-item">
-                                        <Link className="link" to="/">
+                                        <Link className="link" to={`/user/${currentUser._id}`}>
                                             <span className='navbar-profile-item'>Settings</span>
                                         </Link>
                                     </div>

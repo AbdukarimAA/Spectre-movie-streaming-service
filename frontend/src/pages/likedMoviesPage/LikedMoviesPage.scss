@@ -1,0 +1,25 @@
+.liked-movies-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  width: 100%;
+
+  .liked-movies-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+
+    .liked-movies-page-container-span {
+      align-items: center;
+      text-align: center;
+      font-size: 48px;
+      color: white;
+      font-weight: 800;
+      margin-left: 22%;
+    }
+  }
+
+}

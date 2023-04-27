@@ -11,3 +11,12 @@ export interface IActorDataType {
     movies?: any,
     _doc?: any
 }
+
+export interface IActorReview {
+    _id?: string,
+    id?: string,
+    actorId: string,
+    userId: any,
+    review: string,
+    _doc?: any
+}

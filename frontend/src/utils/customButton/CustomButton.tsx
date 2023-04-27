@@ -38,7 +38,7 @@ const StyledButton = styled(Button)<{ left: number; top: number }>`
 `;
 
 
-export const SubmitButton = (props: {text: string, children?: React.ReactNode; sx?: SxProps<Theme>; }) => {
+export const SubmitButton = (props: {text: string, children?: React.ReactNode; sx?: SxProps<Theme>; className: any }) => {
     const [hoverStyle, setHoverStyle] = useState({
         left: 0,
         top: 0,

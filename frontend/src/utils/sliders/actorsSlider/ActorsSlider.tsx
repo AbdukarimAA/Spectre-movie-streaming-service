@@ -7,7 +7,7 @@ const ActorsSlider = ({children, slidesToShow, slidesToScroll, infinite, autopla
 
     return (
         <div className='actors-slider'>
-            <div className='main-slider-arrow-div-left' onClick={() => slider?.current?.slickPrev()}>
+            <div className='actors-slider-arrow-div-left' onClick={() => slider?.current?.slickPrev()}>
                 <img src="https://www.amediateka.ru/static/images/player/left.svg" alt="arrowLeft"/>
             </div>
             <div className="actors-slider-container">
@@ -27,7 +27,7 @@ const ActorsSlider = ({children, slidesToShow, slidesToScroll, infinite, autopla
                     {children}
                 </Slider>
             </div>
-            <div className='main-slider-arrow-div-right' onClick={() => slider?.current?.slickNext()}>
+            <div className='actors-slider-arrow-div-right' onClick={() => slider?.current?.slickNext()}>
                 <img src="https://www.amediateka.ru/static/images/player/right.svg" alt="arrowRight"/>
             </div>
         </div>

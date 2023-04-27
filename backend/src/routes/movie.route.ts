@@ -4,7 +4,7 @@ import {
     createMovie,
     deleteMovie,
     getAllMovies,
-    getMovie,
+    getMovie, getMovieByGenre,
     getRandomMovie, getTopRatedMovie,
     updateMovie
 } from "../controllers/movie.controller.js";
@@ -17,4 +17,5 @@ router.get('/getMovie/:id', getMovie);
 router.get('/getAllMovies', getAllMovies);
 router.get('/getRandomMovie', getRandomMovie);
 router.get('/getMoviesTopRated', getTopRatedMovie);
+router.get('/getMoviesByGenre', getMovieByGenre);
 export default router;

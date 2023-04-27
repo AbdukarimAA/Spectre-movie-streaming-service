@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {lazy, Suspense, useEffect, useState} from 'react';
 import {ActorsPageActorCard} from "../../components/actorsPageActorCard/ActorsPageActorCard";
 import {useAppSelector} from "../../hooks";
 import {getActorsSelector} from "../../store/slices/actorSlice/actorSelectors";
@@ -9,31 +9,35 @@ import {IconButton} from "@mui/material";
 import {SearchOutlined} from "@mui/icons-material";
 import TextField from "@mui/material/TextField";
 import './ActorsPage.scss';
+import {axiosRequest} from "../../utils/Request/newAxiosRequest";
+
 
 const ActorsPage = () => {
     const [query, setQuery] = useState<any>('');
+    const [actor, setActor] = useState<any>('')
     const [spinner, setSpinner] = useState(false);
-    const {actors} = useAppSelector(getActorsSelector);
-    const dispatch = useAppDispatch();
 
     useEffect(() => {
-        const getAllActors: any = async () => {
-            setSpinner(true);
-            await dispatch<any>(getActors({query})).finally(() => setSpinner(false))
+        const getActorsByName: any = async (e: any) => {
+            setSpinner(true)
+            await axiosRequest.get(`/actor/getActors?search=${query}`)
+                .then(res => {
+                    setActor(res.data)
+                })
+                .finally(() => setSpinner(false))
         }
-
-        getAllActors()
+        getActorsByName();
     }, [])
 
-
-    // useEffect(() => {
-    //     const getAllActorsByRus: any = async () => {
-    //         setSpinner(true);
-    //         await dispatch<any>(getActorsByRusName({searchRus})).finally(() => setSpinner(false))
-    //     }
-    //
-    //     getAllActorsByRus()
-    // }, [searchRus])
+    const searchActor = async (e) => {
+        setQuery(e.target.value)
+        await axiosRequest.get(`/actor/getActors?search=${e.target.value}`)
+            .then(res => {
+                setActor(res.data)
+            })
+            .finally(() => setSpinner(false))
+        // setMovies(data)
+    };
 
     if (spinner) return <Loader />;
 
@@ -46,7 +50,8 @@ const ActorsPage = () => {
                     id="outlined-basic"
                     label="Search any actor"
                     variant="outlined"
-                    onChange={e => setQuery(e.target.value)}
+                    onChange={searchActor}
+                    value={query}
                     InputProps={{
                         endAdornment: (
                             <IconButton>
@@ -57,11 +62,13 @@ const ActorsPage = () => {
                 />
             </div>
             <div className="actors-page-container">
-                {
-                    actors.data && actors.data.map(actor => (
-                        <ActorsPageActorCard key={actor._id} actor={actor}/>
-                    ))
-                }
+                <Suspense fallback={<Loader />}>
+                    {
+                        actor && actor.map(actor => (
+                            <ActorsPageActorCard key={actor._id} actor={actor}/>
+                        ))
+                    }
+                </Suspense>
             </div>
         </div>
     );

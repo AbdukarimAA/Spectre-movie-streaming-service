@@ -23,7 +23,7 @@ const HomeHeadings = ({list}) => {
                     slidesToScroll={6}
                 >
                     {
-                        list.content.map(film => (
+                        list.content && list.content.map(film => (
                             <HomeFilmsCard key={film.id} film={film}/>
                         ))
                     }

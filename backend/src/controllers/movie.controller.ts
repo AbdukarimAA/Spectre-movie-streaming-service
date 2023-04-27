@@ -47,14 +47,15 @@ export const deleteMovie = async (req: Request, res: Response, next: NextFunctio
 export const getAllMovies = async (req: Request, res: Response, next: NextFunction) => {
     // if (!req.isAdmin) return next(createError(403, 'You are not allowed to get all movies'));
     try {
-        const {genre, duration, language, rating, year, search} = req.query;
+        const {genre, duration, language, rating, year, search, searchRus} = req.query;
         let query = {
             ...(genre && {genre}),
             ...(duration && {duration}),
             ...(language && {language}),
             ...(rating && {rating}),
             ...(year && {year}),
-            ...(search && {title: {$regex: search, $options: 'i'}})
+            ...(search && {originalTitle: {$regex: search, $options: 'i'}}),
+            // ...(search && {title: {$regex: search, $options: 'i'}})
         };
 
         //page func
@@ -75,6 +76,18 @@ export const getAllMovies = async (req: Request, res: Response, next: NextFuncti
 
 export const getMovie = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        const movie = await Movie.findByIdAndUpdate(req.params.id, {
+            reviews: await MovieReviewModel.find({movieId: req.params.id}).select('title desc stars'),
+        })
+        res.status(200).send(movie);
+    } catch (error: any) {
+        next(error);
+    }
+};
+
+export const getMovieByGenre = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const genreQuery = req.query.genre;
         const movie = await Movie.findByIdAndUpdate(req.params.id, {
             reviews: await MovieReviewModel.find({movieId: req.params.id}).select('title desc stars'),
         })

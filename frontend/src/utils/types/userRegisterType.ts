@@ -5,5 +5,6 @@ export interface IUserRegister {
     img: string,
     age: string,
     phone: string,
-    isAdmin: boolean
+    isAdmin: boolean,
+    likedMovies?: []
 }

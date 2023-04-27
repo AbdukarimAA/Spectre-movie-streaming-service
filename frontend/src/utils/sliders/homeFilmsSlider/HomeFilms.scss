@@ -6,43 +6,28 @@
   position: relative;
   z-index: 100;
 
+  .home-films-slider-arrow-div-left {
+    background-color: #1dbf73;
+    transition: 0.3s all ease-in-out;
+    margin-right: 10px;
+    &:hover {
+      scale: 1.3;
+      cursor: pointer;
+    }
+  }
+
+  .home-films-slider-arrow-div-right {
+    background-color: #1dbf73;
+    transition: 0.3s all ease-in-out;
+    &:hover {
+      scale: 1.3;
+      cursor: pointer;
+    }
+  }
+
   .home-films-slider-container {
     width: 85%;
     position: relative;
     overflow: hidden!important;
-  }
-  .main-slider-arrow-div-left{
-    text-align: start;
-    width: 50px;
-    height: 75px;
-    left: 85px;
-    position: absolute;
-    z-index: 200;
-    img {
-      width: 100%;
-      height: 100%;
-      transition: 0.4s all ease-in-out;
-      &:hover{
-        scale: 1.2;
-        cursor: pointer;
-      }
-    }
-  }
-  .main-slider-arrow-div-right{
-    width: 50px;
-    height: 75px;
-    text-align: center;
-    right: 107px;
-    position: absolute;
-    z-index: 200;
-    img {
-      width: 100%;
-      height: 100%;
-      transition: 0.4s all ease-in-out;
-      &:hover{
-        scale: 1.2;
-        cursor: pointer;
-      }
-    }
   }
 }

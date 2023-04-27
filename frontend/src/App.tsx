@@ -2,11 +2,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {AdminUserEdit} from "./admin/adminPages/AdminUser/adminUserEditPage/AdminUserEdit";
 import {AdminNewUser} from "./admin/adminPages/AdminUser/adminNewUserPage/AdminNewUser";
 import AdminUserPage from "./admin/adminPages/AdminUser/adminUserPage/AdminUserPage";
-import {AdminMovieEdit} from "./admin/adminPages/adminMovieEditPage/AdminMovieEdit";
-import AdminActorEdit from "./admin/adminPages/adminActorEditPage/AdminActorEdit";
-import {AdminMoviePage} from "./admin/adminPages/adminMoviePage/AdminMoviePage";
+import {AdminMovieEdit} from "./admin/adminPages/AdminMovie/adminMovieEditPage/AdminMovieEdit";
+import AdminActorEdit from "./admin/adminPages/AdminActor/adminActorEditPage/AdminActorEdit";
+import {AdminMoviePage} from "./admin/adminPages/AdminMovie/adminMoviePage/AdminMoviePage";
 import AdminListPage from "./admin/adminPages/adminListPage/AdminListPage";
-import {AdminActor} from "./admin/adminPages/adminActorPage/AdminActor";
+import {AdminActor} from "./admin/adminPages/AdminActor/adminActorPage/AdminActor";
 import Subscription from "./pages/subscriptionPage/Subscription";
 import {getCurrentUser} from "./utils/getCurrentUser/getToken";
 import AdminPage from "./admin/adminPages/adminPage/AdminPage";
@@ -28,6 +28,8 @@ import {ProtectedRoute} from "./admin/ProtectedRoute";
 // import ActorsPage from "./pages/actorsPage/ActorsPage";
 import {lazy, Suspense} from "react";
 import Loader from "./components/Loader/Loader";
+import LikedMoviesPage from "./pages/likedMoviesPage/LikedMoviesPage";
+import MovieSearchPage from "./pages/movieSearchPage/MovieSearchPage";
 
 const ActorPage = lazy(() => import('./pages/actorPage/ActorPage'));
 const ActorsPage = lazy(() => import('./pages/actorsPage/ActorsPage'));
@@ -71,8 +73,16 @@ function App() {
           element: <Home type="cartoons" />
         },
         {
+          path: '/search',
+          element: <MovieSearchPage />
+        },
+        {
           path: '/actors',
           element: <Suspense fallback={<Loader />}> <ActorsPage /> </Suspense>
+        },
+        {
+          path: `/likedMovies/:id`,
+          element: <LikedMoviesPage />
         },
         {
           path: '/film/:id',
@@ -97,7 +107,7 @@ function App() {
           element: <Payment />
         },
         {
-          path: '/user',
+          path: '/user/:id',
           element: <UserPage />
         },
         {
@@ -109,7 +119,6 @@ function App() {
           path: '/faq',
           element: <FAQPage />
         },
-        // todo finish it later
         {
           path: '/admin',
           element: <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminPage />}/>

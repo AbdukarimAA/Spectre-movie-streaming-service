@@ -8,14 +8,19 @@ import {axiosRequest} from "../../utils/Request/newAxiosRequest";
 import {Link, useNavigate} from "react-router-dom";
 import LinearProgress from "@mui/material/LinearProgress";
 import {IMovie} from "../../utils/types/movieDataType";
+import {useAppDispatch} from "../../store/redux-hook";
+import {addLikedMovies} from "../../store/slices/authSlice/authSlice";
+import {getCurrentUser} from "../../utils/getCurrentUser/getToken";
 
-const HomeFilmsCard = ({film}: string) => {
+const HomeFilmsCard = ({film}: any) => {
     const [activeFirst, setActiveFirst] = useState<boolean>(false);
     const [activeSecond, setActiveSecond] = useState<boolean>(false);
     const [activeThird, setActiveThird] = useState<boolean>(false);
     const [activeFour, setActiveFour] = useState<boolean>(false);
     const [movie, setMovie] = useState<IMovie>();
     const [spinner, setSpinner] = useState(false);
+    const dispatch = useAppDispatch()
+    const currentUser = getCurrentUser();
 
     useEffect(() => {
         const getMovie: any = async () => {
@@ -26,6 +31,13 @@ const HomeFilmsCard = ({film}: string) => {
         };
         getMovie();
     }, [film])
+
+    const handleSubmit = async (e: any) => {
+        e.preventDefault();
+
+        await dispatch<any>(addLikedMovies({userId: currentUser._id, movieId: movie._id}));
+        alert('Movie has been added to the list of favorites')
+    }
 
     if (spinner) return <LinearProgress />;
 
@@ -43,36 +55,41 @@ const HomeFilmsCard = ({film}: string) => {
                                         onMouseEnter={() => setActiveFirst(true)}
                                         onMouseLeave={() => setActiveFirst(false)}>
                                         <div className="h-f-card-b-c-logo">
-                                            <BookmarkBorderIcon className='h-f-card-button-logo'
-                                                                onMouseEnter={() => setActiveFirst(true)}
-                                                                onMouseLeave={() => setActiveFirst(false)}/>
+                                            <BookmarkBorderIcon
+                                                className='h-f-card-button-logo'
+                                                onClick={handleSubmit}
+                                                onMouseEnter={() => setActiveFirst(true)}
+                                                onMouseLeave={() => setActiveFirst(false)}/>
                                         </div>
                                     </div>
                                     <div
                                         className={activeSecond ? "h-f-card-buttons-container active" : "h-f-card-buttons-container"}
                                         onMouseEnter={() => setActiveSecond(true)}>
                                         <div className="h-f-card-b-c-logo">
-                                            <StarBorderIcon className='h-f-card-button-logo'
-                                                            onMouseEnter={() => setActiveSecond(true)}
-                                                            onMouseLeave={() => setActiveSecond(false)}/>
+                                            <StarBorderIcon
+                                                className='h-f-card-button-logo'
+                                                onMouseEnter={() => setActiveSecond(true)}
+                                                onMouseLeave={() => setActiveSecond(false)}/>
                                         </div>
                                     </div>
                                     <div
                                         className={setActiveThird ? "h-f-card-buttons-container active" : "h-f-card-buttons-container"}
                                         onMouseEnter={() => setActiveThird(true)}>
                                         <div className="h-f-card-b-c-logo">
-                                            <ShoppingBagIcon className='h-f-card-button-logo'
-                                                             onMouseEnter={() => setActiveThird(true)}
-                                                             onMouseLeave={() => setActiveThird(false)}/>
+                                            <ShoppingBagIcon
+                                                className='h-f-card-button-logo'
+                                                onMouseEnter={() => setActiveThird(true)}
+                                                onMouseLeave={() => setActiveThird(false)}/>
                                         </div>
                                     </div>
                                     <div
                                         className={activeFour ? "h-f-card-buttons-container active" : "h-f-card-buttons-container"}
                                         onMouseEnter={() => setActiveFour(true)}>
                                         <div className="h-f-card-b-c-logo">
-                                            <HideSourceIcon className='h-f-card-button-logo'
-                                                            onMouseEnter={() => setActiveFour(true)}
-                                                            onMouseLeave={() => setActiveFour(false)}/>
+                                            <HideSourceIcon
+                                                className='h-f-card-button-logo'
+                                                onMouseEnter={() => setActiveFour(true)}
+                                                onMouseLeave={() => setActiveFour(false)}/>
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +114,7 @@ const HomeFilmsCard = ({film}: string) => {
             {activeFirst && (
                 <>
                     <div className="h-f-c-logo-1" >
-                        <span className='h-f-c-logo-span'>Watch later</span>
+                        <span className='h-f-c-logo-span'>Favorite</span>
                     </div>
                 </>
             )}

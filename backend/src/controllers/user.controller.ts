@@ -24,16 +24,16 @@ export const updateUser = async (req: Request, res: Response, next: NextFunction
 
 export const getUsers = async (req: Request, res: Response, next: NextFunction) => {
     const query = req.query.new;
-    if(req.isAdmin) {
+    // if(req.isAdmin) {
         try {
             const users = query ? await User.find().sort({_id: -1}).limit(5) : await User.find();
             res.status(200).send(users);
         } catch (error: any) {
             next(error);
         }
-    } else {
-        return next(createError(403, 'You are not allowed to see all users'));
-    }
+    // } else {
+    //     return next(createError(403, 'You are not allowed to see all users'));
+    // }
 }
 
 export const getStats = async (req: Request, res: Response, next: NextFunction) => {
@@ -65,7 +65,8 @@ export const getStats = async (req: Request, res: Response, next: NextFunction) 
 export const getUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const user: IUser | null = await User.findById(req.params.id);
-        const {password, ...info} = user!._doc;
+        // const userExists = await User.findOne({_id: req.params.id});
+        const {password, ...info} = user!._doc
         res.status(200).send(info);
     } catch (error: any) {
         next(error);
@@ -74,12 +75,12 @@ export const getUser = async (req: Request, res: Response, next: NextFunction) =
 
 export const addLikedUserMovies = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const user: IUser | null = await User.findById(req.userId);
+        const user: IUser | null = await User.findById(req.params.id);
 
         if(user?.likedMovies.includes(req.body.movieId)) return next(createError(403, 'Movie is already Liked'));
         if(!user) return next(createError(404, 'User not found'));
 
-        user.likedMovies.push(req.body.movieId);
+        user!.likedMovies.push(req.body.movieId);
         await user.save();
 
         res.status(200).send(user.likedMovies);
@@ -90,11 +91,11 @@ export const addLikedUserMovies = async (req: Request, res: Response, next: Next
 
 export const deleteLikedUserMovies = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const user: IUser | null = await User.findById(req.userId); //test
+        const user: IUser | null = await User.findById(req.params.id); //test
 
         if(!user) return next(createError(404, 'User not found'));
 
-        user.likedMovies = [];
+        user!.likedMovies = [];
         await user.save();
 
         res.status(200).send('All saved Movies deleted');
@@ -103,9 +104,30 @@ export const deleteLikedUserMovies = async (req: Request, res: Response, next: N
     }
 }
 
+export const deleteOneLikedUserMovies = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const user: IUser | null = await User.findById(req.params.id);
+
+        if(!user) return next(createError(404, 'User not found'));
+
+        for (let i = 0, len = user!.likedMovies.length; i < len; i++) {
+            if (user!.likedMovies[i]._id.toString() === req.params.movieId) {
+                user!.likedMovies.splice(i, 1);
+                break;
+            }
+        }
+
+        await User.findByIdAndUpdate(req.params.id);
+        await user.save();
+        res.status(200).send('Saved Movie has been deleted');
+    } catch (error: any) {
+        next(error);
+    }
+}
+
 export const getLikedUserMovies = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const user: IUser | null = await User.findById(req.userId).populate('likedMovies');
+        const user: IUser | null = await User.findById(req.params.id).populate('likedMovies');
         if(!user) return next(createError(404, 'User not found'));
 
         res.status(200).send(user!.likedMovies);

@@ -21,7 +21,7 @@ import {getOneMovie} from "../../store/slices/movieSlice/movieSlice";
 import {getMoviesSelector} from "../../store/slices/movieSlice/movieSelectors";
 import LinearProgress from "@mui/material/LinearProgress";
 import Loader from "../../components/Loader/Loader";
-import {IMovieReview} from "../../utils/types/movieDataType";
+import {IMovie, IMovieReview} from "../../utils/types/movieDataType";
 import {getMovieReviewsSelector} from "../../store/slices/movieReviewSlice/movieReviewSelector";
 import {createMovieReview, getMovieReviews} from "../../store/slices/movieReviewSlice/movieReviewSlice";
 import {getCurrentUser} from "../../utils/getCurrentUser/getToken";
@@ -34,7 +34,7 @@ const FilmPage = () => {
     const [desc, setDesc] = useState<any>('');
     const [star, setStar] = useState<any>(0);
     const dispatch = useAppDispatch();
-    const {oneMovie} = useAppSelector(getMoviesSelector);
+    const {oneMovie}: any = useAppSelector(getMoviesSelector);
     const {movieReview} = useAppSelector(getMovieReviewsSelector);
     const {id} = useParams();
 
@@ -127,7 +127,7 @@ const FilmPage = () => {
                         <div className="film-p-pic-actors-crew">
                             <span className='film-p-pic-a'>Actors </span>
                             :
-                            <span className='film-p-pic-a-names'> {oneMovie.movie.actors.map(item => '\n' + item + ', ')}</span>
+                            <span className='film-p-pic-a-names'> {oneMovie.movie.actors && oneMovie.movie.actors.map(item => '\n' + item + ', ')}</span>
                         </div>
                         <div className="film-p-pic-advert">
                             <span className='film-p-pic-advert-main'>Месяц за 1 ₽, затем месяц за 199 ₽</span>
@@ -300,7 +300,7 @@ const FilmPage = () => {
                     speed={1500}
                 >
                     {
-                        actorCard.map((actor) => (
+                        actorCard && actorCard.map((actor) => (
                             <ActorsSliderCard actor={actor} key={actor.id}/>
                         ))
                     }
@@ -333,11 +333,11 @@ const FilmPage = () => {
                             <br/>
                             <span className='f-p-foot-span'>Actors</span>
                             {
-                                <span>{oneMovie.movie.actors.map(item => '\n' + item + ', ')}</span>
+                                <span>{oneMovie.movie.actors && oneMovie.movie.actors.map(item => '\n' + item + ', ')}</span>
                             }
                             <br/>
                             <span className='f-p-foot-span'>Producers</span>
-                            <span>{oneMovie.movie.producers.map(item => '\n' + item + ', ')} </span>
+                            <span>{oneMovie.movie.producers && oneMovie.movie.producers.map(item => '\n' + item + ', ')} </span>
                             <br/>
                             <span className='f-p-foot-span'>Screenwriters</span>
                             <span>{oneMovie.movie.screenWriters}</span>
@@ -353,7 +353,7 @@ const FilmPage = () => {
                             <br/>
                             <span className='f-p-foot-span'>Quality</span>
                             {
-                                <span>{oneMovie.movie.quality.map(item => '\n' + item + ', ')}</span>
+                                <span>{oneMovie.movie.quality && oneMovie.movie.quality.map(item => '\n' + item + ', ')}</span>
                             }
                         </div>
                     </div>

@@ -4,12 +4,14 @@ import {authReducer} from "./slices/authSlice/authSlice";
 import {movieReducer} from "./slices/movieSlice/movieSlice";
 import {movieReviewReducer} from "./slices/movieReviewSlice/movieReviewSlice";
 import {actorReducer} from "./slices/actorSlice/actorSlice";
+import {actorReviewReducer} from "./slices/actorReviewSlice/actorReviewSlice";
 
 const rootReducer = combineReducers({
     auth: authReducer,
     movie: movieReducer,
     actor: actorReducer,
-    movieReview: movieReviewReducer
+    movieReview: movieReviewReducer,
+    actorReview: actorReviewReducer
 });
 
 const store = configureStore({

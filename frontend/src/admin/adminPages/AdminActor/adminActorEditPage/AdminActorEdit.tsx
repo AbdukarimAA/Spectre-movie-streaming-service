@@ -1,6 +1,6 @@
 import React from 'react';
 import './AdminActorEdit.scss';
-import SideBar from "../../adminComponents/sideBar/SideBar";
+import SideBar from "../../../adminComponents/sideBar/SideBar";
 import {Link} from "react-router-dom";
 import {Publish} from "@mui/icons-material";
 

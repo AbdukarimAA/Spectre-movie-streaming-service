@@ -9,7 +9,7 @@ import {getCurrentUser} from "../../utils/getCurrentUser/getToken";
 const Login = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [error, setError] = useState<string | null>(null);
+    const [error, setError] = useState<string | null | any>(null);
     const isAuth = useAppSelector(isAuthSelector);
 
     const dispatch = useAppDispatch();
@@ -22,7 +22,7 @@ const Login = () => {
             await dispatch<any>(authLogin({email, password}));
             navigate('/');
         } catch (e) {
-            setError(e.response.data);
+            setError(e);
         }
     };
 
@@ -41,7 +41,7 @@ const Login = () => {
 
     return (
         <div className='login'>
-            <form className="login-modal" onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="login-modal">
                 <img src={import.meta.env.VITE_CLOUDINARY+ '/2560px-Logo_spectre_int.svg_qfxgdb.png'} alt=""/>
                 <span className='login-enter'>Вход в аккаунт </span>
                 <input

@@ -167,6 +167,28 @@
     justify-content: space-between;
     width: 100%;
 
+    .link {
+      width: 5%;
+      .user-page-config-block-favorite {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background-color: #2e2844;
+        width: 100%;
+        margin: 15px 0;
+        padding: 20px;
+        border-radius: 5px;
+        color: white;
+        transition: 0.4s all ease-in-out;
+        &:hover {
+          background-color: #19698b;
+          cursor: pointer;
+        }
+      }
+    }
+
     .user-page-config-block-watch-later {
       display: flex;
       flex-direction: column;

@@ -28,15 +28,15 @@ const initialState: IActorSlice = {
 
 export const getActors = createAsyncThunk(
     'actors/getActors',
-    async ({query}) => {
-        const {data} = query ? await axiosRequest.get(`actor/getActors?search=${query}`) : await axiosRequest.get(`actor/getActors`);
+    async () => {
+        const {data} = await axiosRequest.get(`actor/getActors`);
         return data;
     }
 );
 
 export const getOneActor = createAsyncThunk(
     'actor/getActor',
-    async ({id}) => {
+    async ({id}: any) => {
         const {data} = await axiosRequest.get(`actor/getActor/` + id )
         return data
     }

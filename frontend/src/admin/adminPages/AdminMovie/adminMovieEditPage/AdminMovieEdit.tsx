@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {CalendarToday, LocationSearching, MailOutline, PermIdentity, PhoneAndroid, Publish} from "@mui/icons-material";
-import SideBar from "../../adminComponents/sideBar/SideBar";
+import SideBar from "../../../adminComponents/sideBar/SideBar";
 import "./AdminMovieEdit.scss";
 
 export const AdminMovieEdit = () => {
