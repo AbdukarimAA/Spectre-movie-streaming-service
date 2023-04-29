@@ -154,3 +154,82 @@ export const deleteUser = async (req: Request, res: Response, next: NextFunction
         next(error);
     }
 }
+
+export const saveWatchTime = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const user: IUser | null = await User.findById(req.params.id);
+        const { movieId, timeStopped } = req.body;
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        const watchlistItem: any = user!.watchList.find((item: any) => item!.movieId.toString() === movieId);
+        console.log(watchlistItem)
+
+        if (watchlistItem) {
+            watchlistItem!.timeStopped = timeStopped;
+        } else {
+            user!.watchList.push({ movieId, timeStopped });
+        }
+
+        await user!.save();
+
+        res.status(200).json({ message: 'Watchlist item saved successfully' });
+
+    } catch (error: any) {
+        next(error);
+    }
+}
+
+export const startMovie = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const user: IUser | null = await User.findById(req.params.id);
+        const { movieId } = req.body;
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        const watchlistItem: any = user!.watchList.find((item: any) => item!.movieId.toString() === movieId);
+
+        watchlistItem ? watchlistItem!.timeStopped = 0 : user!.watchList.push({ movieId, timeStopped: 0 })
+
+        await user!.save();
+
+        return res.status(200).json({ message: 'Movie started from the beginning' });
+
+    } catch (error: any) {
+        next(error);
+    }
+}
+
+export const resumeMovie = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const user: IUser | null = await User.findById(req.params.id);
+        const { movieId, timeStopped } = req.body;
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        const watchlistItem: any = user!.watchList.find((item: any) => item!.movieId.toString() === movieId);
+
+        const movieIndex = user!.watchList.findIndex((movie: any) => {
+            return movie!.movieId.toString() === movieId!.toString();
+        });
+
+        if (movieIndex === -1) {
+            return res.status(404).json({ message: 'Movie not found in unfinished movies' });
+        }
+
+        user!.watchList[movieIndex].timeStopped = watchlistItem.timeStopped;
+
+        await user!.save();
+
+        return res.status(200).json({ message: 'Movie resumed from paused time: ', watchlistItem});
+
+    } catch (error: any) {
+        next(error);
+    }
+}

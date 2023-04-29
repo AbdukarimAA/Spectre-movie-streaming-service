@@ -8,7 +8,17 @@ const userSchema = new Schema<IUser>({
     age: {type: String, required: true},
     phone: {type: String, required: true},
     isAdmin: {type: Boolean, required: true, default: false},
-    likedMovies: [{type: mongoose.Schema.Types.ObjectId, ref: 'Movie'}]
+    likedMovies: [{type: mongoose.Schema.Types.ObjectId, ref: 'Movie'}],
+    watchList: [{
+        movieId: {
+            type: Schema.Types.ObjectId,
+            ref: 'Movie',
+        },
+        timeStopped: {
+            type: Number,
+            default: 0,
+        },
+    }]
 }, {timestamps: true});
 
 export interface IUser extends mongoose.Document{
@@ -21,6 +31,10 @@ export interface IUser extends mongoose.Document{
     phone: string,
     isAdmin: boolean,
     likedMovies: any
+    watchList: [{
+        movieId: typeof Schema.Types.ObjectId,
+        timeStopped: number
+    }],
     _doc?: any
 }
 

@@ -63,12 +63,17 @@ const UserEditPage = () => {
                 </div>
 
                 <form className="user-edit-page-container-inputs">
-                    <span>Update your profile</span>
-                    <input type="email" placeholder='email' required={false}/>
-                    <input type="text" placeholder='username' required={false}/>
-                    <input type="text" placeholder='phone' required={false}/>
-                    <button>Update</button>
+                    {/*<span>Update your profile</span>*/}
+                    <div className="user-edit-page-container-inputs-top">
+                        <input type="email" placeholder='email' required={false}/>
+                        <input type="text" placeholder='username' required={false}/>
+                    </div>
+                    <div className="user-edit-page-container-inputs-bottom">
+                        <input type="text" placeholder='phone' required={false}/>
+                        <input type="text" placeholder='age' required={false}/>
+                    </div>
                 </form>
+                <button>Update</button>
             </div>
         </div>
     );

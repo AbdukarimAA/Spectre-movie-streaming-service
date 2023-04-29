@@ -15,7 +15,7 @@ import ReactPlayer from 'react-player';
 import {actorCard} from "../../data";
 import Box from '@mui/material/Box';
 import './FilmPage.scss';
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {getOneMovie} from "../../store/slices/movieSlice/movieSlice";
 import {getMoviesSelector} from "../../store/slices/movieSlice/movieSelectors";
@@ -134,7 +134,9 @@ const FilmPage = () => {
                             <span className='film-p-pic-ad'> в подписке Оптимум</span>
                         </div>
                         <div className="film-p-pic-buttons">
-                            <SubmitButton text={'Subscribe'} className='film-p-pic-button-purchase'/>
+                            <Link to={`/video/${oneMovie.movie._id}`}>
+                                <SubmitButton text={'Watch'} className='film-p-pic-button-purchase'/>
+                            </Link>
                             <button className='film-p-pic-button-trailer'>Trailer</button>
                             <BookmarkBorderIcon className='film-p-pic-button-icon'/>
                         </div>

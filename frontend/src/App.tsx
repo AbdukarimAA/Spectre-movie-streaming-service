@@ -52,7 +52,7 @@ function App() {
       element: <NotFoundTest />
     },
     {
-      path: '/video',
+      path: '/video/:id',
       element: <Video />
     },
 
