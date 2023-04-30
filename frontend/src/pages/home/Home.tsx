@@ -25,7 +25,7 @@ const Home = ({type}: any) => {
 
     useEffect(() => {
         const getMovieListByTypeOrGenre: any = async () => {
-            await dispatch<any>(getListMovies({type, genre}))
+            await Promise.all(dispatch<any>(getListMovies({type, genre})))
         }
         getMovieListByTypeOrGenre();
     }, [type, genre]);
@@ -81,7 +81,7 @@ const Home = ({type}: any) => {
                             <>
                                 <Suspense fallback={<Loader />}>
                                     {
-                                        lists.list && lists.list.map(list => (
+                                        lists.list && lists.list.map((list) => (
                                             <HomeHeadings key={list.id} list={list}/>)
                                         )
                                     }

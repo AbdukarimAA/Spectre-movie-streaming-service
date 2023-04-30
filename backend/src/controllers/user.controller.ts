@@ -173,6 +173,7 @@ export const saveWatchTime = async (req: Request, res: Response, next: NextFunct
             user!.watchList.push({ movieId, timeStopped });
         }
 
+        await User.findByIdAndUpdate(req.params.id);
         await user!.save();
 
         res.status(200).json({ message: 'Watchlist item saved successfully' });

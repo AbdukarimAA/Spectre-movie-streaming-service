@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {createBrowserRouter, RouterProvider, useNavigate} from "react-router-dom";
 import {AdminUserEdit} from "./admin/adminPages/AdminUser/adminUserEditPage/AdminUserEdit";
 import {AdminNewUser} from "./admin/adminPages/AdminUser/adminNewUserPage/AdminNewUser";
 import AdminUserPage from "./admin/adminPages/AdminUser/adminUserPage/AdminUserPage";
@@ -35,7 +35,6 @@ const ActorPage = lazy(() => import('./pages/actorPage/ActorPage'));
 const ActorsPage = lazy(() => import('./pages/actorsPage/ActorsPage'));
 
 function App() {
-
   const currentUser = getCurrentUser();
 
   const router = createBrowserRouter([
@@ -121,47 +120,47 @@ function App() {
         },
         {
           path: '/admin',
-          element: <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminPage />}/>
+          element: currentUser && <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminPage />}/>
           // element: <AdminPage />
         },
         {
           path: '/admin/users',
-          element: <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminUserPage />}/>
+          element: currentUser && <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminUserPage />}/>
           // element: <AdminUserPage />
         },
         {
           path: '/admin/movies',
-          element: <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminMoviePage />}/>
+          element: currentUser && <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminMoviePage />}/>
           // element: <AdminMoviePage />
         },
         {
           path: '/admin/actors',
-          element: <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminActor />}/>
+          element: currentUser && <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminActor />}/>
           // element: <AdminActor />
         },
         {
           path: '/admin/lists',
-          element: <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminListPage />}/>
+          element: currentUser && <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminListPage />}/>
           // element: <AdminListPage />
         },
         {
           path: '/admin/user/:id',
-          element: <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminUserEdit />}/>
+          element: currentUser && <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminUserEdit />}/>
           // element: <AdminUserEdit />
         },
         {
           path: '/admin/movie/:id',
-          element: <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminMovieEdit />}/>
+          element: currentUser && <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminMovieEdit />}/>
           // element: <AdminMovieEdit />
         },
         {
           path: '/admin/actor/:id',
-          element: <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminActorEdit />}/>
+          element: currentUser && <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminActorEdit />}/>
           // element: <AdminActorEdit />
         },
         {
           path: '/admin/user/newUser',
-          element: <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminNewUser />}/>
+          element: currentUser && <ProtectedRoute isAdmin={currentUser.isAdmin} children={<AdminNewUser />}/>
           // element: <AdminNewUser />
         },
         {
