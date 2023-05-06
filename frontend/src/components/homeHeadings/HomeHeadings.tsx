@@ -20,7 +20,7 @@ const HomeHeadings = ({list}) => {
                     infinite={true}
                     arrows={false}
                     speed={1300}
-                    slidesToScroll={6}
+                    slidesToScroll={2}
                 >
                     {
                         list.content && list.content.map(film => (

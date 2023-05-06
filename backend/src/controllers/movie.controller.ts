@@ -54,7 +54,7 @@ export const getAllMovies = async (req: Request, res: Response, next: NextFuncti
             ...(language && {language}),
             ...(rating && {rating}),
             ...(year && {year}),
-            ...(search && {originalTitle: {$regex: search, $options: 'i'}}),
+            ...(search && {title: {$regex: search, $options: 'i'}}),
             // ...(search && {title: {$regex: search, $options: 'i'}})
         };
 
@@ -72,7 +72,7 @@ export const getAllMovies = async (req: Request, res: Response, next: NextFuncti
     } catch (error: any) {
         next(error);
     }
-};
+}
 
 export const getMovie = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -105,6 +105,40 @@ export const getTopRatedMovie = async (req: Request, res: Response, next: NextFu
         next(error);
     }
 };
+
+export const getRecommendations = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const {userId} = req.body
+        const ratings = await MovieReviewModel.find({ userId }).populate('Movie');
+
+        const movies: any = {};
+        ratings.forEach((rating) => {
+            const movieIdTest = rating.movieId.toString();
+            if (!movies[movieIdTest]) {
+                movies[movieIdTest] = {
+                    sum: 0,
+                    count: 0,
+                };
+            }
+            movies[movieIdTest].sum += rating.stars;
+            movies[movieIdTest].count++;
+        });
+
+        const movieRatings: any = [];
+        for (let movieId in movies) {
+            const rating = movies[movieId].sum / movies[movieId].count;
+            movieRatings.push({ movieId, rating });
+        }
+
+        movieRatings.sort((a: any, b: any) => b.rating - a.rating);
+        const topMovies = movieRatings.slice(0, 10);
+
+        res.status(200).json({ topMovies });
+    } catch (error: any) {
+        next(error);
+    }
+};
+
 
 export const getRandomMovie = async (req: Request, res: Response, next: NextFunction) => {
     const type = req.query.type;

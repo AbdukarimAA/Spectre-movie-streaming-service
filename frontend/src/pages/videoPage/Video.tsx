@@ -1,20 +1,19 @@
+import {getMoviesSelector} from "../../store/slices/movieSlice/movieSelectors";
 import React, {useCallback, useEffect, useRef, useState} from 'react';
+import {getOneMovie} from "../../store/slices/movieSlice/movieSlice";
+import {authSelector} from "../../store/slices/authSlice/selectors";
+import {getCurrentUser} from "../../utils/getCurrentUser/getToken";
+import {getOneUser} from "../../store/slices/authSlice/authSlice";
+import {axiosRequest} from "../../utils/Request/newAxiosRequest";
+import {useAppDispatch, useAppSelector} from "../../hooks";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ModalWindow from "../../components/modal/Modal";
+import Loader from "../../components/Loader/Loader";
 import {Link, useParams} from "react-router-dom";
 import ReactPlayer from 'react-player';
-import {getOneMovie} from "../../store/slices/movieSlice/movieSlice";
-import {useAppDispatch, useAppSelector} from "../../hooks";
-import {getMoviesSelector} from "../../store/slices/movieSlice/movieSelectors";
 import "./Video.scss";
-import Loader from "../../components/Loader/Loader";
-import {getCurrentUser} from "../../utils/getCurrentUser/getToken";
-import ModalWindow from "../../components/modal/Modal";
-import {axiosRequest} from "../../utils/Request/newAxiosRequest";
-import {getOneUser} from "../../store/slices/authSlice/authSlice";
-import {authSelector} from "../../store/slices/authSlice/selectors";
 
 const Video = () => {
-    const [isReady, setIsReady] = useState(false);
     const [spinner, setSpinner] = useState(false);
     const [onProgress, setOnProgress] = useState({
         played: '',
@@ -39,6 +38,20 @@ const Video = () => {
         getOneFilm();
     }, []);
 
+    useEffect(() => {
+        const handleBackButton = async () => {
+            await axiosRequest.post(`user/saveWatchTime/${currentUser._id}`, {movieId: id, timeStopped: onProgress.playedSeconds})
+            console.log('Кнопка "назад" была нажата');
+        };
+
+        window.history.pushState(null, null, window.location.pathname);
+        window.addEventListener('popstate', handleBackButton);
+
+        return () => {
+            window.removeEventListener('popstate', handleBackButton);
+        };
+    }, []);
+
     const watchlistItem: any = user.user && user.user.watchList && user.user.watchList.find((item: any) => item!.movieId.toString() === id);
 
     const handlePause = async () => {
@@ -53,15 +66,6 @@ const Video = () => {
         await axiosRequest.put(`user/resumeMovie/${currentUser._id}`, {movieId: id})
     }
 
-    // const onReady = useCallback(() => {
-    //     if (!isReady && watchlistItem) {
-    //         let test = watchlistItem && (watchlistItem.timeStopped / 60)
-    //         const timeToStart: number = Math.round(test) * 60;
-    //         playerRef.current.seekTo(timeToStart, "seconds");
-    //         setIsReady(true);
-    //     }
-    // }, [isReady]);
-
     if (spinner) return <Loader />;
 
     return (
@@ -70,7 +74,7 @@ const Video = () => {
                 watchlistItem ? <ModalWindow movieId={id} pRef={playerRef} wL={watchlistItem}/> : ''
             }
             <Link to={`/film/${id}`}>
-                <div className="back">
+                <div className="back" onClick={handlePause}>
                     <ArrowBackIcon />
                     Back
                 </div>
@@ -91,7 +95,6 @@ const Video = () => {
                         onStart={handleStartFromScratch}
                         onPlay={handleResume}
                         onPause={handlePause}
-                        // onReady={onReady}
                     />
                 </div>
             }

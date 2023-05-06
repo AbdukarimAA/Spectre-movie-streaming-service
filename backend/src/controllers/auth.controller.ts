@@ -30,10 +30,10 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
         const token = jwt.sign({
             id: newUser._id,
             isAdmin: newUser.isAdmin
-        }, process.env.JWT_KEY as string, {expiresIn: "24d"});
+        }, process.env.JWT_KEY as string, {expiresIn: "60d"});
 
         res.cookie('accessToken', token, {
-            maxAge: 30 * 24 * 60 * 60 * 1000,
+            maxAge: 60 * 24 * 60 * 60 * 1000,
             httpOnly: true,
             secure: true,
             sameSite: "none"

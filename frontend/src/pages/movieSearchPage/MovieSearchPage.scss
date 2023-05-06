@@ -6,6 +6,14 @@
   align-items: center;
   margin-top: 20px;
 
+  .movies-search-page-filters {
+    display: flex;
+    flex-direction: row;
+    width: 800px;
+    justify-content: space-evenly;
+    //padding: 15px;
+  }
+
 
   //.movies-search-page-container {
   //  input {

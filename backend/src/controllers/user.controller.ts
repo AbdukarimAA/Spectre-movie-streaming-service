@@ -2,6 +2,8 @@ import express, {Request, Response, NextFunction} from "express";
 import User, {IUser} from "../models/user.model.js";
 import {createError} from "../utils/handleError.js";
 import bcrypt from "bcrypt";
+// import {sendEmail} from "../middleware/mailConfig.js";
+import nodemailer from "nodemailer";
 
 export const updateUser = async (req: Request, res: Response, next: NextFunction) => {
     if(req.userId === req.params.id || req.isAdmin) {
@@ -230,6 +232,48 @@ export const resumeMovie = async (req: Request, res: Response, next: NextFunctio
 
         return res.status(200).json({ message: 'Movie resumed from paused time: ', watchlistItem});
 
+    } catch (error: any) {
+        next(error);
+    }
+}
+
+export const sendMailFeedBack = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { email, subject, message } = req.body;
+        const mailConfig = {
+            host: 'smtp.gmail.com',
+            port: 465,
+            service: "gmail",
+            secure: true,
+            auth: {
+                user: process.env.EMAIL,
+                pass: process.env.PASSWORD,
+            },
+            from: email,
+            to: process.env.EMAIL
+        }
+
+        const transporter = nodemailer.createTransport(mailConfig);
+
+        console.log(email)
+        const mailOptions = {
+            from: email,
+            to: process.env.EMAIL,
+            subject: `Message sent by ${email}, ${subject}`,
+            text: message,
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log(error);
+                res.status(500).json({ message: 'Something went wrong' });
+            } else {
+                console.log('Email sent: ' + info.response);
+                res.status(200).json({ message: 'Email sent' });
+            }
+        });
+
+        // return res.status(200).send('Email sent successfully');
     } catch (error: any) {
         next(error);
     }

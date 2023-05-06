@@ -10,8 +10,8 @@ const MovieSearch = ({movie}: any) => {
                     <img src={movie.posterImg} alt=""/>
                     <div className="movie-search-container-info">
                         <span>{movie.title}</span>
-                        <span>{movie.year}</span>
-                        <span>{movie.rating}</span>
+                        <span>Год: {movie.year}</span>
+                        <span>Рейтинг: {movie.rating}</span>
                     </div>
                 </div>
             </Link>}
