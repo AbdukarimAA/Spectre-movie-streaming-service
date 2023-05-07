@@ -1,4 +1,4 @@
-import {createBrowserRouter, RouterProvider, useNavigate} from "react-router-dom";
+import {createBrowserRouter, Navigate, RouterProvider, useNavigate} from "react-router-dom";
 import {AdminUserEdit} from "./admin/adminPages/AdminUser/adminUserEditPage/AdminUserEdit";
 import {AdminNewUser} from "./admin/adminPages/AdminUser/adminNewUserPage/AdminNewUser";
 import AdminUserPage from "./admin/adminPages/AdminUser/adminUserPage/AdminUserPage";
@@ -30,6 +30,7 @@ import {lazy, Suspense} from "react";
 import Loader from "./components/Loader/Loader";
 import LikedMoviesPage from "./pages/likedMoviesPage/LikedMoviesPage";
 import MovieSearchPage from "./pages/movieSearchPage/MovieSearchPage";
+import Cookies from 'js-cookie';
 
 const ActorPage = lazy(() => import('./pages/actorPage/ActorPage'));
 const ActorsPage = lazy(() => import('./pages/actorsPage/ActorsPage'));
@@ -40,11 +41,11 @@ function App() {
   const router = createBrowserRouter([
     {
       path: '/login',
-      element: <Login />
+      element: Cookies.get('token') ? <Navigate to={'/'} /> : <Login />
     },
     {
       path: '/register',
-      element: <Register />
+      element: currentUser ? <Navigate to={'/'} /> : <Register />
     },
     {
       path: '/notFound',

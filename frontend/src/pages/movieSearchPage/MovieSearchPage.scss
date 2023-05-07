@@ -9,9 +9,25 @@
   .movies-search-page-filters {
     display: flex;
     flex-direction: row;
-    width: 800px;
+    width: 700px;
     justify-content: space-evenly;
+    align-items: center;
     //padding: 15px;
+
+    .movie-search-page-button {
+      width: 80%;
+      height: 30px;
+      background: none;
+      border-radius: 15px;
+      border: 1px solid black;
+      color: white;
+      transition: 0.3s all ease-in-out;
+
+      &:hover {
+        scale: 1.1;
+        cursor: pointer;
+      }
+    }
   }
 
 

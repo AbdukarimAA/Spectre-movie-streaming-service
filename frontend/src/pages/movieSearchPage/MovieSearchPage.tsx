@@ -12,25 +12,26 @@ import Slider from '@mui/material/Slider';
 const MovieSearchPage = () => {
     const [spinner, setSpinner] = useState(false);
     const [query, setQuery] = useState<any>('');
-    const [filterYear, setFilterYear] = useState<any>('')
-    const [filterRating, setFilterRating] = useState<any>('')
-    const [filterLang, setFilterLang] = useState<any>('')
-    const [filterGenre, setFilterGenre] = useState<any>('')
+    const [test, setTest] = useState<any>({
+        year: '',
+        genre: '',
+        rating: '',
+        language: ''
+    })
     const [movies, setMovies] = useState<any>('')
-
-    const test = useRef<any>();
 
     useEffect(() => {
         const getMoviesBySearch: any = async (e: any) => {
             setSpinner(true);
-            await axiosRequest.get(`/movie/getAllMovies`)
+            await axiosRequest.get
+            (`/movie/getAllMovies?year=${test.year}&genre=${test.genre}&language=${test.language}&rating=${test.rating}`)
                 .then(res => {
                     setMovies(res.data)
                 })
                 .finally(() => setSpinner(false))
         }
         getMoviesBySearch();
-    }, [])
+    }, [test.year, test.genre, test.language])
 
     const searchMovie = async (e) => {
         e.preventDefault()
@@ -43,15 +44,16 @@ const MovieSearchPage = () => {
         // setMovies(data)
     };
 
-    const searchFilteredMovies = async (e) => {
-        // e.preventDefault()
-        setFilterYear(e.target.value)
-        await axiosRequest.get(`/movie/getAllMovies?year=${e.target.value}&genre=${filterGenre}&language=${filterLang}&rating=${filterRating}`)
+    const searchMovieRating = async (e) => {
+        e.preventDefault()
+        setTest({...test, rating: e.target.value})
+        await axiosRequest.get(`/movie/getAllMovies?year=${test.year}&genre=${test.genre}&language=${test.language}&rating=${e.target.value}`)
             .then(res => {
                 setMovies(res.data)
             })
             .finally(() => setSpinner(false))
-    }
+        // setMovies(data)
+    };
 
     if (spinner) return <Loader />;
 
@@ -61,8 +63,6 @@ const MovieSearchPage = () => {
         years.push({
             year: i.toString()
         })
-
-        console.log(years)
     }
 
     return (
@@ -74,18 +74,18 @@ const MovieSearchPage = () => {
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         sx={{width: '100%', margin: '10px'}}
-                        // value={age}
-                        label="Age"
-                        // onChange={handleChange}
+                        onChange={e => setTest({...test, genre: e.target.value})}
+                        value={test.genre}
                     >
-                        <MenuItem value={'Animation'}>Animation</MenuItem>
-                        <MenuItem value={'Horror'}>Horror</MenuItem>
-                        <MenuItem value={'Action'}>Action</MenuItem>
-                        <MenuItem value={'Comedy'}>Comedy</MenuItem>
-                        <MenuItem value={'Drama'}>Drama</MenuItem>
-                        <MenuItem value={'Fantasy'}>Fantasy</MenuItem>
-                        <MenuItem value={'Thriller'}>Thriller</MenuItem>
-                        <MenuItem value={'Crime'}>Crime</MenuItem>
+                        <MenuItem value=''>Все фильмы</MenuItem>
+                        <MenuItem value='Анимация'>Анимация</MenuItem>
+                        <MenuItem value='Ужасы'>Ужасы</MenuItem>
+                        <MenuItem value='Экшн'>Экшн</MenuItem>
+                        <MenuItem value='Комедия'>Комедия</MenuItem>
+                        <MenuItem value='Драма'>Драма</MenuItem>
+                        <MenuItem value='Фантастика'>Фантастика</MenuItem>
+                        <MenuItem value='Триллер'>Триллер</MenuItem>
+                        <MenuItem value='Криминал'>Криминал</MenuItem>
                     </Select>
                 </FormControl>
                 <FormControl fullWidth sx={{width: '100%', display: 'flex', flexDirection: 'row'}}>
@@ -94,11 +94,11 @@ const MovieSearchPage = () => {
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         sx={{width: '100%', margin: '10px'}}
-                        value={filterYear}
+                        value={test.year}
                         label="Age"
-                        ref={test}
-                        onChange={searchFilteredMovies}
+                        onChange={e => setTest({...test, year: e.target.value})}
                     >
+                        <MenuItem value=''>Все года</MenuItem>
                         {
                             years && years.map(item => (
                                 <MenuItem value={item.year}>{item.year}</MenuItem>
@@ -114,8 +114,10 @@ const MovieSearchPage = () => {
                         valueLabelDisplay="auto"
                         step={0.1}
                         marks
-                        min={0}
+                        min={5}
                         max={10}
+                        // value={test.rating}
+                        onChange={searchMovieRating}
                     />
                 </Box>
                 <FormControl fullWidth sx={{width: '100%', display: 'flex', flexDirection: 'row'}}>
@@ -124,14 +126,20 @@ const MovieSearchPage = () => {
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         sx={{width: '100%', margin: '10px'}}
-                        // value={age}
-                        label="Age"
-                        // onChange={handleChange}
+                        value={test.language}
+                        onChange={e => setTest({...test, language: e.target.value})}
                     >
-                        <MenuItem value={'Rus'}>Rus</MenuItem>
-                        <MenuItem value={'Eng'}>Eng</MenuItem>
+                        <MenuItem value={''}>Все языки</MenuItem>
+                        <MenuItem value={'Рус'}>Рус</MenuItem>
+                        <MenuItem value={'Анг'}>Анг</MenuItem>
                     </Select>
                 </FormControl>
+                <button className='movie-search-page-button' onClick={() => setTest({
+                    genre: '',
+                    year: '',
+                    language: '',
+                    rating: ''
+                })}>Очистить</button>
             </div>
             <div className="movies-search-page-container">
                 <TextField

@@ -26,18 +26,18 @@ const Login = () => {
         }
     };
 
-    if (isAuth) {
-        navigate('/');
-    }
+    // if (isAuth) {
+    //     navigate('/');
+    // }
 
     const currentUser = getCurrentUser();
 
-    useEffect(() => {
-        if(currentUser) {
-            alert('вы уже авторизованы')
-            navigate('/')
-        }
-    }, [currentUser])
+    // useEffect(() => {
+    //     if(currentUser) {
+    //         alert('вы уже авторизованы')
+    //         navigate('/')
+    //     }
+    // }, [currentUser])
 
     return (
         <div className='login'>

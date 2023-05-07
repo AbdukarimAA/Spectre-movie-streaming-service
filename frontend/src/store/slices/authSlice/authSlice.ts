@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {IUserRegister} from "../../../utils/types/userRegisterType";
 import {axiosRequest} from "../../../utils/Request/newAxiosRequest";
+import Cookies from 'js-cookie';
 import {IMovie} from "../../../utils/types/movieDataType";
 
 export enum Status {
@@ -69,11 +70,11 @@ export const authLogin = createAsyncThunk(
     async ({ email, password } : { email: string; password: string }) => {
         const { data } = await axiosRequest.post('/auth/login', { email, password });
 
-        localStorage.setItem('currentUser', JSON.stringify(data));
-
         const { token, ...payload } = data;
+        localStorage.setItem('currentUser', JSON.stringify(payload));
+        Cookies.set('token', token, { expires: 49 })
 
-        return payload;
+        return data;
     }
 );
 
@@ -83,11 +84,12 @@ export const authRegister = createAsyncThunk(
         const { data } = await axiosRequest.post('auth/register', {email, username, password, img, age, phone, isAdmin});
 
         console.log('Json', JSON.stringify(data))
-        localStorage.setItem('currentUser', JSON.stringify(data));
 
         const { token, ...payload } = data;
+        localStorage.setItem('currentUser', JSON.stringify(payload));
+        Cookies.set('token', token, { expires: 49 })
 
-        return payload;
+        return data;
     }
 )
 

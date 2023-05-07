@@ -6,6 +6,7 @@ import {useAppDispatch, useAppSelector} from "../../store/redux-hook";
 import {authLogout} from "../../store/slices/authSlice/authSlice";
 import "./Navbar.scss";
 import {SearchOutlined} from "@mui/icons-material";
+import Cookies from "js-cookie";
 
 function Navbar() {
     const [active, setActive] = useState<boolean>(false);
@@ -32,7 +33,8 @@ function Navbar() {
         try {
             // await axiosRequest.post('/auth/logout');
             await dispatch<any>(authLogout);
-            localStorage.setItem('currentUser', null);
+            localStorage.removeItem('currentUser');
+            Cookies.remove('token')
             navigate('/');
         } catch (e) {
             console.log(e)

@@ -48,30 +48,6 @@ function Footer() {
                     </div>
                 </div>
                 <hr />
-                <div className="bottom">
-                    <div className="left">
-                        <h2>Spectre</h2>
-                        <span>© Spectre International Ltd. 2023</span>
-                        <span>We are always ready to help you. Our operators are online 24/7</span>
-                    </div>
-                    <div className="right">
-                        <div className="social">
-                            <img className='footer-net' src="/img/twitter.png" alt="" />
-                            <img className='footer-net' src="/img/linkedin.png" alt="" />
-                            <img className='footer-net' src="/img/pinterest.png" alt="" />
-                            <img className='footer-net' src="/img/instagram.png" alt="" />
-                        </div>
-                        <div className="link">
-                            <img src="/img/language.png" alt="" />
-                            <span>English</span>
-                        </div>
-                        <div className="link">
-                            <img src="/img/coin.png" alt="" />
-                            <span>USD</span>
-                        </div>
-                        <img src="/img/accessibility.png" alt="" />
-                    </div>
-                </div>
             </div>
         </div>
     );
