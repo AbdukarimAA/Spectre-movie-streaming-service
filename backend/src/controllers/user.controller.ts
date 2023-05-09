@@ -6,21 +6,17 @@ import bcrypt from "bcrypt";
 import nodemailer from "nodemailer";
 
 export const updateUser = async (req: Request, res: Response, next: NextFunction) => {
-    if(req.userId === req.params.id || req.isAdmin) {
-        if(req.body.password) {
-            req.body.password = bcrypt.hashSync(req.body.password, 8);
-        }
-        try {
-            const updatedUser = await User.findByIdAndUpdate(req.params.id, {
-                $set: req.body
-            }, {new: true});
+    if(req.body.password) {
+        req.body.password = bcrypt.hashSync(req.body.password, 8);
+    }
+    try {
+        const updatedUser = await User.findByIdAndUpdate(req.params.id, {
+            $set: req.body
+        }, {new: true});
 
-            res.status(200).send(updatedUser);
-        } catch (error: any) {
-            next(error);
-        }
-    } else {
-        return next(createError(403, 'You can update your account only'));
+        res.status(200).send(updatedUser);
+    } catch (error: any) {
+        next(error);
     }
 }
 

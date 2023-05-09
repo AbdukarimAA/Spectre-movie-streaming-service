@@ -15,7 +15,9 @@ const HomeMainSlider = ({item}: any) => {
                         <img src={item.titleImg} className="h-m-s-img-logo" alt=""/>
                         <span className="h-m-s-span">{item.shortDesc}</span>
                     </div>
-                    <button className='h-m-s-button-submit'>Watch with subscription</button>
+                    <Link to={`/video/${item._id}`}>
+                        <button className='h-m-s-button-submit'>Смотреть</button>
+                    </Link>
                 </div>
             </Link>
             }

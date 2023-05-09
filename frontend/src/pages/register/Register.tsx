@@ -48,10 +48,6 @@ const Register = () => {
 
         const url = await upload(file);
         try {
-            // await axiosRequest.post('auth/register', {
-            //     ...user,
-            //     img: url
-            // });
             await dispatch<any>(authRegister({...user, img: url}))
             navigate('/');
         } catch (e) {
@@ -59,18 +55,7 @@ const Register = () => {
         }
     };
 
-    // if (isAuth) {
-    //     navigate('/');
-    // }
-
-    const currentUser = getCurrentUser();
-
-    // useEffect(() => {
-    //     if(currentUser) {
-    //         alert('вы уже авторизованы')
-    //         // navigate('/')
-    //     }
-    // }, [currentUser])
+    console.log(file)
 
     return (
         <div className='register'>
@@ -79,29 +64,29 @@ const Register = () => {
                 <span className='register-enter'>Регистрация </span>
                 <div className="register-inputs">
                     <div className="register-inputs-left">
-                        <div className="test-div">
+                        <div className="register-inputs-left-div">
                             <input type="email" name='email' placeholder='Email' onChange={handleChange}/>
                             <span>Example@gmail.com</span>
                         </div>
-                        <div className="test-div">
+                        <div className="register-inputs-left-div">
                             <input type="text" name='username' placeholder='Username' onChange={handleChange}/>
                             <span>От 5 до 20 букв</span>
                         </div>
-                        <div className="test-div">
+                        <div className="register-inputs-left-div">
                             <input type="password" name='password' placeholder='Password' onChange={handleChange}/>
                             <span>Пароль должен содержать: от 6 букв, 1 заглавная и 1 строчная, 1 число, 1 символ</span>
                         </div>
                     </div>
                     <div className="register-inputs-right">
-                        <div className="test-div">
+                        <div className="register-inputs-left-div">
                             <input type="text" name='age' placeholder='Age' onChange={handleChange}/>
                             <span>2 цифры</span>
                         </div>
-                        <div className="test-div">
+                        <div className="register-inputs-left-div">
                             <input type="text" name='phone' placeholder='Phone' onChange={handleChange}/>
                             <span>Пример: 79991234567, 89991234567</span>
                         </div>
-                        <div className="test-div">
+                        <div className="register-inputs-left-div">
                             <input type="file" name='file' placeholder='File' className='register-file-input' onChange={(e: any) => setFile(e.target.files[0])}/>
                         </div>
                     </div>

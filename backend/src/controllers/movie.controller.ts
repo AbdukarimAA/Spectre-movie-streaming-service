@@ -20,7 +20,7 @@ export const createMovie = async (req: Request, res: Response, next: NextFunctio
 };
 
 export const updateMovie = async (req: Request, res: Response, next: NextFunction) => {
-    if (!req.isAdmin) return next(createError(403, 'You are not allowed to update a movie'));
+    // if (!req.isAdmin) return next(createError(403, 'You are not allowed to update a movie'));
     try {
         const updatedMovie = await Movie.findByIdAndUpdate(req.params.id, {
             $set: req.body
@@ -33,7 +33,7 @@ export const updateMovie = async (req: Request, res: Response, next: NextFunctio
 };
 
 export const deleteMovie = async (req: Request, res: Response, next: NextFunction) => {
-    if (!req.isAdmin) return next(createError(403, 'You are not allowed to delete a movie'));
+    // if (!req.isAdmin) return next(createError(403, 'You are not allowed to delete a movie'));
     try {
        const deleteMovie: IMovie | null = await Movie.findOne({_id: req.params.id});
        await Movie.findByIdAndDelete(req.params.id);

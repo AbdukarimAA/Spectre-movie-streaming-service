@@ -130,15 +130,15 @@ const FilmPage = () => {
                             <span className='film-p-pic-a-names'> {oneMovie.movie.actors && oneMovie.movie.actors.map(item => '\n' + item + ', ')}</span>
                         </div>
                         <div className="film-p-pic-advert">
-                            <span className='film-p-pic-advert-main'>Месяц за 1 ₽, затем месяц за 199 ₽</span>
-                            <span className='film-p-pic-ad'> в подписке Оптимум</span>
+                            {/*<span className='film-p-pic-advert-main'>Месяц за 1 ₽, затем месяц за 199 ₽</span>*/}
+                            {/*<span className='film-p-pic-ad'> в подписке Оптимум</span>*/}
                         </div>
                         <div className="film-p-pic-buttons">
                             <Link to={`/video/${oneMovie.movie._id}`}>
                                 <SubmitButton text={'Watch'} className='film-p-pic-button-purchase'/>
                             </Link>
-                            <button className='film-p-pic-button-trailer'>Trailer</button>
-                            <BookmarkBorderIcon className='film-p-pic-button-icon'/>
+                            {/*<button className='film-p-pic-button-trailer'>Trailer</button>*/}
+                            {/*<BookmarkBorderIcon className='film-p-pic-button-icon'/>*/}
                         </div>
                     </div>
                     <div className="film-p-linear-top"></div>

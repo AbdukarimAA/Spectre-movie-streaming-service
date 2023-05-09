@@ -6,9 +6,12 @@ import {DataGrid, GridRowsProp} from "@mui/x-data-grid";
 import {Interface, productRows} from "../../../dummyData";
 import SideBar from "../../../adminComponents/sideBar/SideBar";
 import {axiosRequest} from "../../../../utils/Request/newAxiosRequest";
+import {useAppDispatch} from "../../../../store/redux-hook";
+import {deleteMovie} from "../../../../store/slices/movieSlice/movieSlice";
 
 export const AdminMoviePage = () => {
     const [data, setData]: any = useState<GridRowsProp<Interface>>([]);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         const getUsers: any = async () => {
@@ -19,6 +22,11 @@ export const AdminMoviePage = () => {
         }
         getUsers();
     }, [])
+
+    // const handleDelete = async ({id}) => {
+    //     console.log(id)
+    //     await dispatch<any>(deleteMovie({id}))
+    // }
 
     const columns: any = [
         { field: "id", headerName: "ID", width: 50 },
@@ -61,10 +69,10 @@ export const AdminMoviePage = () => {
                         <Link to={"/admin/movie/" + params.row._id}>
                             <button className="productListEdit">Edit</button>
                         </Link>
-                        <DeleteOutline
-                            className="productListDelete"
-                            // onClick={() => handleDelete(params.row.id)}
-                        />
+                        {/*<DeleteOutline*/}
+                        {/*    className="productListDelete"*/}
+                        {/*    onClick={() => handleDelete({id: params.row.id})}*/}
+                        {/*/>*/}
                     </>
                 );
             },

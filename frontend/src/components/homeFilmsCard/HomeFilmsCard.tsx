@@ -8,9 +8,10 @@ import {axiosRequest} from "../../utils/Request/newAxiosRequest";
 import {Link, useNavigate} from "react-router-dom";
 import LinearProgress from "@mui/material/LinearProgress";
 import {IMovie} from "../../utils/types/movieDataType";
-import {useAppDispatch} from "../../store/redux-hook";
-import {addLikedMovies} from "../../store/slices/authSlice/authSlice";
+import {useAppDispatch, useAppSelector} from "../../store/redux-hook";
+import {addLikedMovies, getOneUser} from "../../store/slices/authSlice/authSlice";
 import {getCurrentUser} from "../../utils/getCurrentUser/getToken";
+import {authSelector} from "../../store/slices/authSlice/selectors";
 
 const HomeFilmsCard = ({film}: any) => {
     const [activeFirst, setActiveFirst] = useState<boolean>(false);
@@ -19,26 +20,47 @@ const HomeFilmsCard = ({film}: any) => {
     const [activeFour, setActiveFour] = useState<boolean>(false);
     const [movie, setMovie] = useState<IMovie>();
     const [spinner, setSpinner] = useState(false);
+    const [test, setTest] = useState<any>('');
+    const {user} = useAppSelector(authSelector);
     const dispatch = useAppDispatch()
     const currentUser = getCurrentUser();
 
     useEffect(() => {
         const getMovie: any = async () => {
             setSpinner(true)
-            const res = await axiosRequest.get("/movie/getMovie/" + film)
+            await axiosRequest.get("/movie/getMovie/" + film)
                 .then(res => setMovie(res.data))
                 .finally(() => setSpinner(false))
         };
         getMovie();
     }, [film])
 
+    useEffect(() => {
+        const getUser: any = async () => {
+            setSpinner(true)
+            await axiosRequest.get("/user/getUser/" + currentUser._id)
+                .then(res => setTest(res.data))
+                .finally(() => setSpinner(false))
+        };
+        getUser();
+    }, [])
+
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-
+        // check(movie._id)
         await dispatch<any>(addLikedMovies({userId: currentUser._id, movieId: movie._id}));
         alert('Movie has been added to the list of favorites')
     }
 
+    // let a = true
+
+    // test && test.likedMovies.map(item => {
+    //     if(item === movie && movie._id) {
+    //         a = false
+    //     }
+    // })
+    // let a = test && test.likedMovies.find(item => item === '64579507f4fbf4670c967853')
+    // console.log(a)
     if (spinner) return <LinearProgress />;
 
     return (
@@ -54,13 +76,15 @@ const HomeFilmsCard = ({film}: any) => {
                                         className={activeFirst ? "h-f-card-buttons-container active" : "h-f-card-buttons-container"}
                                         onMouseEnter={() => setActiveFirst(true)}
                                         onMouseLeave={() => setActiveFirst(false)}>
-                                        <div className="h-f-card-b-c-logo">
-                                            <BookmarkBorderIcon
-                                                className='h-f-card-button-logo'
-                                                onClick={handleSubmit}
-                                                onMouseEnter={() => setActiveFirst(true)}
-                                                onMouseLeave={() => setActiveFirst(false)}/>
-                                        </div>
+                                        {
+                                            <div className="h-f-card-b-c-logo">
+                                                <BookmarkBorderIcon
+                                                    className='h-f-card-button-logo'
+                                                    onClick={handleSubmit}
+                                                    onMouseEnter={() => setActiveFirst(true)}
+                                                    onMouseLeave={() => setActiveFirst(false)}/>
+                                            </div>
+                                        }
                                     </div>
                                     <div
                                         className={activeSecond ? "h-f-card-buttons-container active" : "h-f-card-buttons-container"}

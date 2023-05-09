@@ -1,22 +1,20 @@
-import React, {useEffect, useState} from 'react';
-import {Link, useParams} from "react-router-dom";
+import React, {SyntheticEvent, useEffect, useState} from 'react';
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {CalendarToday, LocationSearching, MailOutline, PermIdentity, PhoneAndroid, Publish} from "@mui/icons-material";
 import "./AdminUserEdit.scss";
 import SideBar from "../../../adminComponents/sideBar/SideBar";
 import {useAppDispatch, useAppSelector} from "../../../../store/redux-hook";
 import {authSelector} from "../../../../store/slices/authSlice/selectors";
-import {getOneUser} from "../../../../store/slices/authSlice/authSlice";
+import {deleteUser, getOneUser, updateUser} from "../../../../store/slices/authSlice/authSlice";
+import {IUserRegister} from "../../../../utils/types/userRegisterType";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 export const AdminUserEdit = () => {
-    const [updateUser, setUpdateUser] = useState<any>({
-        username: '',
-        email: '',
-        phone: '',
-        age: ''
-    })
+    const [userInfo, setUserInfo] = useState<IUserRegister | null>()
     const {user}: any = useAppSelector(authSelector)
     const dispatch = useAppDispatch();
     const {id} = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getOneUserFunc: any = () => {
@@ -26,7 +24,26 @@ export const AdminUserEdit = () => {
         getOneUserFunc();
     }, [id])
 
-    console.log(user)
+    const handleUpdateUser = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setUserInfo((prev: IUserRegister) => {
+            return {...prev, [e.target.name]: e.target.value}
+        })
+    }
+
+    const handleSubmit = async (e: SyntheticEvent) => {
+        // e.preventDefault()
+        try {
+            await dispatch<any>(updateUser({...userInfo, _id: id}))
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    const handleDelete = async () => {
+        console.log(id)
+        await dispatch<any>(deleteUser({id}))
+        navigate('/admin/users')
+    }
 
     return (
         <div className="user-edit-admin">
@@ -79,41 +96,49 @@ export const AdminUserEdit = () => {
                         </Link>
                         <br/>
                         <span className="userUpdateTitle">Edit</span>
-                        <form className="userUpdateForm">
+                        <form onSubmit={handleSubmit} className="userUpdateForm">
                             <div className="userUpdateLeft">
                                 <div className="userUpdateItem">
                                     <label>Username</label>
                                     <input
+                                        onChange={handleUpdateUser}
                                         type="text"
-                                        placeholder="annabeck99"
-                                        value={user.user.username}
+                                        name='username'
+                                        // placeholder="annabeck99"
+                                        placeholder={user.user.username}
                                         className="userUpdateInput"
                                     />
                                 </div>
                                 <div className="userUpdateItem">
                                     <label>Email</label>
                                     <input
+                                        onChange={handleUpdateUser}
                                         type="text"
-                                        placeholder="annabeck99@gmail.com"
-                                        value={user.user.email}
+                                        name='email'
+                                        // placeholder="annabeck99@gmail.com"
+                                        placeholder={user.user.email}
                                         className="userUpdateInput"
                                     />
                                 </div>
                                 <div className="userUpdateItem">
                                     <label>Phone</label>
                                     <input
+                                        onChange={handleUpdateUser}
                                         type="text"
-                                        placeholder="+1 123 456 67"
-                                        value={user.user.phone}
+                                        name='phone'
+                                        // placeholder="+1 123 456 67"
+                                        placeholder={user.user.phone}
                                         className="userUpdateInput"
                                     />
                                 </div>
                                 <div className="userUpdateItem">
                                     <label>Age</label>
                                     <input
+                                        onChange={handleUpdateUser}
                                         type="text"
-                                        placeholder="New York | USA"
-                                        value={user.user.age}
+                                        name='age'
+                                        // placeholder="New York | USA"
+                                        placeholder={user.user.age}
                                         className="userUpdateInput"
                                     />
                                 </div>
@@ -130,6 +155,10 @@ export const AdminUserEdit = () => {
                                     </label>
                                     <input type="file" id="file" style={{display: "none"}}/>
                                 </div>
+                                <DeleteOutlineIcon
+                                    className="userListDelete"
+                                    onClick={() => handleDelete()}
+                                />
                                 <button className="userUpdateButton">Update</button>
                             </div>
                         </form>

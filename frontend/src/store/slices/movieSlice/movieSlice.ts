@@ -59,6 +59,24 @@ export const getOneMovie = createAsyncThunk(
     }
 )
 
+export const updateMovie = createAsyncThunk(
+    'movie/updateMovie',
+    async ( info: IMovie) => {
+        const { data } = await axiosRequest.put("/movie/updateMovie/" + info._id, {...info});
+
+        return data;
+    }
+)
+
+export const deleteMovie = createAsyncThunk(
+    'movie/deleteMovie',
+    async ({id}: any) => {
+        const { data } = await axiosRequest.delete("/movie/deleteMovie/" + id);
+
+        return data;
+    }
+)
+
 const movieSlice = createSlice({
     name: 'movieSlice',
     initialState,
@@ -100,6 +118,28 @@ const movieSlice = createSlice({
         builder.addCase(getOneMovie.fulfilled, (state: IMovieSlice, action) => {
             state.oneMovie.status = Status.Success;
             state.oneMovie.movie = action.payload
+        })
+        builder.addCase(updateMovie.pending, (state: IMovieSlice) => {
+            state.oneMovie.status = Status.Loading;
+        })
+        builder.addCase(updateMovie.rejected, (state: IMovieSlice) => {
+            state.oneMovie.status = Status.Error;
+            // state.oneMovie.movie = null;
+        })
+        builder.addCase(updateMovie.fulfilled, (state: IMovieSlice, action) => {
+            state.oneMovie.status = Status.Success;
+            // state.oneMovie.movie = action.payload
+        })
+        builder.addCase(deleteMovie.pending, (state: IMovieSlice) => {
+            state.oneMovie.status = Status.Loading;
+        })
+        builder.addCase(deleteMovie.rejected, (state: IMovieSlice) => {
+            state.oneMovie.status = Status.Error;
+            // state.oneMovie.movie = null;
+        })
+        builder.addCase(deleteMovie.fulfilled, (state: IMovieSlice, action) => {
+            state.oneMovie.status = Status.Success;
+            // state.oneMovie.movie = action.payload
         })
     }
 });

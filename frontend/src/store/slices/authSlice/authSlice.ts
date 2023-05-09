@@ -3,6 +3,7 @@ import {IUserRegister} from "../../../utils/types/userRegisterType";
 import {axiosRequest} from "../../../utils/Request/newAxiosRequest";
 import Cookies from 'js-cookie';
 import {IMovie} from "../../../utils/types/movieDataType";
+import {TUpdateUser} from "../../../pages/userEdit/UserEditPage";
 
 export enum Status {
     FirstLoading = 'firstLoading',
@@ -45,6 +46,22 @@ export const getAllUsers = createAsyncThunk(
     'likedMovie/getAllUsers',
     async () => {
         const {data} = await axiosRequest.get(`/user/getUsers`)
+        return data;
+    }
+)
+
+export const updateUser = createAsyncThunk(
+    'user/updateUser',
+    async (info: TUpdateUser) => {
+        const {data} = await axiosRequest.put(`/user/update/` + info._id, {...info} )
+        return data;
+    }
+)
+
+export const deleteUser = createAsyncThunk(
+    'user/deleteUser',
+    async ({id}: any) => {
+        const {data} = await axiosRequest.delete(`/user/delete/` + id)
         return data;
     }
 )
@@ -193,6 +210,30 @@ const authSlice = createSlice({
             .addCase(authLogin.rejected, (state: IAuthSlice, action) => {
                 state.status = Status.Error;
                 state.data = null;
+            })
+            .addCase(updateUser.pending, (state: IAuthSlice, action) => {
+                state.status = Status.Loading;
+                // state.data = null;
+            })
+            .addCase(updateUser.fulfilled, (state: IAuthSlice, action) => {
+                // state.data = action.payload;
+                state.status = Status.Success;
+            })
+            .addCase(updateUser.rejected, (state: IAuthSlice, action) => {
+                state.status = Status.Error;
+                // state.data = null;
+            })
+            .addCase(deleteUser.pending, (state: IAuthSlice, action) => {
+                state.status = Status.Loading;
+                // state.data = null;
+            })
+            .addCase(deleteUser.fulfilled, (state: IAuthSlice, action) => {
+                // state.data = action.payload;
+                state.status = Status.Success;
+            })
+            .addCase(deleteUser.rejected, (state: IAuthSlice, action) => {
+                state.status = Status.Error;
+                // state.data = null;
             })
     }
 });

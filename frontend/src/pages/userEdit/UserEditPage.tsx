@@ -1,80 +1,61 @@
-import { useEffect, useCallback, useMemo, useState } from 'react';
+import React, {useEffect, useCallback, useMemo, useState, SyntheticEvent} from 'react';
 import { useDropzone, FileWithPath, DropzoneState  } from 'react-dropzone';
 import ImageIcon from '@mui/icons-material/Image';
 import './UserEdit.scss';
+import {IUserRegister} from "../../utils/types/userRegisterType";
+import upload from "../../utils/uploadCloud/uploadFiles";
+import {authRegister, updateUser} from "../../store/slices/authSlice/authSlice";
+import {useNavigate, useParams} from "react-router-dom";
+import {useAppDispatch} from "../../store/redux-hook";
+
+export type TUpdateUser = Pick<IUserRegister, 'email' | 'username' | 'age' | 'phone' | 'img' | '_id'>
 
 const UserEditPage = () => {
-    const [files, setFiles] = useState<(File & {preview:string})[]>([]);
+    const [file, setFile] = useState<File | string | null>(null);
+    const [user, setUser] = useState<TUpdateUser | null>();
 
-    const {getRootProps, getInputProps} = useDropzone({
-        accept: {
-            'image/*': []
-        },
-        maxFiles: 1,
-        onDrop: acceptedFiles => {
-            setFiles(acceptedFiles.map(file => Object.assign(file, {
-                preview: URL.createObjectURL(file)
-            })));
-        }
-    });
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const {id} = useParams();
 
-    const deleteOnClick = () => {
-        setFiles([])
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setUser((prev: TUpdateUser) => {
+            return {...prev, [e.target.name]: e.target.value}
+        })
     }
 
-    const thumbs = files.map(file => (
-        <div key={file.name}>
-            <div>
-                <img
-                    onClick={deleteOnClick}
-                    src={file.preview}
-                    // Revoke data uri after image is loaded
-                    onLoad={() => { URL.revokeObjectURL(file.preview) }}
-                    alt=''
-                />
-            </div>
-        </div>
-    ));
+    const handleSubmit = async (e: SyntheticEvent) => {
+        e.preventDefault();
 
-    useEffect(() => {
-        // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
-        return () => files.forEach(file => URL.revokeObjectURL(file.preview));
-    }, []);
-
-    console.log(files)
+        const url = await upload(file);
+        console.log(url)
+        try {
+            await dispatch<any>(updateUser({...user, _id: id, img: url}))
+            // navigate('/');
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
     return (
         <div className='user-edit-page'>
             <span>Edit Profile</span>
-            <div className="user-edit-page-container">
-                <div className="user-edit-page-container-drag">
-                    <div {...getRootProps({className: 'dropzone'})}>
-                        <input {...getInputProps()} />
-                        <ImageIcon />
-                        <p>Drag 'n' drop some img files here</p>
-                        <p>jpeg, jpg, png etc</p>
-                    </div>
-                    <div className="user-edit-page-container-drag-img">
-                        <aside>
-                            img
-                            {thumbs}
-                        </aside>
-                    </div>
-                </div>
-
+            <form onSubmit={handleSubmit} className="user-edit-page-container">
                 <form className="user-edit-page-container-inputs">
-                    {/*<span>Update your profile</span>*/}
                     <div className="user-edit-page-container-inputs-top">
-                        <input type="email" placeholder='email' required={false}/>
-                        <input type="text" placeholder='username' required={false}/>
+                        <input type="email" name='email' placeholder='email' onChange={handleChange} required={false}/>
+                        <input type="text" name='username' placeholder='username' onChange={handleChange} required={false}/>
                     </div>
                     <div className="user-edit-page-container-inputs-bottom">
-                        <input type="text" placeholder='phone' required={false}/>
-                        <input type="text" placeholder='age' required={false}/>
+                        <input type="text" name='phone' placeholder='phone' onChange={handleChange} required={false}/>
+                        <input type="text" name='age' placeholder='age' onChange={handleChange} required={false}/>
                     </div>
                 </form>
+                <div className="user-edit-page-container-drag">
+                    <input name='file' type='file' onChange={(e: any) => setFile(e.target.files[0])}/>
+                </div>
                 <button>Update</button>
-            </div>
+            </form>
         </div>
     );
 };

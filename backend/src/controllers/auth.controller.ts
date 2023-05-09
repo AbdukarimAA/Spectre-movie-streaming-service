@@ -37,7 +37,7 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
             httpOnly: true,
             secure: true,
             sameSite: "none"
-        }).status(200).send(info);
+        }).status(200).send({...info, token});
 
     } catch (error: any) {
         next(error);
@@ -59,11 +59,11 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
         }, process.env.JWT_KEY as string, {expiresIn: "24d"});
 
         res.cookie('accessToken', token, {
-            maxAge: 30 * 24 * 60 * 60 * 1000,
+            maxAge: 60 * 24 * 60 * 60 * 1000,
             httpOnly: true,
             // secure: true,
             // sameSite: "none"
-        }).status(200).send(info);
+        }).status(200).send({...info, token});
 
     } catch (error: any) {
         next(error);

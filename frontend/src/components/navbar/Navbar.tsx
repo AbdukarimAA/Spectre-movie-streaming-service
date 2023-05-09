@@ -3,18 +3,29 @@ import {Link, useLocation, useNavigate} from "react-router-dom";
 import {axiosRequest} from "../../utils/Request/newAxiosRequest";
 import {getCurrentUser} from "../../utils/getCurrentUser/getToken";
 import {useAppDispatch, useAppSelector} from "../../store/redux-hook";
-import {authLogout} from "../../store/slices/authSlice/authSlice";
+import {authLogout, getOneUser} from "../../store/slices/authSlice/authSlice";
 import "./Navbar.scss";
 import {SearchOutlined} from "@mui/icons-material";
 import Cookies from "js-cookie";
+import {authSelector} from "../../store/slices/authSlice/selectors";
 
 function Navbar() {
     const [active, setActive] = useState<boolean>(false);
     const [open, setOpen] = useState<boolean>(false);
+    const {user}: any = useAppSelector(authSelector)
 
     const { pathname } = useLocation();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
+    const currentUser = getCurrentUser();
+
+    useEffect(() => {
+        const getOneUserFunc: any = () => {
+            dispatch<any>(getOneUser({userId: currentUser._id}))
+        }
+
+        getOneUserFunc();
+    }, [currentUser._id])
 
     const isActive = () => {
         window.scrollY > 0 ? setActive(true) : setActive(false);
@@ -27,7 +38,6 @@ function Navbar() {
         };
     }, []);
 
-    const currentUser = getCurrentUser();
 
     const handleLogOut = async () => {
         try {
@@ -53,24 +63,24 @@ function Navbar() {
                     <Link className="link" to="/">
                         <span className="text">Spectre</span>
                     </Link>
-                    <span className='navbar-links'>What's new</span>
+                    {/*<span className='navbar-links'>What's new</span>*/}
                     <Link className='link' to={'/movies'}>
-                        <span className='navbar-links'>Movies</span>
+                        <span className='navbar-links'>Фильмы</span>
                     </Link>
                     {/*<span className='navbar-links'>Serials</span>*/}
                     <Link className='link' to={'/cartoons'}>
-                        <span className='navbar-links'>Cartoons</span>
+                        <span className='navbar-links'>Мультфильмы</span>
                     </Link>
                     {/*<span className='navbar-links'>TV+</span>*/}
                     <Link to='/actors' className='link'>
-                        <span className='navbar-links'>Actors</span>
+                        <span className='navbar-links'>Актеры</span>
                     </Link>
                 </div>
                 <div className="links">
                     <Link to='/search' className='link'>
                         <span className='navbar-links'><SearchOutlined /></span>
                     </Link>
-                    <span className='navbar-links'>Purchase a subscription</span>
+                    <span className='navbar-links'>Купить подписку </span>
                     {currentUser?.isAdmin &&
                         <Link to='/admin' className='link'>
                             <span>Admin</span>
@@ -79,10 +89,10 @@ function Navbar() {
                     {currentUser ? (
                         <div className="user active" onMouseEnter={handleModal} onClick={()=>setOpen(!open)}>
                             <img
-                                src={currentUser.img || '/img/noavatar.jpg'}
+                                src={user.user && user.user.img || '/img/noavatar.jpg'}
                                 alt=""
                             />
-                            <span>{currentUser?.username}</span>
+                            <span>{user.user && user.user.username}</span>
                             {open && <div className="options active" onMouseLeave={()=>setOpen(!open)}>
                                 <div className="options-left">
                                     {/*{currentUser.isAdmin && (*/}
@@ -101,53 +111,56 @@ function Navbar() {
                                     {/*)}*/}
                                     <div className="opt-left-item">
                                         <Link className="link" to="/">
-                                            Purchases
+                                            Покупки
                                         </Link>
                                     </div>
                                     <Link className="link" to={`/likedMovies/${currentUser._id}`}>
                                         <div className="opt-left-item">
-                                            Watch later
+                                            Смотреть позже
                                         </div>
                                     </Link>
                                     <div className="opt-left-item">
                                         <Link className="link" to="/">
-                                            Browsing history
+                                            История просмотров
                                         </Link>
                                     </div>
                                     <div className="opt-left-item">
                                         <Link className="link" to="/">
-                                            Subscriptions
+                                            Подписки
                                         </Link>
                                     </div>
                                     <div className="opt-left-item">
                                         <Link className="link" to="/">
-                                            Promo code activation
+                                            Промокоды
                                         </Link>
-                                    </div><div className="opt-left-item">
+                                    </div>
+                                    <div className="opt-left-item">
+                                        <Link className="link" to="/">
+                                            Войти по коду
+                                        </Link>
+                                    </div>
+                                    <div className="opt-left-item">
+                                        <Link className="link" to="/">
+                                            Методы оплаты
+                                        </Link>
+                                    </div>
+                                    <div className="opt-left-item">
                                     <Link className="link" to="/">
-                                        Login by code
-                                    </Link>
-                                </div><div className="opt-left-item">
-                                    <Link className="link" to="/">
-                                        Payment method
-                                    </Link>
-                                </div><div className="opt-left-item">
-                                    <Link className="link" to="/">
-                                        Invite Friends
+                                        Пригласить друзей
                                     </Link>
                                 </div>
                                 </div>
 
                                 <div className="options-right">
-                                    <span className='navbar-profile'>Account</span>
+                                    <span className='navbar-profile'>Аккаунт</span>
                                     <div className="opt-r-img">
                                         <div className="img-name">
                                             <img
-                                                src={currentUser.img || '/img/noavatar.jpg'}
+                                                src={user.user && user.user.img || '/img/noavatar.jpg'}
                                                 alt=""
                                                 className='img-r'
                                             />
-                                            <span>{currentUser?.username}</span>
+                                            <span>{user.user && user.user.username}</span>
                                         </div>
 
                                         <img
@@ -159,23 +172,23 @@ function Navbar() {
 
                                     <div className="opt-right-item">
                                         <Link className="link" to={'/user/edit/' + currentUser?._id}>
-                                            <span className='navbar-profile-item'>Personal account</span>
+                                            <span className='navbar-profile-item'>Личный аккаунт</span>
                                         </Link>
                                     </div>
                                     <div className="opt-right-item">
                                         <Link className="link" to={`/user/${currentUser._id}`}>
-                                            <span className='navbar-profile-item'>Settings</span>
+                                            <span className='navbar-profile-item'>Настройки</span>
                                         </Link>
                                     </div>
                                     <div className="opt-right-item">
                                         <Link className="link" to="/">
-                                            <span className='navbar-profile-item'>Help</span>
+                                            <span className='navbar-profile-item'>Помощь</span>
                                         </Link>
                                     </div>
                                     <div className="opt-right-item">
                                         <Link className="link" to='' onClick={handleLogOut}>
                                             <span className='navbar-profile-item'>
-                                                LogOut
+                                                Выйти
                                             </span>
                                         </Link>
                                     </div>
@@ -194,30 +207,59 @@ function Navbar() {
                     )}
                 </div>
             </div>
-            {(currentUser && active && (pathname === "/" || pathname === '/movies' || pathname === 'cartoons')) && (
+            {(currentUser && active && (pathname === "/" || pathname === '/movies')) && (
                 <>
                     <hr />
                     <div className="menu">
-                        <Link className="link menuLink" to="/">
-                            Horror
+                        <Link className="link menuLink" to="/movies/horror">
+                            Ужасы
                         </Link>
-                        <Link className="link menuLink" to="/">
-                            Thriller
+                        <Link className="link menuLink" to="/movies/thriller">
+                            Триллер
                         </Link>
-                        <Link className="link menuLink" to="/">
-                            Action
+                        <Link className="link menuLink" to="/movies/action">
+                            Экшн
                         </Link>
-                        <Link className="link menuLink" to="/">
-                            Comedy
+                        <Link className="link menuLink" to="/movies/comedy">
+                            Комедия
                         </Link>
-                        <Link className="link menuLink" to="/">
-                            Drama
+                        <Link className="link menuLink" to="/movies/drama">
+                            Драма
                         </Link>
-                        <Link className="link menuLink" to="/">
-                            Documentary
+                        <Link className="link menuLink" to="/movies/adventure">
+                            Приключения
                         </Link>
-                        <Link className="link menuLink" to="/">
-                            Fantastic
+                        <Link className="link menuLink" to="/movies/fantastic">
+                            Фантастика
+                        </Link>
+                    </div>
+                    <hr />
+                </>
+            )}
+            {(currentUser && active && (pathname === '/cartoons')) && (
+                <>
+                    <hr />
+                    <div className="menu">
+                        <Link className="link menuLink" to="/cartoons/horror">
+                            Ужасы
+                        </Link>
+                        <Link className="link menuLink" to="/cartoons/child">
+                            Детские
+                        </Link>
+                        <Link className="link menuLink" to="/cartoons/animation">
+                            Анимация
+                        </Link>
+                        <Link className="link menuLink" to="/cartoons/comedy">
+                            Комедия
+                        </Link>
+                        <Link className="link menuLink" to="/cartoons/drama">
+                            Драма
+                        </Link>
+                        <Link className="link menuLink" to="/cartoons/adventure">
+                            Приключения
+                        </Link>
+                        <Link className="link menuLink" to="/cartoons/fantastic">
+                            Фантастика
                         </Link>
                     </div>
                     <hr />

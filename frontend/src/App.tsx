@@ -165,6 +165,62 @@ function App() {
           // element: <AdminNewUser />
         },
         {
+          path: '/movies/horror',
+          element: <Home type='movie' genre='Ужасы'/>
+        },
+        {
+          path: '/movies/thriller',
+          element: <Home type='movie' genre='Триллер'/>
+        },
+        {
+          path: '/movies/action',
+          element: <Home type='movie' genre='Экшн'/>
+        },
+        {
+          path: '/movies/comedy',
+          element: <Home type='movie' genre='Комедия'/>
+        },
+        {
+          path: '/movies/drama',
+          element: <Home type='movie' genre='Драма'/>
+        },
+        {
+          path: '/movies/adventure',
+          element: <Home type='movie' genre='Приключения'/>
+        },
+        {
+          path: '/movies/fantastic',
+          element: <Home type='movie' genre='Фантастика'/>
+        },
+        {
+          path: '/cartoons/horror',
+          element: <Home type="cartoons" genre='Ужасы'/>
+        },
+        {
+          path: '/cartoons/child',
+          element: <Home type="cartoons" genre='Детские'/>
+        },
+        {
+          path: '/cartoons/animation',
+          element: <Home type="cartoons" genre='Анимация'/>
+        },
+        {
+          path: '/cartoons/comedy',
+          element: <Home type="cartoons" genre='Комедия'/>
+        },
+        {
+          path: '/cartoons/drama',
+          element: <Home type="cartoons" genre='Драма'/>
+        },
+        {
+          path: '/cartoons/adventure',
+          element: <Home type="cartoons" genre='Приключения'/>
+        },
+        {
+          path: '/cartoons/fantastic',
+          element: <Home type="cartoons" genre='Фантастика'/>
+        },
+        {
           path: '*',
           element: <NotFoundTest />
         },

@@ -9,18 +9,20 @@ import {useAppDispatch, useAppSelector} from "../../hooks";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ModalWindow from "../../components/modal/Modal";
 import Loader from "../../components/Loader/Loader";
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import ReactPlayer from 'react-player';
 import "./Video.scss";
 
 const Video = () => {
     const [spinner, setSpinner] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(false);
     const [onProgress, setOnProgress] = useState({
         played: '',
         playedSeconds: '',
         loaded: '',
         loadedSeconds: ''
     });
+    const navigate = useNavigate();
     const {oneMovie}: any = useAppSelector(getMoviesSelector);
     const {user}: any = useAppSelector(authSelector);
     const dispatch = useAppDispatch();
@@ -38,26 +40,37 @@ const Video = () => {
         getOneFilm();
     }, []);
 
-    useEffect(() => {
-        const handleBackButton = async () => {
-            await axiosRequest.post(`user/saveWatchTime/${currentUser._id}`, {movieId: id, timeStopped: onProgress.playedSeconds})
-            console.log('Кнопка "назад" была нажата');
-        };
-
-        window.history.pushState(null, null, window.location.pathname);
-        window.addEventListener('popstate', handleBackButton);
-
-        return () => {
-            window.removeEventListener('popstate', handleBackButton);
-        };
-    }, []);
+    // useEffect(() => {
+    //     const handleBackButton = async () => {
+    //         await axiosRequest.post(`user/saveWatchTime/${currentUser._id}`, {movieId: id, timeStopped: onProgress && onProgress.playedSeconds})
+    //         console.log('Кнопка "назад" была нажата');
+    //     };
+    //
+    //     window.history.pushState(null, null, window.location.pathname);
+    //     window.addEventListener('popstate', handleBackButton);
+    //     return () => {
+    //         window.removeEventListener('popstate', handleBackButton);
+    //
+    //     };
+    // }, [onProgress.playedSeconds]);
 
     const watchlistItem: any = user.user && user.user.watchList && user.user.watchList.find((item: any) => item!.movieId.toString() === id);
 
-    const handlePause = async () => {
+    const handlePause: any = async () => {
         await axiosRequest.post(`user/saveWatchTime/${currentUser._id}`, {movieId: id, timeStopped: onProgress.playedSeconds})
     }
 
+    // useEffect(() => {
+    //     handlePause()
+    // }, [onProgress.playedSeconds])
+
+    // setInterval(() => {
+    //     handlePause()
+    // // }, 10000)
+
+    setTimeout(() => {
+        handlePause()
+    }, 1000)
     const handleStartFromScratch = async () => {
         await axiosRequest.put(`user/startMovie/${currentUser._id}`, {movieId: id})
     }

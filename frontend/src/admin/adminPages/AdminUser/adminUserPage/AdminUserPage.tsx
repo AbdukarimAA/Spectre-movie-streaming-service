@@ -20,10 +20,6 @@ export const AdminUserPage = () => {
         getUsers();
     }, [])
 
-    const handleDelete = (id: number) => {
-        setData(data.filter((item) => item.id !== id));
-    };
-
     const columns: any = [
         { field: "_id", headerName: "ID", width: 130 },
         {
@@ -65,10 +61,6 @@ export const AdminUserPage = () => {
                         <Link to={"/admin/user/" + params.row._id}>
                             <button className="userListEdit">Edit</button>
                         </Link>
-                        <DeleteOutlineIcon
-                            className="userListDelete"
-                            onClick={() => handleDelete(params.row.id)}
-                        />
                     </>
                 );
             },

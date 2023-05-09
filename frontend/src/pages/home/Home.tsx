@@ -13,8 +13,8 @@ import Loader from "../../components/Loader/Loader";
 const HomeHeadings = lazy(() => import('../../components/homeHeadings/HomeHeadings'));
 const HomeMainSlider = lazy(() => import('../../utils/sliders/HomeMainSlider/HomeMainSlider'));
 
-const Home = ({type}: any) => {
-    const [genre, setGenre] = useState<any>(null);
+const Home = ({type, genre}: any) => {
+    // const [genre, setGenre] = useState<any>(null);
     const [spinner, setSpinner] = useState(false);
     const {movie, lists} = useAppSelector(getMoviesSelector, shallowEqual);
     const dispatch = useAppDispatch();
