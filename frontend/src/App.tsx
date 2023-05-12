@@ -224,10 +224,6 @@ function App() {
           path: '*',
           element: <NotFoundTest />
         },
-        // {
-        //   path: '*',
-        //   element: <NotFoundTest />
-        // },
       ]
     }
   ]);
