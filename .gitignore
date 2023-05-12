@@ -1,2 +1,5 @@
 backend/src/.env
 frontend/.env
+node_modules/
+backend/.gitignore
+frontend/.gitignore
