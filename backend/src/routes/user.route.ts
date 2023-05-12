@@ -7,7 +7,13 @@ import {
     getUsers,
     updateUser,
     addLikedUserMovies,
-    deleteLikedUserMovies, deleteOneLikedUserMovies, saveWatchTime, startMovie, resumeMovie, sendMailFeedBack
+    deleteLikedUserMovies,
+    deleteOneLikedUserMovies,
+    saveWatchTime,
+    startMovie,
+    resumeMovie,
+    sendMailFeedBack,
+    saveMovieHistory
 } from "../controllers/user.controller.js";
 import {verifyToken} from "../middleware/jwt.js";
 const router = express.Router();
@@ -25,5 +31,6 @@ router.delete('/deleteFavorite/:id', verifyToken, deleteLikedUserMovies)
 router.delete('/deleteFavorite/:id/:movieId', verifyToken, deleteOneLikedUserMovies)
 router.put('/startMovie/:id', verifyToken, startMovie)
 router.put('/resumeMovie/:id', verifyToken, resumeMovie)
+router.post('/saveWatchedMovie/:id', verifyToken, saveMovieHistory);
 
 export default router;

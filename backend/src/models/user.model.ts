@@ -18,6 +18,15 @@ const userSchema = new Schema<IUser>({
             type: Number,
             default: 0,
         },
+    }],
+    watchMovieHistory: [{
+        movieId: {
+            type: Schema.Types.ObjectId,
+            ref: 'Movie',
+        },
+        date: {
+            type: String,
+        }
     }]
 }, {timestamps: true});
 
@@ -35,6 +44,10 @@ export interface IUser extends mongoose.Document{
         movieId: typeof Schema.Types.ObjectId,
         timeStopped: number
     }],
+    watchMovieHistory: [{
+        movieId: typeof Schema.Types.ObjectId,
+        date: string,
+    }]
     _doc?: any
 }
 

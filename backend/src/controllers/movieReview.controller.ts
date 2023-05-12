@@ -13,13 +13,16 @@ export const createMovieReview = async (req: Request, res: Response, next: NextF
             userId: req.userId
         });
         // if(movieReview) return next(createError(403, 'You have already created a review for this movie'));
+        const date = new Date();
+        const formattedDate = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
 
         const newMovieReview = new MovieReview({
             movieId: req.body.movieId,
             userId: req.userId,
             title: req.body.title,
             desc: req.body.desc,
-            stars: req.body.stars
+            stars: req.body.stars,
+            date: formattedDate
         });
 
         movie!.reviews.push(newMovieReview);

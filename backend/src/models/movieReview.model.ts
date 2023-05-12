@@ -7,6 +7,7 @@ export const movieReviewSchema = new Schema<IMovieReview>({
     title: {type: String, required: true},
     desc: {type: String, required: true},
     stars: {type: Number, required: true, enum: [1, 2, 3, 4, 5]},
+    date: String,
 }, {timestamps: true});
 
 export interface IMovieReview extends mongoose.Document{
@@ -16,6 +17,7 @@ export interface IMovieReview extends mongoose.Document{
     title: string,
     desc: string,
     stars: number,
+    date: string,
     _doc?: any
 }
 

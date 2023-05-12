@@ -274,3 +274,29 @@ export const sendMailFeedBack = async (req: Request, res: Response, next: NextFu
         next(error);
     }
 }
+
+export const saveMovieHistory = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const user: IUser | null = await User.findById(req.params.id);
+        const { movieId } = req.body;
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        const date = new Date();
+        const formattedDate = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+
+        const saveWatchMovieHistory = user!.watchMovieHistory.find(item => item!.movieId.toString() === movieId);
+
+        saveWatchMovieHistory ? saveWatchMovieHistory!.date = formattedDate : user!.watchMovieHistory.push({movieId: movieId, date: formattedDate})
+
+        await user!.save();
+
+
+        return res.status(200).json({ message: 'Movie added to your watch history' });
+
+    } catch (error: any) {
+        next(error);
+    }
+}

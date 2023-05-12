@@ -15,11 +15,14 @@ export const createActorReview = async (req: Request, res: Response, next: NextF
             userId: req.userId
         });
         if(actorReview) return next(createError(403, 'You have already created a review for this actor'));
+        const date = new Date();
+        const formattedDate = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
 
         const newActorReview = new ActorReview({
             actorId: req.body.actorId,
             userId: req.userId,
-            review: req.body.review
+            review: req.body.review,
+            date: formattedDate
         });
 
         review!.reviews.push(newActorReview);
