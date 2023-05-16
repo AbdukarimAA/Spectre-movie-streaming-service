@@ -1,0 +1,12 @@
+.movie-history-page {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 60%;
+  .movie-history-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+}

@@ -7,5 +7,6 @@ export interface IUserRegister {
     age: string,
     phone: string,
     isAdmin: boolean,
-    likedMovies?: []
+    likedMovies?: [],
+    watchMovieHistory?: []
 }

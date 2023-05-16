@@ -31,6 +31,7 @@ const UserEditPage = () => {
         console.log(url)
         try {
             await dispatch<any>(updateUser({...user, _id: id, img: url}))
+            window.location.reload();
             // navigate('/');
         } catch (e) {
             console.log(e)

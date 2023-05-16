@@ -20,6 +20,10 @@ const MovieSearchPage = () => {
     })
     const [movies, setMovies] = useState<any>('')
 
+    // useEffect(() => {
+    //     window.location.reload()
+    // }, [test])
+
     useEffect(() => {
         const getMoviesBySearch: any = async (e: any) => {
             setSpinner(true);
@@ -54,6 +58,16 @@ const MovieSearchPage = () => {
             .finally(() => setSpinner(false))
         // setMovies(data)
     };
+
+    const handleClearFilters = () => {
+        setTest({
+            genre: '',
+            year: '',
+            language: '',
+            rating: ''
+        })
+        window.location.reload()
+    }
 
     if (spinner) return <Loader />;
 
@@ -134,12 +148,7 @@ const MovieSearchPage = () => {
                         <MenuItem value={'Анг'}>Анг</MenuItem>
                     </Select>
                 </FormControl>
-                <button className='movie-search-page-button' onClick={() => setTest({
-                    genre: '',
-                    year: '',
-                    language: '',
-                    rating: ''
-                })}>Очистить</button>
+                <button className='movie-search-page-button' onClick={handleClearFilters}>Очистить</button>
             </div>
             <div className="movies-search-page-container">
                 <TextField
@@ -162,9 +171,9 @@ const MovieSearchPage = () => {
             <div className="movies-search-page-container-bottom">
                 <Suspense fallback={<Loader/>}>
                     {
-                        movies && movies.map(movie => (
+                        movies && movies.length !== 0 ? movies.map(movie => (
                             <MovieSearch movie={movie} key={movie._id}/>
-                        ))
+                        )) : 'Фильмов нет'
                     }
                 </Suspense>
             </div>

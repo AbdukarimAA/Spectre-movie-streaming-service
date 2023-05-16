@@ -1,0 +1,56 @@
+.movie-history-card {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  background-color: #2d566f;
+  border-radius: 120px;
+  height: 150px;
+  transition: 0.4s all ease-in-out;
+  padding: 10px;
+  margin-bottom: 20px;
+
+  &:hover {
+    cursor: pointer;
+    scale: 1.060;
+  }
+
+  .link {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    .movie-history-card-container {
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      text-align: center;
+      flex-direction: row;
+      img {
+        width: 250px;
+        height: 150px;
+      }
+
+      .movie-history-card-container-div {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+
+        span {
+          font-size: 16px;
+          color: #1dbf73;
+          max-width: 190px;
+          white-space: normal;
+        }
+
+        .movie-history-card-span {
+          color: white;
+          font-size: 22px;
+        }
+      }
+    }
+  }
+
+}

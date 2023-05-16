@@ -31,6 +31,7 @@ import Loader from "./components/Loader/Loader";
 import LikedMoviesPage from "./pages/likedMoviesPage/LikedMoviesPage";
 import MovieSearchPage from "./pages/movieSearchPage/MovieSearchPage";
 import Cookies from 'js-cookie';
+import MovieHistoryPage from "./pages/movieHistoryPage/MovieHistoryPage";
 
 const ActorPage = lazy(() => import('./pages/actorPage/ActorPage'));
 const ActorsPage = lazy(() => import('./pages/actorsPage/ActorsPage'));
@@ -83,6 +84,10 @@ function App() {
         {
           path: `/likedMovies/:id`,
           element: <LikedMoviesPage />
+        },
+        {
+          path: `/movieHistory/:id`,
+          element: <MovieHistoryPage />
         },
         {
           path: '/film/:id',

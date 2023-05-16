@@ -9,6 +9,8 @@ import React, {useEffect, useState, lazy, Suspense} from 'react';
 import {shallowEqual} from "react-redux";
 import './Home.scss';
 import Loader from "../../components/Loader/Loader";
+import {axiosRequest} from "../../utils/Request/newAxiosRequest";
+import {useLocation} from "react-router-dom";
 
 const HomeHeadings = lazy(() => import('../../components/homeHeadings/HomeHeadings'));
 const HomeMainSlider = lazy(() => import('../../utils/sliders/HomeMainSlider/HomeMainSlider'));
@@ -17,10 +19,23 @@ const Home = ({type, genre}: any) => {
     // const [genre, setGenre] = useState<any>(null);
     const [spinner, setSpinner] = useState(false);
     const {movie, lists} = useAppSelector(getMoviesSelector, shallowEqual);
+    const [cartoons, setCartoons] = useState([]);
+    const { pathname } = useLocation();
     const dispatch = useAppDispatch();
 
     useEffect(() => {
         window.scrollTo(0,0);
+    }, [])
+
+    useEffect(() => {
+        const getCartoons = async () => {
+            await axiosRequest.get('movie/getRandomMovie?type=cartoons')
+                .then(res => {
+                    setCartoons(res.data)
+                })
+        }
+
+        getCartoons()
     }, [])
 
     useEffect(() => {
@@ -62,7 +77,9 @@ const Home = ({type, genre}: any) => {
                                         fade={false}
                                         speed={900}
                                     >
-                                        {movie.data && movie?.data.map(card => (
+                                        {pathname !== '/cartoons' ? movie.data && movie?.data.map(card => (
+                                            <HomeMainSlider key={card._id} item={card}/>
+                                        )) : cartoons && cartoons.map((card) => (
                                             <HomeMainSlider key={card._id} item={card}/>
                                         ))}
                                     </Slide>

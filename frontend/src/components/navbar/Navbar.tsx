@@ -21,11 +21,11 @@ function Navbar() {
 
     useEffect(() => {
         const getOneUserFunc: any = () => {
-            dispatch<any>(getOneUser({userId: currentUser._id}))
+            dispatch<any | null>(getOneUser({userId: currentUser ? currentUser._id : ''}))
         }
 
         getOneUserFunc();
-    }, [currentUser._id])
+    }, [currentUser && currentUser._id])
 
     const isActive = () => {
         window.scrollY > 0 ? setActive(true) : setActive(false);
@@ -114,13 +114,13 @@ function Navbar() {
                                             Покупки
                                         </Link>
                                     </div>
-                                    <Link className="link" to={`/likedMovies/${currentUser._id}`}>
+                                    <Link className="link" to={`/likedMovies/${currentUser && currentUser._id}`}>
                                         <div className="opt-left-item">
                                             Смотреть позже
                                         </div>
                                     </Link>
                                     <div className="opt-left-item">
-                                        <Link className="link" to="/">
+                                        <Link className="link" to={`/movieHistory/${currentUser && currentUser._id}`}>
                                             История просмотров
                                         </Link>
                                     </div>
@@ -176,7 +176,7 @@ function Navbar() {
                                         </Link>
                                     </div>
                                     <div className="opt-right-item">
-                                        <Link className="link" to={`/user/${currentUser._id}`}>
+                                        <Link className="link" to={`/user/${currentUser && currentUser._id}`}>
                                             <span className='navbar-profile-item'>Настройки</span>
                                         </Link>
                                     </div>
