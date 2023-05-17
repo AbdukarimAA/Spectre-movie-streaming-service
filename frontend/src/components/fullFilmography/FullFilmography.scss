@@ -27,15 +27,15 @@
         margin-right: 20px;
         //background-color: white;
         img {
-          width: 120px;
-          height: 175px;
+          width: 170px;
+          height: 120px;
           border-radius: 10px;
         }
       }
 
       .full-filmography-container-titles {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: start;
         align-items: start;
         text-align: center;
@@ -51,6 +51,7 @@
         .full-filmography-container-titles-white {
           font-size: 16px;
           font-weight: 500;
+          min-width: 100px;
         }
 
         .full-filmography-container-titles-grey {

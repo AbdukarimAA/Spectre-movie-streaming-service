@@ -302,8 +302,8 @@ const FilmPage = () => {
                     speed={1500}
                 >
                     {
-                        actorCard && actorCard.map((actor) => (
-                            <ActorsSliderCard actor={actor} key={actor.id}/>
+                        oneMovie.movie.actors && oneMovie.movie.actors.map((actor) => (
+                            <ActorsSliderCard actorId={actor} key={actor.id}/>
                         ))
                     }
                 </ActorsSlider>
